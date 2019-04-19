@@ -18,7 +18,7 @@ h1 {
   font-weight: bold;
   font-family: Montserrat, Helvetica, sans-serif;
   line-height: 1.5;
-  float: right;
+  float: left;
   z-index: 2000;
   font-size: 5.3vw;
 }
