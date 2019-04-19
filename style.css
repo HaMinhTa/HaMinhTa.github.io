@@ -1,0 +1,246 @@
+/* Imported styles */
+@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville');
+@import url('https://fonts.googleapis.com/css?family=Cardo');
+@import url('https://fonts.googleapis.com/css?family=Lora');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+
+/* ----- Type selector styles ----- */
+article {
+  background-color: black;
+  width: 100%;
+}
+
+h1 {
+  text-align: center;
+  padding-top: 0;
+  color:  white;
+  font-weight: bold;
+  font-family: Montserrat, Helvetica, sans-serif;
+  line-height: 1.5;
+  float: left;
+  z-index: 2000;
+  font-size: 5.3vw;
+}
+
+h2 {
+  font-family: Helvetica;
+  font-size: 22px;
+  color: #FDB717;
+  padding-top: 0;
+  padding-bottom: 50%;
+  height: 100vh;
+  padding-top: 60%;
+}
+
+h4 {
+  text-align: left;
+  font-size: 16px;
+}
+
+
+p {
+  font-family: Georgia;
+  font-size: 18px;
+}
+
+section {
+  background-color: black;
+  color: white;
+  opacity: 0.8;
+  width: 30%;
+}
+
+/* ----- Class selector styles ----- */
+
+a:link, a:visited {
+  color: #00ccff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.axisLabel {
+  fill: white;
+  font-size: 22px;
+}
+
+.axis {
+  color: white;
+  font-size: 15px;
+}
+
+.intro {
+  width: 60%;
+  margin-left: 20%;
+  line-height: 1.8;
+  font-family: Georgia;
+  font-size: 16px;
+}
+
+.intrograph {
+  height: 18vh;
+
+}
+
+.legend {
+  font-size: 25px;
+  font-family: Helvetica, sans-serif;
+}
+
+.tooltip {
+  z-index: 1000;
+}
+
+/* container holding the image and the text */
+.container {
+  position: relative;
+  text-align: center;
+  background-color: black;
+}
+/* centered text */
+.centered{
+  position: absolute;
+  top: 40%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+
+}
+
+
+/* ----- ID selector styles ----- */
+#viz1555098889410 {
+  padding-left: 4%;
+  padding-top: 5%;
+}
+
+#embeddedtweet {
+  margin-left: 18%;
+}
+
+#embeddedtweet1 {
+  margin-left: 18%;
+}
+
+#embeddedtweet2 {
+  margin-left: 18%;
+}
+
+#embeddedtweet3 {
+  margin-left: 18%;
+}
+
+#cover{
+  width: 100%;
+  height: 80%;
+}
+
+/* DEFAULT STYLES FOR TEMPLATE - DO NOT MODIFY */
+p {
+  height: 100vh;
+}
+
+body, html {
+  margin: 0px;
+  padding: 0px;
+}
+
+.full-width {
+  width: 100%;
+  padding: 25px;
+  box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.sticky-container {
+  padding-left: 20px;
+  padding-right: 10px;
+  position: relative;
+  z-index: 100;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.sticky-content {
+  line-height: 1.8;
+  position: relative;
+  display: flex;
+  flex: 1 0 30%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 25px;
+  box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.sticky-graphic {
+  width: 100%;
+  z-index: -100;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0px;
+  height: 100vh;
+  flex: 1 0 50%;
+  text-align: center;
+  box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+
+
+/* RESPONSIVE DESIGN */
+
+@media only screen and (max-width: 480px) {
+/* For mobile: */
+h1 {
+  font-size: 5vw;
+}
+
+.intrograph {
+  width: 100%;
+  height: auto;
+}
+
+.sticky-container {
+  flex-wrap: wrap;
+}
+
+.sticky-content {
+  flex: 1 0 100%;
+}
+
+.sticky-graphic {
+  flex: 1 0 100%;
+}
+
+
+
+}
+
+
+@media only screen and (max-width: 768px){
+.intrograph{
+  width: 100%;
+  height: auto;
+}
+
+.sticky-container {
+  flex-wrap: wrap;
+}
+
+.sticky-content {
+  flex: 1 0 100%;
+}
+
+.sticky-graphic {
+  flex: 1 0 100%;
+}
+
+}
