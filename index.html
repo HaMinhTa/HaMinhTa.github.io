@@ -214,7 +214,7 @@
     </aside>
     <main id="content">
       <div id="header">
-          <img id="greeting-image" width ="150px" src=""><br>
+          <img id="greeting-image" height ="250px" src=""><br>
           <p id="greetings"></p>
       </div>
       <div>
@@ -257,7 +257,7 @@
       image = "images/afternoon.png";
     } else {
       greeting = "Good evening";
-      image = "images/night.png";
+      image = "images/night2.png";
     }
 
     document.querySelector("#greeting-image").src = image;
@@ -289,48 +289,6 @@
       }
     }
     typeWriter()
-
-    ///////////////////////////////////////////////////////////////////////////
-    // Generate content ///////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////////
-    // for(var i = 0; i < data.length; i++) {
-    //   var news = data[i];
-    //   var newsContainer = document.querySelector("#item" + (i+1));
-    //   newsContainer.querySelector(".news-item-title").innerHTML = news.title;
-    //   newsContainer.querySelector(".news-item-preview").innerHTML = news.preview;
-    //   newsContainer.querySelector(".news-item-category").innerHTML = news.category;
-    //   newsContainer.querySelector(".news-item-byline").innerHTML = "By " + news.author;
-    //   newsContainer.setAttribute("data-category", news.category);
-    // }
-
-    ///////////////////////////////////////////////////////////////////////////
-    // Activate filters ///////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////////
-
-    // var filters = document.querySelectorAll(".filter");
-    // filters.forEach(function(filter) {
-    //   filter.onclick = function() {
-    //     var category = this.id;
-    //     var newsItems = document.querySelectorAll(".news-item");
-    //
-    //     for(var i = 0; i < newsItems.length; i++) {
-    //       if(category === "all") {
-    //         newsItems[i].style.display = "block";
-    //       } else if(newsItems[i].getAttribute("data-category") === category) {
-    //         newsItems[i].style.display = "block";
-    //       } else {
-    //         newsItems[i].style.display = "none";
-    //       }
-    //     }
-    //
-    //   }
-    // });
-
-    ///////////////////////////////////////////////////////////////////////////
-    // Interaction styles /////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////////
-
-
 
 
   </script>
