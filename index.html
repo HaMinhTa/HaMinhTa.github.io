@@ -43,12 +43,11 @@
 
     #title {
       font-family: "Staatliches", cursive;
-      font-size: 40pt;
+      font-size: 42pt;
       padding: 20px 120px 10px 20px;
-      line-height: 40pt;
+      line-height: 41pt;
       background-color: #CC0000;
-      color: #FFFFFF;
-      border-bottom: 2px dotted #CC0000;
+      color: #ffffff;
       text-transform: lowercase;
     }
 
@@ -59,8 +58,7 @@
       padding-bottom: 20px;
       line-height: 10pt;
       background-color: #CC0000;
-      color: #FFFFFF;
-      border-bottom: 2px dotted #CC0000;
+      color: #ffffff;
     }
 
     #header {
@@ -86,92 +84,62 @@
 
     #greeting-image {
       vertical-align: middle;
+      height: 140px;
     }
 
     #projects {
       font-family: "Staatliches", cursive;
       font-size: 40px;
       text-align: center;
+      padding-top: 2%;
+      color: #CC0000;
     }
 
     #greetings {
-      font-family: "Georgia", serif;
-      font-size: 20px;
+      font-family: "Baskerville", serif;
+      font-size: 22px;
       color: #686868;
     }
 
-    #article-title1 {
-      float: left;
-      padding-left: 21%;
+    #footer {
+      padding-top: 8%;
+      text-align: center;
     }
-
-    #article-title2 {
-      float: right;
-      padding-right: 20%;
-    }
-
-    #article-title3 {
-      float: left;
-      padding-left: 18%;
-    }
-
-    #article-title4 {
-      float: right;
-      padding-right: 14%;
+    .article-title {
+      width: 46.6%;
+      margin-top: -2%;
+      margin-left: 25%;
+      border-radius: 5px;
+      padding: 15px;
+      font-size: 18px;
+      line-height: 24px;
+      font-family: "Baskerville", serif;
+      background-color: #d9d9d9;
     }
 
     .featured-image {
-      width: 350px;
-      height: 300px;
-      margin-right: 4%;
-      margin-left: 6%;
+      width: 50%;
+      height: 38%;
+      margin-right: 25%;
+      margin-left: 25%;
       margin-bottom: 0px;
       margin-top: 20px;
       border-radius: 10px;
-
     }
 
     .bio {
       background-color: #d9d9d9;
       padding: 20px;
       border-radius: 10px;
-      font-family: "Baskerville", sans-serif;
+      font-family: "Baskerville", serif;
       font-size: 17px;
     }
 
-
-    /* NEWS CONTENT STYLES */
-
-    .news-item {
-      width: 100%;
-      margin: 0px;
-      padding: 10px;
-      box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-      border-bottom: 2px dotted #CCCCCC;
-    }
-
-    .news-item-title {
-      font-size: 18pt;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .news-item-preview {
-      font-size: 12pt;
-      line-height: 20pt;
-    }
-
-    .news-item-category{
-      text-transform: uppercase;
+    .subtitle {
       color: #CC0000;
-      font-weight: bold;
-    }
+      text-align: center;
+      font-family: "Calibri", sans-serif;
 
-    .news-item-byline{
-      margin-bottom: 10px;
-      font-weight: bold;
     }
 
     a:link, a:visited{
@@ -207,38 +175,76 @@
           <p>Journalism Graduate Student <a href="https://news.northeastern.edu/" target="_blank">@Northeastern University</a></p>
           <p>Founding Editor & Writer <a href="https://foreignobserver.net/" target="_blank">@Foreign Observer</a></p>
           <p>Writer <a href="https://huntnewsnu.com/" target="_blank">@The Huntington News</a> & <a href="http://www.storybench.org/author/hata/" target="_blank">Storybench</a></p>
-          <p>Editorial Assistant <a href="https://www.techtarget.com/" target="_blank">@TechTarget</a></p>
+          <p>Editorial Assistant <a href="https://www.techtarget.com/contributor/Ha-Ta" target="_blank">@TechTarget</a></p>
         </div>
 
       </nav>
     </aside>
     <main id="content">
       <div id="header">
-          <img id="greeting-image" height ="250px" src=""><br>
+          <img id="greeting-image" src=""><br>
           <p id="greetings"></p>
       </div>
       <div>
-        <p id="projects">Projects</p>
+        <h2 id="projects" >Writing</h2>
         <a href="https://taminhha.home.blog/"><img class="featured-image" src="images/article2.gif"></a>
+        <div class="article-title">
+          <p>At Northeastern, I've written for The Huntington News, the Mission Hill Gazette, Storybench and The Foreign Observer Magazine on topics such as:</p>
+          <ul>
+            <li>Boston Synagogue weighs security questions post-Pittsburgh</li>
+            <li>These Schools in Franklin are Confronting Bias Incidents with Conversations</li>
+            <li>Shattuck Award winner dishes nutrition advice at Tobin</li>
+            <li>Getting an H1B - An International Student’s Journey to Work in the U.S</li>
+            <li>Perspective from an Emergency Responder at US – Mexico Border</li>
+          </ul>
+        </div>
+
+        <h2 id="projects" >Data Viz</h2>
         <a href="311.html"><img class="featured-image" src="images/scrolly2.gif"></a>
-        <a href="https://taminhha.home.blog/" target="_blank"><h3 id="article-title1">All Stories</h3></a>
-        <a href="311.html"><h3 id="article-title2">Scrollytelling</h3></a>
-        <a href="https://web.northeastern.edu/themargins/gigeconomy/ta/" target="_blank"><img class="featured-image" src="images/gig2.gif"></a>
-        <a href="https://foreignobserver.net/"><img class="featured-image" src="images/fo.png"></a>
-        <a href="https://web.northeastern.edu/themargins/gigeconomy/ta/" target="_blank"><h3 id="article-title3">The Boston Globe</h3></a>
-        <a href="https://foreignobserver.net/"><h3 id="article-title4">Foreign Observer Magazine</h3></a>
-        <a href="https://taminhha.home.blog/2018/10/10/voters-opinion-101-podcast/"><img class="featured-image" src="images/podcast.jpg"></a>
-        <a href="https://taminhha.home.blog/2018/10/22/student-by-day-performer-by-night/"><img class="featured-image" src="images/video2.png"></a>
-        <a href="https://taminhha.home.blog/2018/10/10/voters-opinion-101-podcast/"><h3 id="article-title1">Podcast</h3></a>
-        <a href="https://taminhha.home.blog/2018/10/22/student-by-day-performer-by-night/"><h3 id="article-title2">Video &nbsp &nbsp &nbsp</h3></>
-        <a href="magazine.html"><img class="featured-image" src="images/magazine9.png"></a>
+        <div class="article-title">
+          <p>I coded this scrollytelling piece by analyzing data from the City of Boston and Twitter API. Python was used to retrieve tweets from Twitter, D3.js library to create the interactive charts and Tableau for the map, alongside HTML and CSS.</p>
+        </div>
+
+        <a href="https://web.northeastern.edu/themargins/gigeconomy/ta/"><img class="featured-image" src="images/gig2.gif"></a>
+        <div class="article-title">
+          <p>This story is one in a 4-part series by the Boston Globe highlighting unique angles of the gig economy in Boston.</p>
+        </div>
+
         <a href="THREEjs.html"><img class="featured-image" src="images/three.png"></a>
-        <a href="magazine.html"><h3 id="article-title1">Magazine Design</h3></a></a>
-        <a href="THREEjs.html"><h3 id="article-title2">THREE.js</h3></a></a>
+        <div class="article-title">
+          <p>3D space created with D3 library THREE.js.</p>
+        </div>
+
+        <h2 id="projects" >Editing</h2>
+        <a href="https://foreignobserver.net/"><img class="featured-image" src="images/fo.png"></a>
+        <div class="article-title">
+          <p>The Foreign Observer is an initiative started by Matt Carroll, professor of Practice at Northeastern University. The magazine focuses on topics concerning the large population of international students in Boston and in the U.S. who are trying to immerse in the new culture and excel in class while facing the very real everyday struggles of being a foreign student.</p>
+        </div>
+
+        <h2 id="projects" >Design</h2>
+        <a href="magazine.html"><img class="featured-image" src="images/magazine9.png"></a>
+        <div class="article-title">
+          <p>A sample magazine design for the Margins, a Northeastern University's Media Innovation program magazine</p>
+        </div>
+
+
+        <h2 id="projects" >Podcast</h2>
+        <a href="https://taminhha.home.blog/2018/10/10/voters-opinion-101-podcast/"><img class="featured-image" src="images/podcast.jpg"></a>
+        <div class="article-title">
+          <p>A mini-podcast done prior to the 2018 mid-term election using Adobe's Audition.</p>
+        </div>
+
+        <h2 id="projects" >Video</h2>
+        <a href="https://taminhha.home.blog/2018/10/22/student-by-day-performer-by-night/"><img class="featured-image" src="images/video2.png"></a>
+        <div class="article-title">
+          <p>A video about <i>No Jokes</i>, a student-led improv club at Northeastern University, created using Adobe's Premier.</p>
+        </div>
       </div>
     </main>
     </div>
   </div>
+  <h5 id="footer">This is a project by HA MINH Ta at the Northeastern University School of Journalism. © 2018</h5>
+
 
   <script>
     ///////////////////////////////////////////////////////////////////////////
