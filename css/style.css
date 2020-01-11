@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css?family=Staatliches');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+html, body {
+      margin: 0px;
+      padding: 0px;
+      font-family: "Open Sans", sans-serif;
+      background-color: #ffffff;
+
+    }
+
+    h3 {
+      font-family: "Staatliches", cursive;
+      font-size: 20px;
+
+    }
+
+    #wrapper {
+      padding: 0px;
+      width: 80%;
+      margin-left: 10%;
+      font-weight: 400;
+      display: flex;
+      flex-direction: row;
+    }
+
+
+    #navbar {
+      margin: 0px;
+      padding: 10px;
+      flex: 0 1 20%;
+      background-color: #FEFEFE;
+      box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+    }
+
+    #title {
+      font-family: "Staatliches", cursive;
+      font-size: 42pt;
+      padding: 20px 120px 10px 20px;
+      line-height: 41pt;
+      background-color: #CC0000;
+      color: #ffffff;
+      text-transform: lowercase;
+    }
+
+    #tagline {
+      font-family: "Futura", sans-serif;
+      font-size: 15pt;
+      padding-left: 20px;
+      padding-bottom: 20px;
+      line-height: 10pt;
+      background-color: #CC0000;
+      color: #ffffff;
+    }
+
+    #header {
+      margin: 10px 0px 10px 0px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    #content {
+      flex: 1 0;
+    }
+
+    #navigation {
+      font-family: "Staatliches", cursive;
+      font-size: 16pt;
+    }
+
+    #navigation ul {
+      list-style-type: none;
+      padding-left: 0px;
+      margin: 15px 0px 15px 0px;
+    }
+
+    #greeting-image {
+      vertical-align: middle;
+      height: 140px;
+    }
+
+    #projects {
+      font-family: "Staatliches", cursive;
+      font-size: 40px;
+      text-align: center;
+      padding-top: 2%;
+      color: #CC0000;
+    }
+
+    #greetings {
+      font-family: "Baskerville", serif;
+      font-size: 22px;
+      color: #686868;
+    }
+
+    #footer {
+      padding-top: 8%;
+      text-align: center;
+    }
+    .article-title {
+      width: 46.6%;
+      margin-top: -2%;
+      margin-left: 25%;
+      border-radius: 5px;
+      padding: 15px;
+      font-size: 18px;
+      line-height: 24px;
+      font-family: "Baskerville", serif;
+      background-color: #d9d9d9;
+    }
+
+    .featured-image {
+      width: 50%;
+      height: 38%;
+      margin-right: 25%;
+      margin-left: 25%;
+      margin-bottom: 0px;
+      margin-top: 20px;
+      border-radius: 10px;
+    }
+
+    .bio {
+      background-color: #d9d9d9;
+      padding: 20px;
+      border-radius: 10px;
+      font-family: "Baskerville", serif;
+      font-size: 17px;
+    }
+
+    .subtitle {
+      color: #CC0000;
+      text-align: center;
+      font-family: "Calibri", sans-serif;
+
+    }
+
+    a:link, a:visited{
+      color: #333333;
+      text-decoration: none;
+    }
+    a:hover{
+      color: #CC0000;
+      text-decoration: underline;
+    }
