@@ -3,8 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Ha Ta Site</title>
-  <link rel="stylesheet" href="css/style.css"/>
-  
+  <link rel="stylesheet" href="css/style.css"/> 
   <script src="https://d3js.org/d3.v5.min.js"></script>
 </head>
 <body>
@@ -103,64 +102,19 @@
         <div class="article-title">
           <p>A video about <i>No Jokes</i>, a student-led improv club at Northeastern University, created using Adobe's Premier.</p>
         </div>
+
+        <h2 id="projects" >Homework for Viz Tech 2 Class</h2>
+        <a href="homework/homeworkpage.html"><img class="featured-image" src="images/homework.jpg"></a>
+        <div class="article-title">
+          <p>A place where I post assisgnments for the Visualization Techniques 2 Class</p>
+        </div>
+
       </div>
     </main>
     </div>
   </div>
   <h5 id="footer">This is a project by HA MINH Ta at Northeastern University's School of Journalism. © 2018</h5>
 
-
-  <script>
-    ///////////////////////////////////////////////////////////////////////////
-    // Set up greeting ////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////////
-
-    var today = new Date();
-    var hour = today.getHours();
-
-    var greeting;
-    var image;
-    if (hour < 12){
-      greeting = "Good morning";
-      image = "images/morning.png";
-    } else if (hour < 18){
-      greeting = "Good afternoon";
-      image = "images/afternoon.png";
-    } else {
-      greeting = "Good evening";
-      image = "images/night2.png";
-    }
-
-    document.querySelector("#greeting-image").src = image;
-
-    var amPm;
-    if (hour >= 12){
-      amPm = "PM";
-    } else {
-      amPm = "AM";
-    }
-    var hour12 = (hour <= 12) ? hour : hour % 12;
-    var minutes = today.getMinutes();
-    if(minutes <10) {
-      var minutes60 ="0" + minutes;
-    } else {
-      var minutes60 = minutes;
-    }
-    var time = hour12 + ":" + minutes60 + " " + amPm;
-
-    var i = 0;
-    var txt = `${greeting} from Ha Ta! The time is currently ${time}. I hope you enjoy my stories!`; /* The text */
-    var speed = 40; /* The speed/duration of the effect in milliseconds */
-
-    function typeWriter() {
-      if (i < txt.length) {
-        document.getElementById("greetings").innerHTML += txt.charAt(i);
-        i++;
-        setTimeout(typeWriter, speed);
-      }
-    }
-    typeWriter()
-
-  </script>
+  <script src="js/homepage.js"></script>
 </body>
 </html>
