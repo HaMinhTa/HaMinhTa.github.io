@@ -24,12 +24,12 @@ h3 {
     background-color: rgb(233, 106, 216); /* Green */
     border: none;
     color: white;
-    padding: 14px 28px;
+    padding: 15px 30px;
     border-radius: 6px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 17px;
+    font-size: 19px;
     margin: 4px 2px;
     cursor: pointer;
     -webkit-transition-duration: 0.1s; /* Safari */
