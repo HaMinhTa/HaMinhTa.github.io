@@ -54,13 +54,12 @@ function reset() {
 
 // Add/update circles on Leaflet map
 function update(data) {
-  let count = 1;
   let circles = d3.select("#map").select("svg").selectAll("circle").data(data)
-    .attr("cx", (d) => { console.log(count++); return map.latLngToLayerPoint([d.lat, d.long]).x; })
+    .attr("cx", (d) => { return map.latLngToLayerPoint([d.lat, d.long]).x; })
     .attr("cy", (d) => { return map.latLngToLayerPoint([d.lat, d.long]).y; });
 
   circles.enter().append("circle")
-    .attr("cx", (d) => { console.log(count++); return map.latLngToLayerPoint([d.lat, d.long]).x; })
+    .attr("cx", (d) => { return map.latLngToLayerPoint([d.lat, d.long]).x; })
     .attr("cy", (d) => { return map.latLngToLayerPoint([d.lat, d.long]).y; })
     .attr("r", 10)
     .style("fill", "red")
