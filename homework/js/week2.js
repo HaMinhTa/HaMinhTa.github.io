@@ -3,7 +3,7 @@ const START_LONG = -71.0618929;
 const START_ZOOM = 13;
 
 const URL = "https://api-v3.mbta.com/vehicles";
-const INTERVAL = 500;
+const INTERVAL = 3000;
 
 let selector = document.getElementById("selector");
 let currentRoute = "15";
