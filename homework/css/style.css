@@ -53,7 +53,11 @@ canvas {
 }
 
 #map {
-    width: 700px;
-    height: 500px;
+    width: 1000px;
+    height: 600px;
   }
-  
+
+#routeSelector {
+    color: green;
+    font-size: 30px;
+}
