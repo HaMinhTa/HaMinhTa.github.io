@@ -3,14 +3,14 @@
 body {
     background-color: rgb(232, 246, 250);
 }
-
+/* 
 h1{
     text-align: center;
     font-family: "Open Sans", Arial, sans-serif;
     color: rgb(238, 16, 190);
     font-weight: bold;
     padding-bottom: 1%;
-}
+} */
 
 h3 {
     text-align: center;
@@ -59,9 +59,14 @@ canvas {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 10%;
     box-shadow: 5px 15px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
 
   }
+
+#mbta {
+    background-color: rgb(255, 255, 255);
+}
 
 #mbtaTracker {
     color: rgb(20, 96, 238);
@@ -78,7 +83,7 @@ canvas {
     margin-left: auto;
     margin-right: auto;
     color: rgb(20, 96, 238);
-    font-size: 30px;
+    font-size: 25px;
     font-weight: bold;
     font-family: "Open Sans", Arial, sans-serif;
 }
@@ -92,7 +97,7 @@ canvas {
     display: block;
     font-size: 20px;
     font-weight: bold;
-    width: 20%;
+    width: 18%;
     color: rgb(85, 85, 85);
     padding: 10px;
     box-sizing: border-box;
@@ -114,7 +119,24 @@ canvas {
     border-color: rgb(119, 119, 119);
 }
 
+/* #header {
+    background-image: url(../image/train.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+} */
 
+#headertexts {
+    width: 900px;
+    margin: 0 auto;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 25px;
+    text-align: center;
+    padding: 40px 0 40px;
+    /* margin-bottom: 30px; */
+    color: rgb(0, 0, 0);
+
+}
 
 
 

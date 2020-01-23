@@ -14,9 +14,15 @@
   <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body id="mbta">
-  <h1 id="mbtaTracker">MBTA Bus and Train Routes</h1>
-  <label id="selector"> Choose a route:
+  <div id="header">
+    <div id="headertexts">
+      <h2>Live Tracking MBTA Train & Bus Vehicles</h2>
+      <p>Find out where your bus and train is</p>
+    </div>
+  </div>
+  <label id="selector"> Track an MBTA route:
     <select class="dropdown">
+      <option>Choose a route</option>
       <option value="15">Bus 15</option>
       <option value="66">Bus 66</option>
       <option value="Green-B">Green Line B</option>
@@ -28,5 +34,6 @@
     </select>
   </label>
   <div id="map"></div>
+  <!-- <p>Photo by VanveenJF on Unsplash</p> -->
   <script src="js/week2.js"></script>
 </body>
