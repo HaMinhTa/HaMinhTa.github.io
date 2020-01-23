@@ -57,7 +57,7 @@ canvas {
 
 #map {
     width: 1000px;
-    height: 520px;
+    height: 580px;
     text-align: center;
     display: block;
     margin-left: auto;
@@ -133,16 +133,16 @@ canvas {
     width: 900px;
     margin: 0 auto;
     font-family: 'Alata', sans-serif;
-    font-size: 25px;
+    font-size: 30px;
     text-align: center;
     padding: 40px 0 40px;
     /* margin-bottom: 30px; */
     color: #5f5cf6;
-
 }
 
 #tagline {
     color: #9e9df3;
+    font-size: 22px;
 }
 
 
