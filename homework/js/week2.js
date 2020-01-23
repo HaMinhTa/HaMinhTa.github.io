@@ -48,19 +48,19 @@ function filter(data, key) {
 // Redraw svg circles on Leaflet map every time a pan/zoom occurs
 function reset() {
   d3.selectAll("circle")
-    .attr("cx", (d) => { return map.latLngToLayerPoint([d.lat, d.long]).x; })
-    .attr("cy", (d) => { return map.latLngToLayerPoint([d.lat, d.long]).y; });
+    .attr("cx", function(d) { return map.latLngToLayerPoint([d.lat, d.long]).x; })
+    .attr("cy", function(d) { return map.latLngToLayerPoint([d.lat, d.long]).y; });
 }
 
 // Add/update circles on Leaflet map
 function update(data) {
   let circles = d3.select("#map").select("svg").selectAll("circle").data(data)
-    .attr("cx", (d) => { return map.latLngToLayerPoint([d.lat, d.long]).x; })
-    .attr("cy", (d) => { return map.latLngToLayerPoint([d.lat, d.long]).y; });
+    .attr("cx", function(d) { return map.latLngToLayerPoint([d.lat, d.long]).x; })
+    .attr("cy", function(d) { return map.latLngToLayerPoint([d.lat, d.long]).y; });
 
   circles.enter().append("circle")
-    .attr("cx", (d) => { return map.latLngToLayerPoint([d.lat, d.long]).x; })
-    .attr("cy", (d) => { return map.latLngToLayerPoint([d.lat, d.long]).y; })
+    .attr("cx", function(d) { return map.latLngToLayerPoint([d.lat, d.long]).x; })
+    .attr("cy", function(d) { return map.latLngToLayerPoint([d.lat, d.long]).y; })
     .attr("r", 10)
     .style("fill", "red")
     .attr("stroke", "black")
@@ -76,5 +76,5 @@ function processData(data) {
 }
 
 function fetchData() {
-  d3.json(URL).then(processData);
+  d3.json(URL, processData);
 }
