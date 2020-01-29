@@ -15,51 +15,52 @@
         <p>There are currently <span id="users"></span> users on DataUSA</p>
     </div>
     <script>
-        let data = [];
+        var data = [];
 
-        function convert2number(d,i) {
-            d.value = +d.value;
+        function convert2numbers(d, i) {
+        d.value = +d.value;
         }
-        function drawLabel(){
-            d3.select("#label").html(data[0].value);
+
+        function drawLabel() {
+        d3.select("#label").html(data[0].value);
         }
 
         function analyzeData(error, newData) {
 
-            data.forEach(convert2number);
+        data.forEach(convert2numbers);
 
-            console.log("error:", error);
-            console.log("data:", data);
+        console.log('error:', error);
+        console.log("newData:", newData);
 
-            data = newData;
+        data = newData;
+        drawLabel();
 
-            drawLabel();
         }
 
-        d3.json("data.json", analyzeData);
-        
+        d3.json("data/data.json", analyzeData);
+        // d3.csv("data/data.csv", analyzeData);
+        console.log("Hello Dave!");
+
         var url = "https://datausa.io/api/data?drilldowns=State&measures=Population&year=latest";
 
         d3.json(url, function(error, data) {
-            console.log(data);
+        console.log(data);
         });
 
-        // d3.csv("data.csv", analyzeData);
-        var realtimeURL = "https://whiteboard.datawheel.us/api/google-analytics/realtime/111999474";
+        var realtimeURL = "https://whiteboard.datawheel.us/api/google-analytics/realtime/random";
         var frequency = 10 * 1000; // 10 seconds
 
-
         function fetchData() {
-            d3.json(realtimeURL, function(error, users){
+
+        d3.json(realtimeURL, function(error, users) {
             console.log("users:", users);
             d3.select("#users").html(users);
-            });
+        });
+
         }
 
-        fetchData()
+        fetchData();
         setInterval(fetchData, frequency);
-
-
     </script>
 
 </body>

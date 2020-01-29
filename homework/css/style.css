@@ -91,6 +91,15 @@ canvas {
     font-family: "Open Sans", Arial, sans-serif;
 }
 
+#realtime {
+    text-align: center;
+    color: #5f5cf6;
+    font-size: 35px;
+    font-weight: bold;
+    font-family: "Open Sans", Arial, sans-serif;
+    padding-bottom: 15px;
+}
+
 .dropdown {
     text-align: center;
     margin-left: auto;
