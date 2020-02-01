@@ -97,11 +97,12 @@
       height: 140px;
     }
 
-    #projects {
+    .projects {
       font-family: "Staatliches", cursive;
       font-size: 40px;
       text-align: center;
-      padding-top: 2%;
+      padding-top: 5%;
+      padding-bottom: 5%;
       color: #CC0000;
     }
 
@@ -110,6 +111,7 @@
       font-size: 22px;
       color: #686868;
     }
+   
 
     #footer {
       padding-top: 8%;
@@ -129,14 +131,44 @@
       background-color: #d9d9d9;
     }
 
+    .mainbody {
+      padding-left: 4%;
+    }
+
     .featured-image {
-      width: 50%;
-      height: 38%;
-      margin-right: 25%;
-      margin-left: 25%;
-      margin-bottom: 0px;
-      margin-top: 20px;
-      border-radius: 10px;
+      width: 100%;
+      margin-top: 15%;
+      margin-bottom: 5%;
+    }
+
+    .block {
+      padding-left: 20px;
+      padding-right: 20px;
+
+    }
+
+    .featured-image:hover {
+    }
+
+    .projecttitle {
+      font-size: 16px;
+      font-weight: normal;
+      text-align: center;
+      line-height: 1.5rem;
+      background-color: rgb(238, 189, 29);
+      font-family: "Helvetica", sans-serif;
+      color: white;
+    }
+
+    .row2 {
+      padding-bottom: 4%;
+    }
+
+    .description {
+      font-size: 12px;
+      font-family: "Helvetica", sans-serif;
+      line-height: 1.5rem;
+
     }
 
     .bio {

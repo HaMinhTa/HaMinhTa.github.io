@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Ha Ta Site</title>
+  <link rel="stylesheet" href="css/style.css"/> 
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+<body>
+  <div id="wrapper">
+    <aside id="navbar">
+      <section id="title">Ha<br>Minh<br>Ta</section>
+      <section id="tagline">stay curious</section>
+
+      <nav id="navigation">
+        <ul>
+          <li><a href="resume.html" id="about" class="filter">Resume</a></li>
+          <li><a href="headshot.html" id="about" class="filter">Headshot</a></li>
+          <li><a href="https://taminhha.home.blog/" id="all" class="filter">All Stories</a></li>
+          <li><a href="311.html" id="digital" class="filter">Scrollytelling</a></li>
+          <li><a href="https://taminhha.home.blog/2018/10/22/student-by-day-performer-by-night/" id="video" class="filter">Video</a></li>
+          <li><a href="https://taminhha.home.blog/2018/10/10/voters-opinion-101-podcast/" id="podcast" class="filter">Podcast</a></li>
+          <li><a href="https://foreignobserver.net/" id="fo" class="filter">Foreign Observer Magazine</a></li><br>
+          <li><p class="filter">About me</p></li>
+        </ul>
+        <div class="bio">
+          <p>Journalism Graduate Student <a href="https://news.northeastern.edu/" target="_blank">@Northeastern University</a></p>
+          <p>Founding Editor & Writer <a href="https://foreignobserver.net/" target="_blank">@Foreign Observer</a></p>
+          <p>Writer <a href="https://huntnewsnu.com/" target="_blank">@The Huntington News</a> & <a href="http://www.storybench.org/author/hata/" target="_blank">Storybench</a></p>
+          <p>Editorial Assistant <a href="https://www.techtarget.com/contributor/Ha-Ta" target="_blank">@TechTarget</a></p>
+        </div>
+
+      </nav>
+    </aside>
+    <main id="content">
+      <div id="header">
+          <img id="greeting-image" src=""><br>
+          <p id="greetings"></p>
+      </div>
+      <div>
+        <h2 id="projects" >Writing</h2>
+        <div class="imgWrapper">
+          <a href="https://taminhha.home.blog/"><img class="featured-image" src="images/article2.gif"></a>
+          <div class="imgLayer"><p class="imgLayerText">My Writing</p></div>
+        </div>
+        <!-- <div class="article-title">
+          <p>At Northeastern, I've written for The Huntington News, the Mission Hill Gazette, Storybench and The Foreign Observer Magazine on topics such as:</p>
+          <ul>
+            <li>Boston Synagogue weighs security questions post-Pittsburgh</li>
+            <li>These Schools in Franklin are Confronting Bias Incidents with Conversations</li>
+            <li>Shattuck Award winner dishes nutrition advice at Tobin</li>
+            <li>Getting an H1B - An International Student’s Journey to Work in the U.S</li>
+            <li>Perspective from an Emergency Responder at US – Mexico Border</li>
+          </ul>
+        </div> -->
+
+        <h2 id="projects" >Data Viz</h2>
+
+        <a href="journalism/indexfinder.html"><img class="featured-image" src="images/finder.png"></a>
+        <div class="article-title">
+          <p>A neighborhood finder that pick out the most suitable Boston neighborhood for you based on your three priorities</p>
+        </div>
+
+        <a href="indexquiz.html"><img class="featured-image" src="images/quiz.png"></a>
+        <div class="article-title">
+          <p>A quiz testing your knowledge of the H-1B visa, the most popular working visa for international students in the U.S.</p>
+        </div>
+
+        <a href="311.html"><img class="featured-image" src="images/scrolly2.gif"></a>
+        <div class="article-title">
+          <p>I coded this scrollytelling piece by analyzing data from the City of Boston and Twitter API. Python was used to retrieve tweets from Twitter, D3.js library to create the interactive charts and Tableau for the map, alongside HTML and CSS.</p>
+        </div>
+
+        <a href="https://web.northeastern.edu/themargins/gigeconomy/ta/"><img class="featured-image" src="images/gig2.gif"></a>
+        <div class="article-title">
+          <p>This story is one in a 4-part series by the Boston Globe highlighting unique angles of the gig economy in Boston.</p>
+        </div>
+
+        <a href="THREEjs.html"><img class="featured-image" src="images/three.png"></a>
+        <div class="article-title">
+          <p>3D space created with D3 library THREE.js.</p>
+        </div>
+
+        <h2 id="projects" >Editing</h2>
+        <a href="https://foreignobserver.net/"><img class="featured-image" src="images/fo.png"></a>
+        <div class="article-title">
+          <p>I founded the Foreign Observer magazine in 2019 while at Northeastern University. It is the only student magazine on campus that focuses on issues that affect and interest the international student community in the U.S. The magazine is advised by Matt Carroll, professor of Practice at Northeastern University.</p>
+        </div>
+
+        <h2 id="projects" >Design</h2>
+        <a href="magazine.html"><img class="featured-image" src="images/magazine9.png"></a>
+        <div class="article-title">
+          <p>A sample magazine design for the Margins, a Northeastern University's Media Innovation program magazine</p>
+        </div>
+
+
+        <h2 id="projects" >Podcast</h2>
+        <a href="https://taminhha.home.blog/2018/10/10/voters-opinion-101-podcast/"><img class="featured-image" src="images/podcast.jpg"></a>
+        <div class="article-title">
+          <p>A mini-podcast done prior to the 2018 mid-term election using Adobe's Audition.</p>
+        </div>
+
+        <h2 id="projects" >Video</h2>
+        <a href="https://taminhha.home.blog/2018/10/22/student-by-day-performer-by-night/"><img class="featured-image" src="images/video2.png"></a>
+        <div class="article-title">
+          <p>A video about <i>No Jokes</i>, a student-led improv club at Northeastern University, created using Adobe's Premier.</p>
+        </div>
+
+        <h2 id="projects" >Homework for Viz Tech 2 Class</h2>
+        <a href="homework/homeworkpage.html"><img class="featured-image" src="images/homework.jpg"></a>
+        <div class="article-title">
+          <p>A place where I post assisgnments for the Visualization Techniques 2 Class</p>
+        </div>
+
+      </div>
+    </main>
+    </div>
+  </div>
+  <h5 id="footer">This is a project by HA MINH Ta at Northeastern University's School of Journalism. © 2018</h5>
+
+  <script src="js/homepage.js"></script>
+</body>
+</html>

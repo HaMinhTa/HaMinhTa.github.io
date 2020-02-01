@@ -4,7 +4,7 @@ var frequency = 1 * 1000; // 1 seconds
 var dataMax = 5;
 var data = [];
 
-var margin = {top: 60, right: 20, bottom: 90, left: 50};
+var margin = {top: 50, right: 20, bottom: 100, left: 50};
 var width = window.innerWidth - margin.left - margin.right;
 var height = window.innerHeight - margin.top - margin.bottom;
 
@@ -18,12 +18,14 @@ var x = d3.scaleLinear()
   .domain([dataMax, 1])
   .range([margin.left, width - barWidth]);
 
-var barHeight = d3.scaleLinear()
-  .range([height, 0]);
+var barHeight = d3.scaleLinear() 
+  .domain([0, d3.max(data)])
+  .range([height, margin.top]);
 
 var yAxis = svg.append("g")
   .attr("class", "axis")
   .attr("transform", `translate(${margin.left}, 0)`);
+
 
 function fetchData() {
 
