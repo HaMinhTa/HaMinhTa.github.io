@@ -154,6 +154,14 @@ canvas {
     font-size: 22px;
 }
 
+.homework {
+    text-align: center;
+    font-family: "Open Sans", Arial, sans-serif;
+    color: rgb(238, 16, 190);
+    font-weight: bold;
+    padding-bottom: 1%;
+}
+
 
 
 
