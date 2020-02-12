@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap');
+      @import url('https://fonts.googleapis.com/css?family=Odibee+Sans&display=swap');
+
+      #title{
+        font-family: 'Luckiest Guy', cursive;
+        text-align: center;
+        color: rgb(140, 8, 248);
+        font-size: 40px;
+        padding-top: 50px;
+        line-height: 4rem;
+        width: 70%;
+        margin-left: 15%;
+        margin-right: 15%;
+      }
+
+      .text {
+        font-family: Arial, Helvetica, sans-serif;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 14px;
+      }
+
+      /* body {
+        width: 70%;
+        margin-left: 15%;
+        margin-right: 15%;
+
+      } */
+
+      h4 {
+        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        text-align: center;
+        color: rgb(197, 139, 245);
+        font-size: 18px;
+        width: 70%;
+        margin-left: 15%;
+        margin-right: 15%;
+      }
+
+      .subtitle {
+        margin-bottom: 5%;
+      }
+
+      .box {
+        fill: white;
+        stroke:rgb(140, 8, 248);
+        stroke-width: 0.5rem;
+      }
+
+      #buttonContainer {
+        text-align: center;
+        padding-bottom: 5%;
+      }
+
+      .boxText {
+        font-family: 'Odibee Sans', cursive;
+        font-size: 32px;
+        fill: rgb(104, 102, 102);
+      }
+
+      #resultButton {
+        background-color: white;
+        border-radius: 4px;
+        border: 2px solid rgb(140, 8, 248);
+        color: black;
+        padding: 20px 40px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        -webkit-transition-duration: 0.4s; /* Safari */
+        transition-duration: 0.4s;
+      }
+
+      #resultButton:hover {
+        background-color: rgb(140, 8, 248);
+        color: white;
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <h1 id="title"></h1>
+    <div class="subtitle">
+      <h4>Can you tell which of these words are used uniquely* by Andrew Yang or by Donald Trump? </h4>
+      <h4> Drag all words to Yang or Trump's box and click to see if you have the right answer.</h4>
+    </div>
+
+    <svg id = "chart" width="100%" height="81vh">
+      <defs>
+        <filter id="f3" x="0" y="0" width="200%" height="200%">
+          <feOffset result="offOut" in="SourceAlpha" dx="20" dy="20" />
+          <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10" />
+          <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+        </filter>
+      </defs>
+    </svg>
+    <div id="buttonContainer">
+
+    <p>You got <span id="correctAnswer"></span> correct</p>
+
+    <button id="resultButton" disabled="true">Get result</button>
+
+    </div>
+    <script>
+      var dataTrump = [{"Word": "Mexico", "Count": 73}, {"Word":"nobody", "Count": 64}, {"Word": "fake", "Count": 43}, {"Word": "military", "Count": 40}] 
+      // {"Word": "horrible", "Count": 39}, {"Word":"somebody", "Count": 37}, {"Word": "anybody", "Count":	34}, {"Word": "borders", "Count": 34}]
+      // {"Word": "sanctuary", "Count": 33}, {"Word": "impeachment", "Count": 32}, {"Word": "tariffs", "Count":	30}, {"Word": "crime", "Count": 26}, 
+      // {"Word": "farmers", "Count":	25}, {"Word": "elite", "Count": 23}, {"Word": "illegal", "Count": 23}, {"Word": "judges", "Count": 22}, 
+      // {"Word": "forget", "Count": 21}, {"Word": "Canada", "Count": 21}, {"Word": "steel", "Count":	21}, {"Word": "immigration", "Count": 21}, 
+      // {"Word": "aliens", "Count": 21},{"Word": "doctor", "Count": 20}, {"Word":"defend", "Count": 20}, {"Word": "deals","Count":	20}, 
+      // {"Word": "NAFTA", "Count": 19}, {"Word": "radical", "Count":	19}, {"Word": "auto", "Count": 19}, {"Word": "impeach", "Count": 18},
+      // {"Word": "victory", "Count":	18}, {"Word": "Texas", "Count": 18}, {"Word": "abortion", "Count": 18}, {"Word": "regulations", "Count":	18},
+      // {"Word": "Hispanic", "Count": 18}, {"Word": "dishonest", "Count":	17}, {"Word": "General", "Count": 17}, {"Word": "safe", "Count": 17}, 
+      // {"Word": "crooked", "Count":	17}, {"Word": "phony", "Count":	17}, {"Word": "Pelosi", "Count": 16}, {"Word": "dangerous", "Count": 16}]
+
+      var dataYang = [{"Word": "truck", "Count": 65}, {"Word":"dividend", "Count": 55}, {"Word": "Amazon", "Count": 34}, {"Word": "math", "Count": 34}] 
+      // {"Word": "software", "Count": 28}, {"Word":"Yang", "Count": 28}, {"Word": "stores", "Count": 27}, {"Word": "measurements", "Count": 26}]
+      // {"Word": "town", "Count": 26}, {"Word": "student", "Count": 26}, {"Word": "retail", "Count":	25}, {"Word": "debt", "Count": 25}
+      // {"Word": "expectancy", "Count":	24}, {"Word": "tech", "Count": 23}, {"Word": "questions", "Count": 23}, {"Word": "excited", "Count": 23}, 
+      // {"Word": "drivers", "Count": 19}, {"Word": "loan", "Count": 19}, {"Word": "21st century", "Count":	18}, {"Word": "$1000", "Count": 17}]
+      // {"Word": "robot", "Count": 16},{"Word": "solutions", "Count": 16}, {"Word": "progress", "Count": 15}, {"Word": "study", "Count":	15}, 
+      // {"Word": "reality", "Count": 15}, {"Word": "overdoses", "Count":	15}, {"Word": "suicides", "Count": 14}, {"Word": "AI", "Count": 14},
+      // {"Word": "truckers", "Count":	14}, {"Word": "direction", "Count": 13}, {"Word": "Revolution", "Count": 13}, {"Word": "giant", "Count":	13},
+      // {"Word": "self-driving", "Count": 13}, {"Word": "marijuana", "Count":	12}, {"Word": "Industrial", "Count": 12}, {"Word": "emissions", "Count": 12}, 
+      // {"Word": "PowerPoint", "Count":	12}, {"Word": "Spanish", "Count":	11}, {"Word": "wake", "Count": 11}, {"Word": "Martin Luther King", "Count": 10}]
+
+      let trumpWords = new Set();
+      let yangWords = new Set();
+
+      for (item of dataTrump) {
+        trumpWords.add(item["Word"]);
+      }
+
+      for (item of dataYang) {
+        yangWords.add(item["Word"]);
+      }
+
+      let width = 600;
+      let height = 600;
+      let radius = 45;
+      let margin = {top: 10, right: 100, bottom: 10, left: 100};
+
+      let svg = d3.select("#chart");
+      
+      let nodes = svg.selectAll("g")
+          .data(dataYang.concat(dataTrump))
+          .enter().append("g")
+            .attr("class", "node")
+            .attr("transform", function() {
+              const x = Math.random() * window.innerWidth/3 + window.innerWidth/3 - 60;
+              const y = Math.random() * (height - radius *2) + radius;
+              return `translate(${x}, ${y})`;
+            })
+            .call(d3.drag().on("start", dragstarted).on("drag", dragged).on("end", dragended));
+
+      nodes.append("circle")
+            .attr("class", "circle")
+            .attr("r", radius)
+            .attr("fill", "grey")
+            .attr("id", (d,i) => `circle_${i}`);
+
+      nodes.append("text")
+            .attr("class", "text")
+            .attr("dy", ".2em")
+            .attr("fill", "white")
+            .style("text-anchor", "middle")
+            .text(function(d) {
+                return d.Word;
+            });
+
+      nodes.append("text")
+            .attr("class", "text")
+            .attr("dy", "1.3em")
+            .attr("fill", "white")
+            .style("text-anchor", "middle")
+            .text(function(d) {
+                return d.Count;
+            });
+
+      
+      function dragstarted(d) {
+        d3.select(this).raise();
+      }
+
+      let circlesInLeftBox = 0;
+      let circlesInRightBox = 0;
+      let totalCircles = 8;
+      let circleState = ["middle", "middle", "middle", "middle", "middle", "middle", "middle", "middle",];
+      const MID_STATE = "middle";
+      const LEFT_STATE = "left";
+      const RIGHT_STATE = "right";
+
+      function dragged(d) {
+        d3.select(this).attr("transform", `translate(${d3.event.x}, ${d3.event.y})`);
+        
+        let thisCircle = d3.select(this).select("circle");
+        let id = parseInt(thisCircle.attr("id").slice(-1));
+
+        if (d3.event.x >= 10 && d3.event.x <= 360 && d3.event.y >= 200 && d3.event.y <= (200+boxHeight)) {
+          if (circleState[id] === MID_STATE) {
+            thisCircle.attr("fill", "#FF0000");
+            circleState[id] = LEFT_STATE;
+            circlesInLeftBox++;
+            if (circlesInLeftBox === 4 && circlesInRightBox === 4) {
+              document.getElementById("resultButton").disabled = false;
+            }
+          }
+        }
+        else if (d3.event.x >= 1050 && d3.event.x <= (window.innerWidth-10) && d3.event.y >= 200 && d3.event.y <= (200+boxHeight)) {
+          if (circleState[id] === MID_STATE) {
+            thisCircle.attr("fill", "#1a89ff");
+            circleState[id] = RIGHT_STATE;
+            circlesInRightBox++;
+            if (circlesInLeftBox === 4 && circlesInRightBox === 4) {
+              document.getElementById("resultButton").disabled = false;
+            }
+          }
+        }
+        else {
+          if (circleState[id] === LEFT_STATE) {
+            thisCircle.attr("fill", "grey");
+            circleState[id] = MID_STATE;
+            circlesInLeftBox--;
+            if (!(circlesInLeftBox === 4 && circlesInRightBox === 4)) {
+              document.getElementById("resultButton").disabled = true;
+            }
+          }
+          else if (circleState[id] === RIGHT_STATE) {
+            thisCircle.attr("fill", "grey");
+            circleState[id] = MID_STATE;
+            circlesInRightBox--;
+            if (!(circlesInLeftBox === 4 && circlesInRightBox === 4)) {
+              document.getElementById("resultButton").disabled = true;
+            }
+          }
+        }
+
+      }
+
+      function dragended(d) {}
+
+      let boxHeight = window.innerHeight/2;
+      let boxWidth = window.innerWidth/4;
+
+      svg.append('image')
+        .attr('xlink:href', 'MAGA.jpg')
+        .attr("x", "90")
+        .attr("y", "0")
+        .attr('width', 200)
+        .attr('height', 180);
+
+      svg.append('image')
+        .attr('xlink:href', 'MATH3.jpg')
+        .attr("x", "1129")
+        .attr("y", "0")
+        .attr('width', 200)
+        .attr('height', 200);
+
+      let leftBox = svg.append("g")
+        .attr("transform", "translate(10,200)");
+      let rightBox = svg.append("g")
+        .attr("transform", "translate(1050,200)");
+
+      leftBox.append("rect")
+        .attr("class", "box")
+        .attr("width", boxWidth)
+        .attr("height", boxHeight);
+      leftBox.append("text")
+        .attr("class", "boxText")
+        .attr("dx", boxWidth/6)
+        .attr("dy", boxHeight/2)
+        .style("opacity", 0.2)
+        .text("Drag Trump's 5 words here");
+  
+      
+      rightBox.append("rect")
+        .attr("class", "box")
+        .attr("width", boxWidth)
+        .attr("height", boxHeight)
+      rightBox.append("text")
+        .attr("class", "boxText")
+        .attr("dx", boxWidth/6)
+        .attr("dy", boxHeight/2)
+        .style("opacity", 0.2)
+        .text("Drag Yang's 5 words here");
+
+      document.getElementById("resultButton").addEventListener("click", calculateResult);
+
+      
+      function calculateResult() {
+        let correctAnswer = 0;
+        d3.selectAll("circle")
+          .attr("fill", function(d) {
+            console.log(d["Word"]);
+            if (trumpWords.has(d["Word"])) return "#FF0000";
+            else                           return "#1a89ff";
+          })
+      }
+
+  
+      var i = 0;
+      var txt = `"The Opposite of Donald Trump is an Asian Man Who Loves Math." - Andrew Yang`; /* The text */
+      var speed = 60; /* The speed/duration of the effect in milliseconds */
+
+      function typeWriter() {
+        if (i < txt.length) {
+          document.getElementById("title").innerHTML += txt.charAt(i);
+          i++;
+          setTimeout(typeWriter, speed);
+        }
+      }
+      typeWriter()
+
+
+      </script>
+  </body>
+</html>

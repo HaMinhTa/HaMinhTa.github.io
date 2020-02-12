@@ -1,0 +1,99 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Let's Load Some Data!</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <style>
+      #title {
+        padding-left: 5%;
+        padding-top: 5%;
+        font-size: 30px;
+        font-style: italic;
+      }
+    </style>
+
+  </head>
+  <body>
+    <h1 id = "title">The most viewed articles on The New York Times last week by rank</h1>
+    <svg id="chart"></svg>
+
+    <script>
+        const URL = "https://api.nytimes.com/svc/mostpopular/v2/viewed/7.json?api-key=1AQKGScxChzkbzq4CZDQMoTo2oKK08Cy";
+
+        var margin = {top: 80, right: 50, bottom: 60, left: 50};
+        var dataMax = 20;
+        var width = window.innerWidth - margin.left - margin.right;
+        var height = window.innerHeight - margin.top - margin.bottom;
+    
+
+        var chart = d3.select("#chart")
+          .attr("width", width)
+          .attr("height", height);
+
+        var barWidth = width / dataMax - 20;
+
+        var barHeight = d3.scaleLinear()
+          .range([0, height])
+          .domain([0, 20]);
+
+        let y = d3.scaleLinear().range([height, 0]);
+        let x = d3.scaleLinear().domain([1, dataMax]).range([margin.left, width - barWidth])
+
+        function filterData(data) {
+          let filteredData = [];
+
+          for (element of data["results"]) {
+            let rank = element["views"];
+            let title = element["title"];
+            filteredData.push({rank: rank, title: title});
+          }
+
+          return filteredData;
+        }
+        
+        function fetchData(filteredData) {
+            d3.json(URL, function(error, data) {
+              let filteredData = filterData(data);
+              y.domain([0, d3.max(filteredData, d => d.rank)]);
+
+              let bar = chart.selectAll("g")
+                  .data(filteredData)
+                .enter().append("g")
+                  .attr("transform", (d,i) => `translate(${x(i+1)}, ${0})`);
+
+              var tooltip = d3.select("body")
+                .append("div")
+                .attr("class", "tooltip")
+                .style("position", "absolute")
+                .style("background", "#ccf5ff")
+                .style("border-radius", "6px");
+
+              bar.append("rect")
+                .attr("y", d => height - y(d.rank))
+                .attr("height", d => y(d.rank))
+                .attr("width", barWidth)
+                .attr("fill", "#0099ff")
+                .on("mouseover", function(d,i) {
+                  d3.select(this).attr("fill", "#ffbb33");
+                  tooltip.transition().duration(100)
+                  tooltip.html(`Article title: <b>${d.title}</b><br>Rank: <b>${d.rank}</b>`)
+                  .style("left", d3.event.pageX + 20 + "px")
+                  .style("top", d3.event.pageY + 20 + "px")
+                  .style("opacity", 1)
+                  .style("font-size", "16px")
+                  .style("padding", "8px 8px");
+                })
+                .on("mouseout", function() {
+                  d3.select(this).attr("fill", "#0099ff")
+                  tooltip.html("")
+                  .style("padding", "0");
+                });;       
+              
+            });
+        }
+
+        fetchData();
+
+    </script>
+  </body>
+</html>

@@ -29,7 +29,9 @@ function fetchData() {
     d3.json(realtimeURL, function(error, response) {
         let GreenCs = getGreenCData(response);
         addIconsToMap(GreenCs);
+        console.log(response);
     })
+
 }
 
 

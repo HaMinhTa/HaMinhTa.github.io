@@ -14,7 +14,7 @@ var svg = d3.select("#chart")
   .append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-var barWidth = width / dataMax / 2;
+var barWidth = width / dataMax;
 
 var x = d3.scaleLinear()
   .domain([dataMax, 1])
