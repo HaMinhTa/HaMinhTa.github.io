@@ -86,6 +86,14 @@
         box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
       }
 
+      #footnote {
+        padding-top: 2%;
+        font-style: italic;
+        width: 70%;
+        margin-left: 15%;
+        margin-right: 15%;
+        line-height: 2rem;
+      }
     </style>
   </head>
   <body>
@@ -107,9 +115,12 @@
     </svg>
     <div id="buttonContainer">
 
-    <p>You got <span id="correctAnswer"></span> correct</p>
+    <p hidden>You got <span id="correctAnswer"></span> correct</p>
 
     <button id="resultButton" disabled="true">Get result</button>
+
+    <p id="footnote">*I analyzed a total of 9 speeches in 2019 and 5 speeches in 2020 by Andrew Yang and 6 speeches in 2019 and 2 speeches in 2020 by Trump that are available on YouTube. The list of the speeches used can be found <a href ="https://docs.google.com/document/d/13G1l105usgg8O91x9SKuDHAj5tMRqsLRbtAh2DMVmkg/edit">here.</a>
+    </p>
 
     </div>
     <script>
