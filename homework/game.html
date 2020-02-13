@@ -115,8 +115,7 @@
     </svg>
     <div id="buttonContainer">
 
-    <p hidden>You got <span id="correctAnswer"></span> correct</p>
-
+    <p id="resultText" hidden>You got <span id="correctAnswer"></span> correct</p>
     <button id="resultButton" disabled="true">Get result</button>
 
     <p id="footnote">*I analyzed a total of 9 speeches in 2019 and 5 speeches in 2020 by Andrew Yang and 6 speeches in 2019 and 2 speeches in 2020 by Trump that are available on YouTube. The list of the speeches used can be found <a href ="https://docs.google.com/document/d/13G1l105usgg8O91x9SKuDHAj5tMRqsLRbtAh2DMVmkg/edit">here.</a>
@@ -124,26 +123,26 @@
 
     </div>
     <script>
-      var dataTrump = [{"Word": "Mexico", "Count": 73}, {"Word":"nobody", "Count": 64}, {"Word": "fake", "Count": 43}, {"Word": "military", "Count": 40}] 
+      var dataTrump = [{"Word": "Mexico", "Count": 73}, {"Word":"nobody", "Count": 64}, {"Word": "fake", "Count": 43}, {"Word": "military", "Count": 40}]
       // {"Word": "horrible", "Count": 39}, {"Word":"somebody", "Count": 37}, {"Word": "anybody", "Count":	34}, {"Word": "borders", "Count": 34}]
-      // {"Word": "sanctuary", "Count": 33}, {"Word": "impeachment", "Count": 32}, {"Word": "tariffs", "Count":	30}, {"Word": "crime", "Count": 26}, 
-      // {"Word": "farmers", "Count":	25}, {"Word": "elite", "Count": 23}, {"Word": "illegal", "Count": 23}, {"Word": "judges", "Count": 22}, 
-      // {"Word": "forget", "Count": 21}, {"Word": "Canada", "Count": 21}, {"Word": "steel", "Count":	21}, {"Word": "immigration", "Count": 21}, 
-      // {"Word": "aliens", "Count": 21},{"Word": "doctor", "Count": 20}, {"Word":"defend", "Count": 20}, {"Word": "deals","Count":	20}, 
+      // {"Word": "sanctuary", "Count": 33}, {"Word": "impeachment", "Count": 32}, {"Word": "tariffs", "Count":	30}, {"Word": "crime", "Count": 26},
+      // {"Word": "farmers", "Count":	25}, {"Word": "elite", "Count": 23}, {"Word": "illegal", "Count": 23}, {"Word": "judges", "Count": 22},
+      // {"Word": "forget", "Count": 21}, {"Word": "Canada", "Count": 21}, {"Word": "steel", "Count":	21}, {"Word": "immigration", "Count": 21},
+      // {"Word": "aliens", "Count": 21},{"Word": "doctor", "Count": 20}, {"Word":"defend", "Count": 20}, {"Word": "deals","Count":	20},
       // {"Word": "NAFTA", "Count": 19}, {"Word": "radical", "Count":	19}, {"Word": "auto", "Count": 19}, {"Word": "impeach", "Count": 18},
       // {"Word": "victory", "Count":	18}, {"Word": "Texas", "Count": 18}, {"Word": "abortion", "Count": 18}, {"Word": "regulations", "Count":	18},
-      // {"Word": "Hispanic", "Count": 18}, {"Word": "dishonest", "Count":	17}, {"Word": "General", "Count": 17}, {"Word": "safe", "Count": 17}, 
+      // {"Word": "Hispanic", "Count": 18}, {"Word": "dishonest", "Count":	17}, {"Word": "General", "Count": 17}, {"Word": "safe", "Count": 17},
       // {"Word": "crooked", "Count":	17}, {"Word": "phony", "Count":	17}, {"Word": "Pelosi", "Count": 16}, {"Word": "dangerous", "Count": 16}]
 
-      var dataYang = [{"Word": "truck", "Count": 65}, {"Word":"dividend", "Count": 55}, {"Word": "Amazon", "Count": 34}, {"Word": "math", "Count": 34}] 
+      var dataYang = [{"Word": "truck", "Count": 65}, {"Word":"dividend", "Count": 55}, {"Word": "Amazon", "Count": 34}, {"Word": "math", "Count": 34}]
       // {"Word": "software", "Count": 28}, {"Word":"Yang", "Count": 28}, {"Word": "stores", "Count": 27}, {"Word": "measurements", "Count": 26}]
       // {"Word": "town", "Count": 26}, {"Word": "student", "Count": 26}, {"Word": "retail", "Count":	25}, {"Word": "debt", "Count": 25}
-      // {"Word": "expectancy", "Count":	24}, {"Word": "tech", "Count": 23}, {"Word": "questions", "Count": 23}, {"Word": "excited", "Count": 23}, 
+      // {"Word": "expectancy", "Count":	24}, {"Word": "tech", "Count": 23}, {"Word": "questions", "Count": 23}, {"Word": "excited", "Count": 23},
       // {"Word": "drivers", "Count": 19}, {"Word": "loan", "Count": 19}, {"Word": "21st century", "Count":	18}, {"Word": "$1000", "Count": 17}]
-      // {"Word": "robot", "Count": 16},{"Word": "solutions", "Count": 16}, {"Word": "progress", "Count": 15}, {"Word": "study", "Count":	15}, 
+      // {"Word": "robot", "Count": 16},{"Word": "solutions", "Count": 16}, {"Word": "progress", "Count": 15}, {"Word": "study", "Count":	15},
       // {"Word": "reality", "Count": 15}, {"Word": "overdoses", "Count":	15}, {"Word": "suicides", "Count": 14}, {"Word": "AI", "Count": 14},
       // {"Word": "truckers", "Count":	14}, {"Word": "direction", "Count": 13}, {"Word": "Revolution", "Count": 13}, {"Word": "giant", "Count":	13},
-      // {"Word": "self-driving", "Count": 13}, {"Word": "marijuana", "Count":	12}, {"Word": "Industrial", "Count": 12}, {"Word": "emissions", "Count": 12}, 
+      // {"Word": "self-driving", "Count": 13}, {"Word": "marijuana", "Count":	12}, {"Word": "Industrial", "Count": 12}, {"Word": "emissions", "Count": 12},
       // {"Word": "PowerPoint", "Count":	12}, {"Word": "Spanish", "Count":	11}, {"Word": "wake", "Count": 11}, {"Word": "Martin Luther King", "Count": 10}]
 
       let trumpWords = new Set();
@@ -163,7 +162,7 @@
       let margin = {top: 10, right: 100, bottom: 10, left: 100};
 
       let svg = d3.select("#chart");
-      
+
       let nodes = svg.selectAll("g")
           .data(dataYang.concat(dataTrump))
           .enter().append("g")
@@ -199,7 +198,7 @@
                 return d.Count;
             });
 
-      
+
       function dragstarted(d) {
         d3.select(this).raise();
       }
@@ -212,13 +211,21 @@
       const LEFT_STATE = "left";
       const RIGHT_STATE = "right";
 
+      function isInRightBox(currX, currY) {
+        return currX >= 1050 && currX <= (window.innerWidth-10) && currY >= 200 && currY <= (200+boxHeight);
+      }
+
+      function isInLeftBox(currX, currY) {
+        return currX >= 10 && currX <= 360 && currY >= 200 && currY <= (200+boxHeight);
+      }
+
       function dragged(d) {
         d3.select(this).attr("transform", `translate(${d3.event.x}, ${d3.event.y})`);
-        
+
         let thisCircle = d3.select(this).select("circle");
         let id = parseInt(thisCircle.attr("id").slice(-1));
 
-        if (d3.event.x >= 10 && d3.event.x <= 360 && d3.event.y >= 200 && d3.event.y <= (200+boxHeight)) {
+        if (isInLeftBox(d3.event.x, d3.event.y)) {
           if (circleState[id] === MID_STATE) {
             thisCircle.attr("fill", "#FF0000");
             circleState[id] = LEFT_STATE;
@@ -228,7 +235,7 @@
             }
           }
         }
-        else if (d3.event.x >= 1050 && d3.event.x <= (window.innerWidth-10) && d3.event.y >= 200 && d3.event.y <= (200+boxHeight)) {
+        else if (isInRightBox(d3.event.x, d3.event.y)) {
           if (circleState[id] === MID_STATE) {
             thisCircle.attr("fill", "#1a89ff");
             circleState[id] = RIGHT_STATE;
@@ -293,8 +300,8 @@
         .attr("dy", boxHeight/2)
         .style("opacity", 0.4)
         .text("Drag Trump's 5 words here");
-  
-      
+
+
       rightBox.append("rect")
         .attr("class", "box")
         .attr("width", boxWidth)
@@ -308,18 +315,28 @@
 
       document.getElementById("resultButton").addEventListener("click", calculateResult);
 
-      
+
       function calculateResult() {
-        let correctAnswer = 0;
+        let correctAnswers = 0;
+
         d3.selectAll("circle")
           .attr("fill", function(d) {
-            console.log(d["Word"]);
-            if (trumpWords.has(d["Word"])) return "#FF0000";
-            else                           return "#1a89ff";
-          })
+            let currFill = d3.select(this).attr("fill");
+            if (trumpWords.has(d["Word"])) {
+              if (currFill === "#FF0000") ++correctAnswers;
+              return "#FF0000";
+            }
+            else {
+              if (currFill === "#1a89ff") ++correctAnswers
+              return "#1a89ff";
+            }
+          });
+
+        document.getElementById("correctAnswer").innerHTML = correctAnswers;
+        document.getElementById("resultText").hidden = false;
       }
 
-  
+
       var i = 0;
       var txt = `"The Opposite of Donald Trump is an Asian Man Who Loves Math." - Andrew Yang`; /* The text */
       var speed = 60; /* The speed/duration of the effect in milliseconds */
