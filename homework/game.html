@@ -211,13 +211,21 @@
       const LEFT_STATE = "left";
       const RIGHT_STATE = "right";
 
+      function isInRightBox(currX, currY) {
+        return currX >= 1050 && currX <= (window.innerWidth-10) && currY >= 200 && currY <= (200+boxHeight);
+      }
+
+      function isInLeftBox(currX, currY) {
+        return currX >= 10 && currX <= 360 && currY >= 200 && currY <= (200+boxHeight);
+      }
+
       function dragged(d) {
         d3.select(this).attr("transform", `translate(${d3.event.x}, ${d3.event.y})`);
 
         let thisCircle = d3.select(this).select("circle");
         let id = parseInt(thisCircle.attr("id").slice(-1));
 
-        if (d3.event.x >= 10 && d3.event.x <= 360 && d3.event.y >= 200 && d3.event.y <= (200+boxHeight)) {
+        if (isInLeftBox(d3.event.x, d3.event.y)) {
           if (circleState[id] === MID_STATE) {
             thisCircle.attr("fill", "#FF0000");
             circleState[id] = LEFT_STATE;
@@ -227,7 +235,7 @@
             }
           }
         }
-        else if (d3.event.x >= 1050 && d3.event.x <= (window.innerWidth-10) && d3.event.y >= 200 && d3.event.y <= (200+boxHeight)) {
+        else if (isInRightBox(d3.event.x, d3.event.y)) {
           if (circleState[id] === MID_STATE) {
             thisCircle.attr("fill", "#1a89ff");
             circleState[id] = RIGHT_STATE;
