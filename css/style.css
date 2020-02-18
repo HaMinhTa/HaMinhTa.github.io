@@ -119,6 +119,11 @@
       color: #CC0000;
     }
 
+    #link {
+      color: #CC0000;
+      text-decoration: underline;
+    }
+
     .article-title {
       width: 46.6%;
       margin-top: -2%;

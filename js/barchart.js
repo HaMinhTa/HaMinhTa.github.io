@@ -21,24 +21,24 @@ var svg = d3.select("#barchart")
 // Define data
 
 var data = [
-  {area: "Allston", calls: 0.486, calls2: 0.534},
-  {area: "Downtown", calls: 0.323, calls2: 0.306},
-  {area: "Mattapan", calls: 0.275, calls2: 0.295},
-  {area: "Back Bay", calls: 0.262, calls2: 0.277},
-  {area: "West Roxbury", calls: 0.245, calls2: 0.301},
-  {area: "Beacon Hill", calls: 0.226, calls2: 0.377},
-  {area: "Roslindale", calls: 0.217, calls2: 0.206},
-  {area: "Jamaica Plain", calls: 0.201, calls2: 0.227},
-  {area: "Roxbury", calls: 0.196, calls2: 0.238},
-  {area: "South Boston", calls: 0.195, calls2: 0.197},
-  {area: "Charlestown", calls: 0.190, calls2: 0.241},
-  {area: "Hyde Park", calls: 0.182, calls2: 0.199},
-  {area: "East Boston", calls: 0.169, calls2: 0.186},
-  {area: "Dorchester", calls: 0.138, calls2: 0.143},
-  {area: "South End", calls: 0.133,calls2: 0.151},
-  {area: "Mission Hill", calls: 0.125, calls2: 0.155},
-  {area: "Fenway", calls: 0.075, calls2: 0.135},
-  {area: "Brighton", calls: 0.008, calls2: 0.011},
+  {area: "Allston", calls: 0.486, calls2: 0.534, calls3: 0.06},
+  {area: "Downtown", calls: 0.323, calls2: 0.306, calls3: 0.25},
+  {area: "Mattapan", calls: 0.275, calls2: 0.295, calls3: 0.25},
+  {area: "Back Bay", calls: 0.262, calls2: 0.277, calls3: 0.25},
+  {area: "West Roxbury", calls: 0.245, calls2: 0.301, calls3: 0.25},
+  {area: "Beacon Hill", calls: 0.226, calls2: 0.377, calls3: 0.25},
+  {area: "Roslindale", calls: 0.217, calls2: 0.206, calls3: 0.25},
+  {area: "Jamaica Plain", calls: 0.201, calls2: 0.227, calls3: 0.25},
+  {area: "Roxbury", calls: 0.196, calls2: 0.238, calls3: 0.25},
+  {area: "South Boston", calls: 0.195, calls2: 0.197, calls3: 0.25},
+  {area: "Charlestown", calls: 0.190, calls2: 0.241, calls3: 0.25},
+  {area: "Hyde Park", calls: 0.182, calls2: 0.199, calls3: 0.25},
+  {area: "East Boston", calls: 0.169, calls2: 0.186, calls3: 0.08},
+  {area: "Dorchester", calls: 0.138, calls2: 0.143, calls3: 0.05},
+  {area: "South End", calls: 0.133,calls2: 0.151, calls3: 0.24},
+  {area: "Mission Hill", calls: 0.125, calls2: 0.155, calls3: 0.15},
+  {area: "Fenway", calls: 0.075, calls2: 0.135, calls3: 0.2},
+  {area: "Brighton", calls: 0.008, calls2: 0.011, calls3: 0.26},
 ];
 
 
@@ -155,7 +155,7 @@ var chart2 = area.selectAll(".bar.calls2")
       d3.select(this).attr("fill", "#ffbb33")
       tooltip.html("")
       .style("padding", "0");
-    });;
+    });
 
 
 chart1.transition()

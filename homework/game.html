@@ -4,14 +4,44 @@
     <meta charset="utf-8" />
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <style>
-      @import url('https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap');
       @import url('https://fonts.googleapis.com/css?family=Odibee+Sans&display=swap');
+      @import url('https://fonts.googleapis.com/css?family=Kanit&display=swap');
+      @import url('https://fonts.googleapis.com/css?family=Zilla+Slab&display=swap');
+
+      @font-face {
+        font-family: "irvin-heading-current";
+        src: url(https://s3.amazonaws.com/erikson-random/tny/IrvinHeading.woff);
+        font-style: normal;
+        font-weight: 400;
+      }
+
+      @font-face {
+        font-family: "irvin-display-rounder";
+        src: url(https://s3.amazonaws.com/erikson-random/tny/IrvinDisplayRounder.woff);
+        font-style: normal;
+        font-weight: 400;
+      }
+
+      @font-face {
+        font-family: "irvin-display-current";
+        src: url(https://s3.amazonaws.com/erikson-random/tny/IrvinDisplay.woff);
+        font-style: normal;
+        font-weight: 400;
+      }
+
+      @font-face {
+        font-family: "adobe-caslon-new";
+        src: url('https://s3.amazonaws.com/erikson-random/tny/2016/tnyadobecaslonpro-regular.woff2') format('woff2'),
+			      url('https://s3.amazonaws.com/erikson-random/tny/2016/tnyadobecaslonpro-regular.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+      }
 
       #title{
-        font-family: 'Luckiest Guy', cursive;
+        font-family: "irvin-heading-current";
         text-align: center;
-        color: rgb(140, 8, 248);
-        font-size: 40px;
+        color: rgb(212,175,55);
+        font-size: 45px;
         padding-top: 50px;
         line-height: 4rem;
         width: 70%;
@@ -26,48 +56,66 @@
         font-size: 14px;
       }
 
-      /* body {
-        width: 70%;
-        margin-left: 15%;
-        margin-right: 15%;
-
-      } */
+      body {
+        background-color: rgb(15, 15, 15);
+        color: white;
+      }
 
       h4 {
-        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-family: 'Zilla Slab', serif;
+        color: rgb(214, 186, 93);
         text-align: center;
-        color: rgb(197, 139, 245);
-        font-size: 18px;
-        width: 70%;
-        margin-left: 15%;
-        margin-right: 15%;
+        font-size: 25px;
+        line-height: 2.5rem;
+        width: 50%;
+        margin-left: 25%;
+        margin-right: 25%;
+        margin-bottom: 5%;
+        font-style: italic;
+      }
+
+      .intro {
+        font-family: "adobe-caslon-new";
+        color: rgb(27, 27, 27);
+        font-size: 20px;
+        line-height: 2.5rem;
+        width: 50%;
+        margin-left: 25%;
+        margin-right: 25%;
+        margin-top: 4%;
+        color: white;
+
       }
 
       .subtitle {
         margin-bottom: 5%;
+        
       }
 
       .box {
-        fill: white;
-        stroke:rgb(140, 8, 248);
-        stroke-width: 0.5rem;
+        fill: rgb(233, 231, 231);
+        stroke: rgb(226, 224, 224);
+        stroke-width: 0.2rem;
       }
 
       #buttonContainer {
         text-align: center;
-        padding-bottom: 5%;
+        padding-bottom: 4%;
+        padding-top: 2%;
+
       }
 
       .boxText {
-        font-family: 'Odibee Sans', cursive;
-        font-size: 32px;
+        font-family: "irvin-heading-current";
+        font-size: 20px;
         fill: rgb(104, 102, 102);
       }
 
       #resultButton {
+        font-family: "irvin-heading-current";
         background-color: white;
         border-radius: 4px;
-        border: 2px solid rgb(140, 8, 248);
+        border: 2px solid rgb(247, 246, 246);
         color: black;
         padding: 20px 40px;
         text-align: center;
@@ -81,18 +129,36 @@
       }
 
       #resultButton:hover {
-        background-color: rgb(140, 8, 248);
+        background-color: rgb(247, 196, 57);
         color: white;
         box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
       }
 
       #footnote {
+        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         padding-top: 2%;
         font-style: italic;
-        width: 70%;
-        margin-left: 15%;
-        margin-right: 15%;
+        width: 50%;
+        margin-left: 25%;
+        margin-right: 25%;
         line-height: 2rem;
+        font-size: 14px;
+
+      }
+
+      .heading {
+        font-family: "irvin-heading-current";
+      }
+
+      #resultText{
+        font-family: "irvin-heading-current";
+        font-size: 28px;
+        color: rgb(236, 186, 20);
+      }
+
+      svg {
+        background-color:  rgb(248, 239, 209);
+
       }
     </style>
   </head>
@@ -100,8 +166,9 @@
 
     <h1 id="title"></h1>
     <div class="subtitle">
-      <h4>Can you tell which of these words are used uniquely* by Andrew Yang or by Donald Trump? </h4>
-      <h4> Drag all words to Yang or Trump's box and click to see if you have the right answer.</h4>
+      <h4>Is Andrew Yang and Donald Trump's supposed contrast reflected in their speech?</h4>
+      <p class ="intro">Andrew Yang, a presidential candidate known for the campaign slogan MATH (Make America Think Harder), which is a play on Donald Trump infamous MAGA (Make American Great Again). Yang touts himself as the polar opposite of president Trump, because he is "an Asian man who loves Math." We analyzed Trump and Yang's speeches to find out the words used uniquely* between these two candidates. Can you tell which words are used uniquely by Yang and which by Trump? </p>
+      <p class ="intro">Start playing the game by dragging all words to Yang or Trump's box. When you are done, click the "Get result" button to see the right answers.</p>
     </div>
 
     <svg id = "chart" width="100%" height="81vh">
@@ -114,17 +181,17 @@
       </defs>
     </svg>
     <div id="buttonContainer">
-
-    <p id="resultText" hidden>You got <span id="correctAnswer"></span> correct</p>
-    <button id="resultButton" disabled="true">Get result</button>
+      <p id="resultText" hidden>You got <span id="correctAnswer"></span> words correct! </p>
+      <button id="resultButton" disabled="true">Get result</button>
+    </div>
 
     <p id="footnote">*I analyzed a total of 9 speeches in 2019 and 5 speeches in 2020 by Andrew Yang and 6 speeches in 2019 and 2 speeches in 2020 by Trump that are available on YouTube. The list of the speeches used can be found <a href ="https://docs.google.com/document/d/13G1l105usgg8O91x9SKuDHAj5tMRqsLRbtAh2DMVmkg/edit">here.</a>
     </p>
 
-    </div>
     <script>
-      var dataTrump = [{"Word": "Mexico", "Count": 73}, {"Word":"nobody", "Count": 64}, {"Word": "fake", "Count": 43}, {"Word": "military", "Count": 40}]
-      // {"Word": "horrible", "Count": 39}, {"Word":"somebody", "Count": 37}, {"Word": "anybody", "Count":	34}, {"Word": "borders", "Count": 34}]
+      var dataTrump = [{"Word": "Mexico", "Count": 73}, {"Word":"nobody", "Count": 64}, {"Word": "fake", "Count": 43}, {"Word": "military", "Count": 40},
+      {"Word": "horrible", "Count": 39}] 
+      // {"Word":"somebody", "Count": 37}, {"Word": "anybody", "Count":	34}, {"Word": "borders", "Count": 34}]
       // {"Word": "sanctuary", "Count": 33}, {"Word": "impeachment", "Count": 32}, {"Word": "tariffs", "Count":	30}, {"Word": "crime", "Count": 26},
       // {"Word": "farmers", "Count":	25}, {"Word": "elite", "Count": 23}, {"Word": "illegal", "Count": 23}, {"Word": "judges", "Count": 22},
       // {"Word": "forget", "Count": 21}, {"Word": "Canada", "Count": 21}, {"Word": "steel", "Count":	21}, {"Word": "immigration", "Count": 21},
@@ -134,8 +201,9 @@
       // {"Word": "Hispanic", "Count": 18}, {"Word": "dishonest", "Count":	17}, {"Word": "General", "Count": 17}, {"Word": "safe", "Count": 17},
       // {"Word": "crooked", "Count":	17}, {"Word": "phony", "Count":	17}, {"Word": "Pelosi", "Count": 16}, {"Word": "dangerous", "Count": 16}]
 
-      var dataYang = [{"Word": "truck", "Count": 65}, {"Word":"dividend", "Count": 55}, {"Word": "Amazon", "Count": 34}, {"Word": "math", "Count": 34}]
-      // {"Word": "software", "Count": 28}, {"Word":"Yang", "Count": 28}, {"Word": "stores", "Count": 27}, {"Word": "measurements", "Count": 26}]
+      var dataYang = [{"Word": "truck", "Count": 65}, {"Word":"dividend", "Count": 55}, {"Word": "Amazon", "Count": 34}, {"Word": "math", "Count": 34},
+      {"Word": "software", "Count": 28}]
+      //  {"Word":"Yang", "Count": 28}, {"Word": "stores", "Count": 27}, {"Word": "measurements", "Count": 26}]
       // {"Word": "town", "Count": 26}, {"Word": "student", "Count": 26}, {"Word": "retail", "Count":	25}, {"Word": "debt", "Count": 25}
       // {"Word": "expectancy", "Count":	24}, {"Word": "tech", "Count": 23}, {"Word": "questions", "Count": 23}, {"Word": "excited", "Count": 23},
       // {"Word": "drivers", "Count": 19}, {"Word": "loan", "Count": 19}, {"Word": "21st century", "Count":	18}, {"Word": "$1000", "Count": 17}]
@@ -205,11 +273,12 @@
 
       let circlesInLeftBox = 0;
       let circlesInRightBox = 0;
-      let totalCircles = 8;
-      let circleState = ["middle", "middle", "middle", "middle", "middle", "middle", "middle", "middle",];
+      let totalCircles = 10;
       const MID_STATE = "middle";
       const LEFT_STATE = "left";
       const RIGHT_STATE = "right";
+      let circleState = new Array(totalCircles);
+      circleState = circleState.fill(MID_STATE);
 
       function isInRightBox(currX, currY) {
         return currX >= 1050 && currX <= (window.innerWidth-10) && currY >= 200 && currY <= (200+boxHeight);
@@ -230,7 +299,7 @@
             thisCircle.attr("fill", "#FF0000");
             circleState[id] = LEFT_STATE;
             circlesInLeftBox++;
-            if (circlesInLeftBox === 4 && circlesInRightBox === 4) {
+            if (circlesInLeftBox === (totalCircles/2) && circlesInRightBox === (totalCircles/2)) {
               document.getElementById("resultButton").disabled = false;
             }
           }
@@ -240,7 +309,7 @@
             thisCircle.attr("fill", "#1a89ff");
             circleState[id] = RIGHT_STATE;
             circlesInRightBox++;
-            if (circlesInLeftBox === 4 && circlesInRightBox === 4) {
+            if (circlesInLeftBox === (totalCircles/2) && circlesInRightBox === (totalCircles/2)) {
               document.getElementById("resultButton").disabled = false;
             }
           }
@@ -250,7 +319,7 @@
             thisCircle.attr("fill", "grey");
             circleState[id] = MID_STATE;
             circlesInLeftBox--;
-            if (!(circlesInLeftBox === 4 && circlesInRightBox === 4)) {
+            if (!(circlesInLeftBox === (totalCircles/2) && circlesInRightBox === (totalCircles/2))) {
               document.getElementById("resultButton").disabled = true;
             }
           }
@@ -258,7 +327,7 @@
             thisCircle.attr("fill", "grey");
             circleState[id] = MID_STATE;
             circlesInRightBox--;
-            if (!(circlesInLeftBox === 4 && circlesInRightBox === 4)) {
+            if (!(circlesInLeftBox === (totalCircles/2) && circlesInRightBox === (totalCircles/2))) {
               document.getElementById("resultButton").disabled = true;
             }
           }
@@ -272,14 +341,14 @@
       let boxWidth = window.innerWidth/4;
 
       svg.append('image')
-        .attr('xlink:href', 'MAGA.jpg')
+        .attr('xlink:href', 'image/MAGAt.png')
         .attr("x", "90")
         .attr("y", "0")
         .attr('width', 200)
         .attr('height', 180);
 
       svg.append('image')
-        .attr('xlink:href', 'MATH3.jpg')
+        .attr('xlink:href', 'image/MATH.png')
         .attr("x", "1129")
         .attr("y", "0")
         .attr('width', 200)
@@ -296,9 +365,9 @@
         .attr("height", boxHeight);
       leftBox.append("text")
         .attr("class", "boxText")
-        .attr("dx", boxWidth/6)
+        .attr("dx", boxWidth/8)
         .attr("dy", boxHeight/2)
-        .style("opacity", 0.4)
+        .style("opacity", 0.5)
         .text("Drag Trump's 5 words here");
 
 
@@ -308,9 +377,9 @@
         .attr("height", boxHeight)
       rightBox.append("text")
         .attr("class", "boxText")
-        .attr("dx", boxWidth/6)
+        .attr("dx", boxWidth/7)
         .attr("dy", boxHeight/2)
-        .style("opacity", 0.4)
+        .style("opacity", 0.5)
         .text("Drag Yang's 5 words here");
 
       document.getElementById("resultButton").addEventListener("click", calculateResult);
@@ -338,7 +407,7 @@
 
 
       var i = 0;
-      var txt = `"The Opposite of Donald Trump is an Asian Man Who Loves Math." - Andrew Yang`; /* The text */
+      var txt = `"The Opposite of Donald Trump is an Asian Man Who Loves Math"`; /* The text */
       var speed = 60; /* The speed/duration of the effect in milliseconds */
 
       function typeWriter() {
