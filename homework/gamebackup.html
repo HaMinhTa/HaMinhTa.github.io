@@ -5,8 +5,6 @@
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <style>
 
-      @import url('https://fonts.googleapis.com/css?family=Zilla+Slab&display=swap');
-
       @font-face {
         font-family: "irvin-heading-current";
         src: url(https://s3.amazonaws.com/erikson-random/tny/IrvinHeading.woff);
@@ -361,6 +359,18 @@
 
         let svg = d3.select("#chart");
 
+        var simulation = d3.forceSimulation(circle)
+            .force('charge', d3.forceManyBody().strength(5))
+            .force('center', d3.forceCenter(width / 2, height / 2))
+            .force('collision', d3.forceCollide().radius(function(d) {
+                return d.radius;
+            }))
+            .on('tick', ticked);
+
+        function ticked() {
+          
+        }
+
         let nodes = svg.selectAll("g")
             .data(dataYang.concat(dataTrump))
             .enter().append("g")
@@ -400,43 +410,6 @@
         function dragstarted(d) {
           d3.select(this).raise();
         }
-
-        // Code for ForceLayout
-
-        // var numNodes = 30;
-        // var nodes = d3.range(numNodes).map(function(d) {
-        //     return {radius: Math.random() * 25}
-        // })
-
-
-        // var simulation = d3.forceSimulation(nodes)
-        //     .force('charge', d3.forceManyBody().strength(5))
-        //     .force('center', d3.forceCenter(width / 2, height / 2))
-        //     .force('collision', d3.forceCollide().radius(function(d) {
-        //         return d.radius;
-        //     }))
-        //     .on('tick', ticked);
-
-        // function ticked() {
-        // var u = d3.select('svg')
-        //     .selectAll('circle')
-        //     .data(nodes)
-
-        // u.enter()
-        //     .append('circle')
-        //     .attr('r', function(d){
-        //         return d.radius;
-        //     })
-        //     .merge(u)
-        //     .attr('cx', function(d) {
-        //     return d.x
-        //     })
-        //     .attr('cy', function(d) {
-        //     return d.y
-        //     })
-
-        // u.exit().remove()
-        // }
 
         let circlesInLeftBox = 0;
         let circlesInRightBox = 0;
@@ -601,3 +574,4 @@
       </script>
   </body>
 </html>
+
