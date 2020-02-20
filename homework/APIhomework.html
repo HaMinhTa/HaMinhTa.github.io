@@ -3,7 +3,24 @@
 <head>
   <script src="https://d3js.org/d3.v4.min.js"></script>
 </head>
+<style>
+    @font-face {
+        font-family: "irvin-heading-current";
+        src: url(https://s3.amazonaws.com/erikson-random/tny/IrvinHeading.woff);
+        font-style: normal;
+        font-weight: 400;
+      }
+    
+    h1{
+      font-family: "irvin-heading-current";
+      color: rgb(255, 0, 191);
+      text-align: center;
+      font-size: 40px;
+    }
+</style>
 <body>
+  <h1>Current number of MBTA Train Running</h1>
+
   <svg id="chart">
     <g id="shapes"></g>
     <g id="x"></g>
@@ -11,7 +28,7 @@
   </svg>
   <script>
     const URL = "https://api-v3.mbta.com/vehicles";
-    let margin = {top: 40, right: 30, bottom: 20, left: 30};
+    let margin = {top: 40, right: 30, bottom: 40, left: 30};
     let width = window.innerWidth - margin.left - margin.right;
     let height = window.innerHeight - margin.top - margin.bottom;
 
