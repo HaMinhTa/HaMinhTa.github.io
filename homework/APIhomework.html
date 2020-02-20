@@ -1,82 +1,90 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Let's Load Some Data!</title>
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-    <style>
-      #title {
-        padding-left: 5%;
-        padding-top: 5%;
-        font-size: 30px;
-        font-style: italic;
-        text-align: center;
+<head>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+<body>
+  <svg id="chart">
+    <g id="shapes"></g>
+    <g id="x"></g>
+    <g id="y"></g>
+  </svg>
+  <script>
+    const URL = "https://api-v3.mbta.com/vehicles";
+    let margin = {top: 40, right: 30, bottom: 20, left: 30};
+    let width = window.innerWidth - margin.left - margin.right;
+    let height = window.innerHeight - margin.top - margin.bottom;
+
+    let svg = d3.select("#chart")
+      .attr("width", width)
+      .attr("height", height);
+  
+
+    fetchData();
+
+    function fetchData() {
+      d3.json(URL, function(data) {
+        let filteredData = filterData(data);
+        drawChart(filteredData);
+      })
+    }
+
+    function filterData(data) {
+      let filteredData = [];
+
+      filteredData.push( {route: "Red Line", count: 0},
+                         {route: "Orange Line", count: 0},
+                         {route: "Blue Line", count: 0},
+                         {route: "Green Line", count: 0} );
+
+      for (element of data["data"]) {
+        let route = element["relationships"]["route"]["data"]["id"];
+        if (route === "Red")         { filteredData[0].count++; }
+        else if (route === "Orange") { filteredData[1].count++; }
+        else if (route === "Blue")   { filteredData[2].count++; }
+        else if (route.substring(0,5) === "Green") { filteredData[3].count++; }
       }
-    </style>
 
-  </head>
-  <body>
-    <h1 id = "title">The most viewed articles on The New York Times last week by rank</h1>
-    <svg id="chart"></svg>
+      return filteredData;
+    }
 
-    <script>
-        const URL = "https://api.nytimes.com/svc/mostpopular/v2/viewed/7.json?api-key=1AQKGScxChzkbzq4CZDQMoTo2oKK08Cy";
+    function drawChart(data) {
+      let x = d3.scaleLinear().domain([0, data.length]).range([margin.left, width - margin.right]);
+      let y = d3.scaleLinear().domain([0, d3.max(data, d => d.count)]).range([height - margin.bottom, margin.top]);
 
-        var margin = {top: 80, right: 50, bottom: 60, left: 50};
-        var dataMax = 20;
-        var width = window.innerWidth - margin.left - margin.right;
-        var height = window.innerHeight - margin.top - margin.bottom;
+      let yAxis = d3.axisLeft(y);
+      d3.select("#y")
+        .attr("transform", `translate(${margin.left}, ${0})`)
+        .call(yAxis);
 
-        var chart = d3.select("#chart")
-          .attr("width", width)
-          .attr("height", height);
+      let xAxis = d3.axisBottom(x)
+        .tickFormat(d => d.route);
+      d3.select("#x")
+        .attr("transform", `translate(${0}, ${height - margin.bottom})`)
+        .call(xAxis);
 
-        var barWidth = width / dataMax - 20;
+      let barWidth = (width - margin.left - margin.right) / data.length / 2;
 
-        var barHeight = d3.scaleLinear()
-          .range([0, height])
-          .domain([0, 20]);
-
-        var y = d3.scaleLinear().range([height, 0]);
-        var x = d3.scaleLinear().domain([1, dataMax]).range([margin.left, width - margin.right]);
-
-        function filterData(data) {
-          var filteredData = [];
-
-          for (element of data["results"]) {
-            var rank = element["views"];
-            var title = element["title"];
-            filteredData.push({rank: rank, title: title});
-          }
-
-          return filteredData;
-        }
-        
-        function fetchData(filteredData) {
-            d3.json(URL, function(error, data) {
-              var filteredData = filterData(data);
-              y.domain([0, d3.max(filteredData, d => d.rank)]);
-
-              var bar = chart.selectAll("g")
-                  .data(filteredData)
-                  .enter().append("g")
-                  .attr("transform", (d,i) => `translate(${x(i+1)}, ${0})`);
-
-              var tooltip = d3.select("body")
+      let tooltip = d3.select("body")
                 .append("div")
                 .attr("class", "tooltip")
                 .style("position", "absolute")
                 .style("background", "#ccf5ff")
                 .style("border-radius", "6px");
 
-              bar.append("rect")
-                .attr("y", d => height - y(d.rank))
-                .attr("height", d => y(d.rank))
-                .attr("width", barWidth)
-                .attr("fill", "#0099ff")
-                .on("mouseover", function(d,i) {
-                  d3.select(this).attr("fill", "#ffbb33");
+      let cols = d3.select("#shapes").selectAll("g")
+        .data(data).enter().append("g")
+          .attr("transform", (d, i) => `translate(${x(i)}, 0)`);
+
+      cols.append("rect")
+          .attr("y", (d) => y(d.count))
+          .attr("height", (d) => height - y(d.count) - margin.bottom)
+          .attr("width", barWidth)
+          .attr("fill", fill)
+          .on("mouseover", function(d,i) {
+                  d3.select(this).attr("fill", "grey");
                   tooltip.transition().duration(100)
-                  tooltip.html(`Article title: <b>${d.title}</b><br>Rank: <b>${d.rank}</b>`)
+                  tooltip.html(`Route: <b>${d.route}</b><br>Current number of trains: <b>${d.count}</b>`)
                   .style("left", d3.event.pageX + 20 + "px")
                   .style("top", d3.event.pageY + 20 + "px")
                   .style("opacity", 1)
@@ -84,16 +92,23 @@
                   .style("padding", "8px 8px");
                 })
                 .on("mouseout", function() {
-                  d3.select(this).attr("fill", "#0099ff")
+                  d3.select(this).attr("fill", fill)
                   tooltip.html("")
                   .style("padding", "0");
-                });;       
-              
-            });
-        }
+                });;      
+    }
 
-        fetchData();
-
-    </script>
-  </body>
+    function fill(d) {
+      if (d.route === "Red Line") {
+              return "red";
+            } else if (d.route === "Orange Line") {
+              return "orange";
+            } else if (d.route === "Blue Line") {
+              return "blue";
+            } else {
+              return "green";
+            }
+    }
+  </script>
+</body>
 </html>

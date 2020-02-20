@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <style>
+      @import url('https://fonts.googleapis.com/css?family=Zilla+Slab&display=swap');
 
       @font-face {
         font-family: "irvin-heading-current";
@@ -224,9 +225,9 @@
         position: absolute;
         transform: translate(-50%,-50%);
         top: 50%;
-        left: 65%;
-        font-size: 14px;
-        font-family: Verdana, sans-serif;
+        left: 68%;
+        font-size: 15px;
+        font-family: "irvin-heading-current";
         font-weight: bold;
       }
 
@@ -338,6 +339,20 @@
       // {"Word": "self-driving", "Count": 13}, {"Word": "marijuana", "Count":	12}, {"Word": "Industrial", "Count": 12}, {"Word": "emissions", "Count": 12},
       // {"Word": "PowerPoint", "Count":	12}, {"Word": "Spanish", "Count":	11}, {"Word": "wake", "Count": 11}, {"Word": "Martin Luther King", "Count": 10}]
 
+      function master(dataTrump, dataYang) {
+        var dataConcat = dataYang.concat(dataTrump);
+        var simulation = d3.forceSimulation(dataConcat)
+            .force('charge', d3.forceManyBody().strength(5))
+            .force('center', d3.forceCenter(width / 2, height / 2))
+            .force('collision', d3.forceCollide().radius(function(d) {
+                return d.radius;
+            }))
+            .on('tick', draw);
+
+        draw(dataTrump, dataYang);
+        }
+        
+
       function draw(dataTrump, dataYang) {
         d3.selectAll("svg > *").remove();
 
@@ -359,17 +374,6 @@
 
         let svg = d3.select("#chart");
 
-        var simulation = d3.forceSimulation(circle)
-            .force('charge', d3.forceManyBody().strength(5))
-            .force('center', d3.forceCenter(width / 2, height / 2))
-            .force('collision', d3.forceCollide().radius(function(d) {
-                return d.radius;
-            }))
-            .on('tick', ticked);
-
-        function ticked() {
-          
-        }
 
         let nodes = svg.selectAll("g")
             .data(dataYang.concat(dataTrump))
