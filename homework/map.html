@@ -13,6 +13,13 @@
       </svg>
       
       <script>
+          var tooltip = d3.select("body")
+                .append("div")
+                .attr("class", "tooltip")
+                .style("position", "absolute")
+                .style("background", "#ccf5ff")
+                .style("border-radius", "6px");
+
           var width = window.innerWidth;
           var height = window.innerHeight;
 
@@ -38,40 +45,58 @@
           svg.call(zoom)
             .on("dblclick.zoom", null);
 
-          d3.json("world-alpha3.json", function(error, world) {
-            var geoJSON = topojson.feature(world, world.objects.countries);
+          d3.json("USA.json", function(error, data) {
+            //var geoJSON = topojson.feature(data, data);
+            //console.log(geoJSON);
+            var geoJSON = data;
 
-            geoJSON.features = geoJSON.features.filter(function(d) {
-                return d.id !== "ATA";
-            });
+            // geoJSON.features = geoJSON.features.filter(function(d) {
+            //     return d.id === "USA";
+            // });
 
-            var projection = d3.geoMercator()
-                .fitSize([width, height], geoJSON);
+            var projection = d3.geoAlbersUsa()
+                .fitSize([width, height], data);
 
             var path = d3.geoPath()
                 .projection(projection);
 
-            var countries = map.selectAll("path")
+            var states = map.selectAll("path")
                 .data(geoJSON.features);
 
-            countries.enter().append("path")
+            states.enter().append("path")
                 .attr("d", path)
-                .attr("fill", "#087011");
+                .attr("fill", "#087011")
+                .on("mouseover", function(d,i) {
+                  d3.select(this).attr("fill", "#90ee90");
+                  console.log(d);
+                  tooltip.transition().duration(100)
+                  tooltip.html(`<b>${d.properties.NAME}</b>`)
+                  .style("left", d3.event.pageX + 20 + "px")
+                  .style("top", d3.event.pageY + 20 + "px")
+                  .style("opacity", 1)
+                  .style("font-size", "16px")
+                  .style("padding", "8px 8px");
+                })
+                .on("mouseout", function() {
+                  d3.select(this).attr("fill", "#087011")
+                  tooltip.html("")
+                  .style("padding", "0");
+                });
 
-            var points = [
-                {"name": "Boston", "coords": [-71.0589, 42.3601]},
-                {"name": "London", "coords": [-0.1278, 51.5074]}
-            ];
+            // var points = [
+            //     {"name": "Boston", "coords": [-71.0589, 42.3601]},
+            //     {"name": "London", "coords": [-0.1278, 51.5074]}
+            // ];
 
-            var circles = map.selectAll("circle")
-                .data(points);
+            // var circles = map.selectAll("circle")
+            //     .data(points);
 
-            circles.enter().append("circle")
-                .attr("transform", function(d){
-                return "translate(" + projection(d.coords) + ")";
-            })
-                .attr("r", 10)
-                .attr("fill", "blue");
+            // circles.enter().append("circle")
+            //     .attr("transform", function(d){
+            //     return "translate(" + projection(d.coords) + ")";
+            // })
+            //     .attr("r", 10)
+            //     .attr("fill", "blue");
 
             });
 

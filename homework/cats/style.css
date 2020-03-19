@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+    font-family: "Comic Sans MS";
+  }
+
+#banner {
+    background-color: rgb(255, 208, 208);
+    text-align: center;
+    background-image: ;
+    background-position: 50% 100%;
+    background-size: cover;
+    padding: 20vh 20px;
+    color: white;
+    text-shadow: 0 2px 5px black;
+}
+
+#tooltip {
+    display: none;
+    position: absolute;
+}
+
+.section {
+    display: flex;
+    padding: 20px;
+}
+
+.section p {
+    flex: 1;
+}
+
+.section svg {
+    flex: 2;
+    height: 300px;
+    margin: 20px;
+    border: 1px solid red;
+}
+
+@media (max-width: 700px) {
+    .section {
+      flex-direction: column;
+    }
+    .section svg {
+      flex: none;
+    }
+}
