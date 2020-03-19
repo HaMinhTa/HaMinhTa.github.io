@@ -4,14 +4,21 @@
     <meta charset="utf-8" />
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://unpkg.com/topojson@3"></script>
-    <style>
-
-      #map {
-        text-align: center;
-      }
-    </style>
+    <title>The State of the H1B</title>
+    <link rel="stylesheet" href="style.css"/> 
   </head>
   <body>
+    <div id="banner">
+      <h1>All About the H1B Visa</h1>
+    </div>
+    
+    <div id="main">
+      <p>The H1B is one of the most popular non-immigrant work visas for international students to the U.S. If you are a prospective or are currently an international student, chances are that you will come across people talking about or applying for this visa and you will one day need to get one yourself.
+      </p>
+
+      <p>Policies revolving around the visa have been changing and can affect applicants' chances of getting the visa. Visualizations in this page are based on data collected from U.S. Citizenship and Immigration Services’ <a href="https://www.uscis.gov/tools/reports-studies/h-1b-employer-data-hub-files">Employer Data Hub</a>. The USCIS is the agency responsible for managing the process of applying for H-1B visas.</p>
+    </div>
+    
     <svg id="viz">
       <rect id="ocean" fill="#b8f1fc"></rect>
       <g id="map"></g>
@@ -19,101 +26,6 @@
 
   
 
-    <script>
-        var employerData;
-        d3.csv("H1BEmployerBiggest.csv", function(error, data) {
-          employerData = data;
-          console.log(data);
-        });
-
-        var tooltip = d3.select("body")
-                .append("div")
-                .attr("class", "tooltip")
-                .style("position", "absolute")
-                .style("background", "#ccf5ff")
-                .style("border-radius", "6px");
-
-          var width = window.innerWidth;
-          var height = window.innerHeight;
-
-          var svg = d3.select("#viz")
-            .attr("width", width)
-            .attr("height", height);
-
-          svg.select("#ocean")
-            .attr("width", width)
-            .attr("height", height);
-
-          var map = svg.select("#map");
-
-          var zoom = d3.zoom()
-            .translateExtent([[0, 0], [width, height]])
-            .scaleExtent([1, 8])
-            .on("zoom", zoomed);
-        
-          function zoomed() {
-              map.attr("transform", d3.event.transform);
-          }
-
-          svg.call(zoom)
-            .on("dblclick.zoom", null);
-
-          d3.json("USA.json", function(error, data) {           
-            var geoJSON = data;
-
-            var projection = d3.geoAlbersUsa()
-                .fitSize([width/2, height/1.5], data);
-
-            var path = d3.geoPath()
-                .projection(projection);
-
-            var states = map.selectAll("path")
-                .data(geoJSON.features);
-
-            states.enter().append("path")
-                .attr("d", path)
-                .attr("stroke","white")
-                .attr("fill", function(d) {
-                  var employerField = employerData[2][`"${d.properties.NAME}"`];
-                  return fieldToColor(employerField);
-                })
-                .on("mouseover", function(d,i) {
-                  d3.select(this).style("opacity", "0.4");
-                  var stateName = d.properties.NAME;
-                  var employerName = employerData[0][`"${stateName}"`];  
-                  tooltip.transition().duration(100)
-                  tooltip.html(`<b>${stateName}:</b> ${employerName}`)
-                  .style("left", d3.event.pageX + 20 + "px")
-                  .style("top", d3.event.pageY + 20 + "px")
-                  .style("opacity", 1)
-                  .style("font-size", "16px")
-                  .style("padding", "8px 8px");
-                })
-                .on("mouseout", function() {
-                  d3.select(this).style("opacity", "1")
-                  // .attr("fill", function(d) {
-                  //   var employerField = employerData[2][`"${d.properties.NAME}"`];
-                  //   return fieldToColor(employerField);
-                  // })
-                  tooltip.html("")
-                  .style("padding", "0");
-                });
-
-            });
-
-            function fieldToColor(employerField) {
-              if (employerField === "University") {
-                    return "#ffc100";
-                  } else if (employerField === "Health") {
-                    return "#ff4d00";
-                  } else if (employerField === "Technology") {
-                    return "#ff7400";
-                  } else if (employerField === "Consulting") {
-                    return "#fcf0a2";
-                  } else {
-                    return "#9e5105";
-                  }
-            }
-    </script>
+    <script src="map.js"></script>
   </body>
 </html>
