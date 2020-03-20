@@ -60,8 +60,8 @@ var employerData2;
             .attr("stroke","white")
             .attr("fill", function(d) {
                 for (element of employerData2) {
-                    if (element.State === d.properties.NAME) {
-                        return fieldToColor(element.Category);
+                    if (element.state === d.properties.NAME) {
+                        return fieldToColor(element.category);
                     }
                 }
             })
