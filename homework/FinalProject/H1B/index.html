@@ -4,27 +4,350 @@
     <meta charset="utf-8" />
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <title>The State of the H1B</title>
-    <link rel="stylesheet" href="style.css"/> 
+    <link rel="stylesheet" href="style.css"/>
   </head>
   <body>
     <div id="banner">
       <h1>All About the H1B Visa</h1>
+      <p id="subtitle">Explore statistics about the most popular non-immigrant work visas for international students in the U.S.</p>
     </div>
+
+    <p id="credit">Photo by Steve Harvey on Unsplash</p>
+
 
     <div id="main">
-      <p>The H1B is one of the most popular non-immigrant work visas for international students to the U.S. If you are a prospective or are currently an international student, chances are that you will come across people talking about or applying for this visa and you will one day need to get one yourself.
-      </p>
-
-      <p>Policies revolving around the visa have been changing and can affect applicants' chances of getting the visa. Visualizations in this page are based on data collected from U.S. Citizenship and Immigration Services’ <a href="https://www.uscis.gov/tools/reports-studies/h-1b-employer-data-hub-files">Employer Data Hub</a>. The USCIS is the agency responsible for managing the process of applying for H-1B visas.</p>
+        <p>The H1B is one of the most popular non-immigrant work visas for international students in the U.S. If you are a prospective or are currently an international student, chances are that you will come across people talking about or applying for this visa and you will one day need to get one yourself.
+        </p>
+        <p>Policies revolving around the visa have been changing and can affect applicants' chances of getting the visa. Visualizations in this page are based on data collected from U.S. Citizenship and Immigration Services’ <a href="https://www.uscis.gov/tools/reports-studies/h-1b-employer-data-hub-files">Employer Data Hub</a>. The USCIS is the agency responsible for managing the process of applying for H-1B visas.</p>
     </div>
-    
-    <svg id="viz">
-      <rect id="ocean" fill="#b8f1fc"></rect>
-      <g id="map"></g>
-    </svg>
+   
+    <section id='scrolly-overlay'>
+      <div class="scrolly">
+        <svg id="viz" class="viz sticky">
+          <rect id="ocean" fill="#b8f1fc"></rect>
+          <g id="map" class="map"></g>
+          <defs>
+          <pattern id="AlabamaLogo" patternUnits="userSpaceOnUse" width="100" height="100">
+            <image xlink:href="Logo/Alabama.png" x="0" y="0" width="100" height="100" />
+          </pattern>
 
-  
+          <pattern id="AlaskaLogo" patternUnits="userSpaceOnUse" width="100" height="90">
+            <image xlink:href="Logo/Alaska.png" x="0" y="0" width="100" height="90" />
+          </pattern>
+
+          <pattern id="ArizonaLogo" patternUnits="userSpaceOnUse" width="100" height="66">
+            <image xlink:href="Logo/Arizona.png" x="0" y="0" width="100" height="66" />
+          </pattern>
+
+          <pattern id="ArkansasLogo" patternUnits="userSpaceOnUse" width="100" height="100">
+            <image xlink:href="Logo/Arkansas.png" x="0" y="0" width="100" height="100" />
+          </pattern>
+
+          <pattern id="CaliforniaLogo" patternUnits="userSpaceOnUse" width="100" height="102">
+            <image xlink:href="Logo/California.png" x="0" y="0" width="100" height="102" />
+          </pattern>
+
+          <pattern id="ColoradoLogo" patternUnits="userSpaceOnUse" width="100" height="100">
+            <image xlink:href="Logo/Colorado.png" x="0" y="0" width="100" height="100" />
+          </pattern>
+
+          <pattern id="ConnecticutLogo" patternUnits="userSpaceOnUse" width="100" height="100">
+            <image xlink:href="Logo/Connecticut.png" x="0" y="0" width="100" height="100" />
+          </pattern>
+
+          <pattern id="DCLogo" patternUnits="userSpaceOnUse" width="100" height="100">
+            <image xlink:href="Logo/DC.png" x="0" y="0" width="100" height="100" />
+          </pattern>
+
+          <pattern id="DelawareLogo" patternUnits="userSpaceOnUse" width="100" height="43">
+            <image xlink:href="Logo/Delaware.png" x="0" y="0" width="100" height="43" />
+          </pattern>
+
+          <pattern id="FloridaLogo" patternUnits="userSpaceOnUse" width="100" height="100">
+            <image xlink:href="Logo/Florida.png" x="0" y="0" width="100" height="100" />
+          </pattern>
+
+          <pattern id="GeorgiaLogo" patternUnits="userSpaceOnUse" width="100" height="61">
+            <image xlink:href="Logo/Georgia.png" x="0" y="0" width="100" height="61" />
+          </pattern>
+
+          <pattern id="HawaiiLogo" patternUnits="userSpaceOnUse" width="100" height="105">
+            <image xlink:href="Logo/Hawaii.png" x="0" y="0" width="100" height="105" />
+          </pattern>
+
+          <pattern id="IdahoLogo" patternUnits="userSpaceOnUse" width="100" height="63">
+            <image xlink:href="Logo/Idaho.png" x="0" y="0" width="100" height="63" />
+          </pattern>
+
+          <pattern id="IndianaLogo" patternUnits="userSpaceOnUse" width="100" height="53">
+            <image xlink:href="Logo/Indiana.png" x="0" y="0" width="100" height="53" />
+          </pattern>
+
+          <pattern id="IowaLogo" patternUnits="userSpaceOnUse" width="100" height="100">
+            <image xlink:href="Logo/Iowa.png" x="0" y="0" width="100" height="100" />
+          </pattern>
+
+          <pattern id="KansasLogo" patternUnits="userSpaceOnUse" width="100" height="42">
+            <image xlink:href="Logo/Kansas.png" x="0" y="0" width="100" height="42" />
+          </pattern>
+
+          <pattern id="KentuckyLogo" patternUnits="userSpaceOnUse" width="100" height="100">
+            <image xlink:href="Logo/Kentucky.png" x="0" y="0" width="100" height="100" />
+          </pattern>
+
+          <pattern id="LouisianaLogo" patternUnits="userSpaceOnUse" width="100" height="65">
+            <image xlink:href="Logo/Louisiana.png" x="0" y="0" width="100" height="65" />
+          </pattern>
+
+          <pattern id="MaineLogo" patternUnits="userSpaceOnUse" width="100" height="56">
+            <image xlink:href="Logo/Maine.png" x="0" y="0" width="100" height="56" />
+          </pattern>
+
+          <pattern id="MarylandLogo" patternUnits="userSpaceOnUse" width="100" height="47">
+            <image xlink:href="Logo/Maryland.png" x="0" y="0" width="100" height="47" />
+          </pattern>
+
+          <pattern id="MassachusettsLogo" patternUnits="userSpaceOnUse" width="100" height="41">
+            <image xlink:href="Logo/Massachusetts.png" x="0" y="0" width="100" height="41" />
+          </pattern>
+
+          <pattern id="MichiganLogo" patternUnits="userSpaceOnUse" width="100" height="52">
+            <image xlink:href="Logo/Michigan.png" x="0" y="0" width="100" height="52" />
+          </pattern>
+
+          <pattern id="MinnesotaLogo" patternUnits="userSpaceOnUse" width="100" height="107">
+            <image xlink:href="Logo/Minnesota.png" x="0" y="0" width="100" height="107" />
+          </pattern>
+
+          <pattern id="MississippiLogo" patternUnits="userSpaceOnUse" width="100" height="100">
+            <image xlink:href="Logo/Mississippi.png" x="0" y="0" width="100" height="100" />
+          </pattern>
+
+          <pattern id="MissouriLogo" patternUnits="userSpaceOnUse" width="100" height="66">
+            <image xlink:href="Logo/Missouri.png" x="0" y="0" width="100" height="66" />
+          </pattern>
+
+          <pattern id="MontanaLogo" patternUnits="userSpaceOnUse" width="100" height="56">
+            <image xlink:href="Logo/Montana.png" x="0" y="0" width="100" height="56" />
+          </pattern>
+
+          <pattern id="NebraskaLogo" patternUnits="userSpaceOnUse" width="100" height="50">
+            <image xlink:href="Logo/Nebraska.png" x="0" y="0" width="100" height="50" />
+          </pattern>
+
+          <pattern id="NevadaLogo" patternUnits="userSpaceOnUse" width="100" height="53">
+            <image xlink:href="Logo/Nevada.png" x="0" y="0" width="100" height="53" />
+          </pattern>
+
+          <pattern id="NewHampshireLogo" patternUnits="userSpaceOnUse" width="100" height="100">
+            <image xlink:href="Logo/New Hampshire.png" x="0" y="0" width="100" height="100" />
+          </pattern>
+
+          <pattern id="NewJerseyLogo" patternUnits="userSpaceOnUse" width="100" height="99">
+            <image xlink:href="Logo/New Jersey.png" x="0" y="0" width="100" height="99" />
+          </pattern>
+
+          <pattern id="NewMexicoLogo" patternUnits="userSpaceOnUse" width="100" height="79">
+            <image xlink:href="Logo/New Mexico.png" x="0" y="0" width="100" height="79" />
+          </pattern>
+
+          <pattern id="NewYorkLogo" patternUnits="userSpaceOnUse" width="100" height="48">
+            <image xlink:href="Logo/New York.png" x="0" y="0" width="100" height="48" />
+          </pattern>
+
+          <pattern id="NorthCarolinaLogo" patternUnits="userSpaceOnUse" width="100" height="40">
+            <image xlink:href="Logo/North Carolina.png" x="0" y="0" width="100" height="40" />
+          </pattern>
+
+          <pattern id="NorthDakotaLogo" patternUnits="userSpaceOnUse" width="100" height="61">
+            <image xlink:href="Logo/North Dakota.png" x="0" y="0" width="100" height="61" />
+          </pattern>
+
+          <pattern id="OhioLogo" patternUnits="userSpaceOnUse" width="100" height="35">
+            <image xlink:href="Logo/Ohio.png" x="0" y="0" width="100" height="35" />
+          </pattern>
+
+          <pattern id="OklahomaLogo" patternUnits="userSpaceOnUse" width="100" height="26">
+            <image xlink:href="Logo/Oklahoma.png" x="0" y="0" width="100" height="26" />
+          </pattern>
+
+          <pattern id="OregonLogo" patternUnits="userSpaceOnUse" width="100" height="59">
+            <image xlink:href="Logo/Oregon.png" x="0" y="0" width="100" height="59" />
+          </pattern>
+
+          <pattern id="PennsylvaniaLogo" patternUnits="userSpaceOnUse" width="100" height="41">
+            <image xlink:href="Logo/Pennsylvania.png" x="0" y="0" width="100" height="41" />
+          </pattern>
+
+          <pattern id="RhodeIslandLogo" patternUnits="userSpaceOnUse" width="100" height="80">
+            <image xlink:href="Logo/Rhode Island.png" x="0" y="0" width="100" height="80" />
+          </pattern>
+
+          <pattern id="SouthCarolinaLogo" patternUnits="userSpaceOnUse" width="100" height="69">
+            <image xlink:href="Logo/South Carolina.png" x="0" y="0" width="100" height="69" />
+          </pattern>
+
+          <pattern id="SouthDakotaLogo" patternUnits="userSpaceOnUse" width="100" height="100">
+            <image xlink:href="Logo/South Dakota.png" x="0" y="0" width="100" height="100" />
+          </pattern>
+
+          <pattern id="TennesseeLogo" patternUnits="userSpaceOnUse" width="100" height="56">
+            <image xlink:href="Logo/Tennessee.png" x="0" y="0" width="100" height="56" />
+          </pattern>
+
+          <pattern id="TexasLogo" patternUnits="userSpaceOnUse" width="100" height="30">
+            <image xlink:href="Logo/Texas.png" x="0" y="0" width="100" height="30" />
+          </pattern>
+
+          <pattern id="UtahLogo" patternUnits="userSpaceOnUse" width="100" height="100">
+            <image xlink:href="Logo/Utah.png" x="0" y="0" width="100" height="100" />
+          </pattern>
+
+          <pattern id="VermontLogo" patternUnits="userSpaceOnUse" width="100" height="100">
+            <image xlink:href="Logo/Vermont.png" x="0" y="0" width="100" height="100" />
+          </pattern>
+
+          <pattern id="VirginiaLogo" patternUnits="userSpaceOnUse" width="100" height="100">
+            <image xlink:href="Logo/Virginia.png" x="0" y="0" width="100" height="100" />
+          </pattern>
+
+          <pattern id="WashingtonLogo" patternUnits="userSpaceOnUse" width="100" height="82">
+            <image xlink:href="Logo/Washington.png" x="0" y="0" width="100" height="82" />
+          </pattern>
+
+          <pattern id="WestViginiaLogo" patternUnits="userSpaceOnUse" width="100" height="100">
+            <image xlink:href="Logo/West Virginia.png" x="0" y="0" width="100" height="100" />
+          </pattern>
+
+          <pattern id="WisconsinLogo" patternUnits="userSpaceOnUse" width="100" height="60">
+            <image xlink:href="Logo/Wisconsin.png" x="0" y="0" width="100" height="60" />
+          </pattern>
+
+          <pattern id="WyomingLogo" patternUnits="userSpaceOnUse" width="100" height="43">
+            <image xlink:href="Logo/Wyoming.png" x="0" y="0" width="100" height="43" />
+          </pattern>
+          </defs>
+        </svg>
+        <article>
+          <div class='step'>
+            <p>Tech giants lead the field of biggest H1B visa sponsor in 2019. American multinational corporation Cognizant is the biggest sponsor, followed by Amazon, according to data from USCIS’s Employer Data Hub.</p> 
+          </div>
+
+          <div class='step'>
+            <p>Cognizant last year had nearly 13,500 approved H1B applications and nearly 6,000 denied applications while Amazon had more than 8,700 approvals and 300 denials.</p>
+          </div>
+
+          <div class='step'>
+            <p>Beside tech companies, higher education institutions are also among places that hire the most H1B visa workers in each state. Universities are the biggest employer of H1-B in 12 states and the second biggest employer of H1B in eight states.</p>
+          </div>
+
+          <div class='step'>
+            <p>This is probably because universities are taking advantage of what’s called an H1B cap exemption. Since 2005, H-1B visas have been capped at 65,000 a year, plus an additional 20,000 for graduate degree holders.</p>
+          </div>
+
+          <div class='step'>
+            <p>However, through the American Competitiveness in the 21st Century Act of 2000, universities, nonprofits related or affiliated to an institution of higher education and nonprofit research organizations or government research institutions are exempt from this H-1B cap.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id='scrolly-overlay'>
+      <div class="scrolly">
+        <svg id="viz2" class="viz sticky">
+          <rect id="ocean2" fill="#b8f1fc"></rect>
+          <g id="map2" class="map"></g>
+        </svg>
+        <article>
+          <div class='step'>
+            <p>Tech giants lead the field of biggest H1B visa sponsor in 2019. American multinational corporation Cognizant is the biggest sponsor, followed by Amazon, according to data from USCIS’s Employer Data Hub.</p> 
+          </div>
+
+          <div class='step'>
+            <p>Cognizant last year had nearly 13,500 approved H1B applications and nearly 6,000 denied applications while Amazon had more than 8,700 approvals and 300 denials.</p>
+          </div>
+
+          <div class='step'>
+            <p>Beside tech companies, higher education institutions are also among places that hire the most H1B visa workers in each state. Universities are the biggest employer of H1-B in 12 states and the second biggest employer of H1B in eight states.</p>
+          </div>
+
+          <div class='step'>
+            <p>This is probably because universities are taking advantage of what’s called an H1B cap exemption. Since 2005, H-1B visas have been capped at 65,000 a year, plus an additional 20,000 for graduate degree holders.</p>
+          </div>
+
+          <div class='step'>
+            <p>However, through the American Competitiveness in the 21st Century Act of 2000, universities, nonprofits related or affiliated to an institution of higher education and nonprofit research organizations or government research institutions are exempt from this H-1B cap.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id='scrolly-overlay'>
+      <div class="scrolly">
+        <svg id="viz3" class="viz sticky">
+          <rect id="ocean3" fill="#b8f1fc"></rect>
+          <g id="map3" class="map"></g>
+        </svg>
+        <article>
+          <div class='step'>
+            <p>Tech giants lead the field of biggest H1B visa sponsor in 2019. American multinational corporation Cognizant is the biggest sponsor, followed by Amazon, according to data from USCIS’s Employer Data Hub.</p> 
+          </div>
+
+          <div class='step'>
+            <p>Cognizant last year had nearly 13,500 approved H1B applications and nearly 6,000 denied applications while Amazon had more than 8,700 approvals and 300 denials.</p>
+          </div>
+
+          <div class='step'>
+            <p>Beside tech companies, higher education institutions are also among places that hire the most H1B visa workers in each state. Universities are the biggest employer of H1-B in 12 states and the second biggest employer of H1B in eight states.</p>
+          </div>
+
+          <div class='step'>
+            <p>This is probably because universities are taking advantage of what’s called an H1B cap exemption. Since 2005, H-1B visas have been capped at 65,000 a year, plus an additional 20,000 for graduate degree holders.</p>
+          </div>
+
+          <div class='step'>
+            <p>However, through the American Competitiveness in the 21st Century Act of 2000, universities, nonprofits related or affiliated to an institution of higher education and nonprofit research organizations or government research institutions are exempt from this H-1B cap.</p>
+          </div>
+
+        </article>
+      </div>
+    </section>
+
+    <section id='scrolly-overlay'>
+      <div class="scrolly">
+        <svg id="viz4" class="viz sticky">
+          <g id="legend"></g>
+        </svg>
+        <article>
+          <div class='step'>
+            <p>Tech giants lead the field of biggest H1B visa sponsor in 2019. American multinational corporation Cognizant is the biggest sponsor, followed by Amazon, according to data from USCIS’s Employer Data Hub.</p> 
+          </div>
+
+          <div class='step'>
+            <p>Cognizant last year had nearly 13,500 approved H1B applications and nearly 6,000 denied applications while Amazon had more than 8,700 approvals and 300 denials.</p>
+          </div>
+
+          <div class='step'>
+            <p>Beside tech companies, higher education institutions are also among places that hire the most H1B visa workers in each state. Universities are the biggest employer of H1-B in 12 states and the second biggest employer of H1B in eight states.</p>
+          </div>
+
+          <div class='step'>
+            <p>This is probably because universities are taking advantage of what’s called an H1B cap exemption. Since 2005, H-1B visas have been capped at 65,000 a year, plus an additional 20,000 for graduate degree holders.</p>
+          </div>
+
+          <div class='step'>
+            <p>However, through the American Competitiveness in the 21st Century Act of 2000, universities, nonprofits related or affiliated to an institution of higher education and nonprofit research organizations or government research institutions are exempt from this H-1B cap.</p>
+          </div>
+
+        </article>
+      </div>
+    </section>
 
     <script src="map.js"></script>
+    <script src="map2.js"></script>
+    <script src="map3.js"></script>
+    <script src="scatterplotrate.js"></script>
+
+
   </body>
 </html>
