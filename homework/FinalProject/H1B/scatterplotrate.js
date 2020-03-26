@@ -26,8 +26,9 @@ var svg = d3.select("#viz4")
 d3.csv("h1bDenialRate.csv", function(error, data) {
 console.log(data);
 
-var x = d3.scaleLinear()
-    .domain([2009, 2019])
+// var x = d3.scaleLinear()
+var x = d3.scaleBand()
+    .domain(data.map(function(d) {return d.year; }))
     .range([0, width]);
 
 svg.append("g")
@@ -50,7 +51,50 @@ var r = d3.scaleLinear()
 svg.append("g")
     .call(d3.axisLeft(y));
 
-  // Add dots
+    // Draw legend
+//     let legendData = data.map(function(d) {
+//         return {route: d.route};
+//   });
+//   console.log(legendData);
+
+//   let legendX = width - margin.left * 4;
+//   let legendY = margin.top;
+//   let legendSize = 20;
+
+//   let legend = svg.select("#legend")
+//     .attr("transform", `translate(${legendX}, ${legendY})`);
+
+//   let legendRects = legend.selectAll("rect")
+//     .data(legendData);
+
+//   let legendRectsEnter = legendRects.enter().append("rect");
+
+//   legendRects.merge(legendRectsEnter)
+//     .attr("x", 0)
+//     .attr("y", function(d, i) {
+//       return i * legendSize + i * 10;
+//     })
+//     .attr("fill", fill)
+//     .attr("width", legendSize)
+//     .attr("height", legendSize);      
+
+//   var legendTexts = legend.selectAll("text")
+//     .data(legendData);
+
+//   var legendTextsEnter = legendTexts.enter().append("text")
+//     .attr("baseline-shift", "-100%");
+
+//   legendTexts.merge(legendTextsEnter)
+//     .attr("x", legendSize + 5)
+//     .attr("y", function(d, i) {
+//       return i * legendSize + i * 10;
+//     })
+//     .text(function(d) {
+//       return d.route;
+//     });
+
+//   }
+
 svg.append('g')
     .selectAll("circle")
     .attr("class", "circle")
@@ -66,19 +110,7 @@ svg.append('g')
       .attr("r", function (d) {
           return r(d.totalapplication);
       })
-      .style("fill", function(d) {
-          if (d.pandemic === "Coronavirus") {
-              return "green";
-          } else if (d.pandemic === "H1N1") {
-              return "blue";
-          } else if (d.pandemic === "Ebola") {
-              return "red";
-          } else if (d.pandemic === "AIDS") {
-              return "purple";
-          } else {
-              return "#039DFA";
-          }
-      })
+      .style("fill", "#039DFA")
       .style("opacity", "0.3")
       .on("mouseover", function(d, i) {
         d3.select(this).style("opacity", "0.7")
