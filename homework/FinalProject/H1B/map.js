@@ -11,17 +11,17 @@ svg.select("#ocean")
 
 var map = svg.select("#map");
 
-var zoom = d3.zoom()
-  .translateExtent([[0, 0], [width, height]])
-  .scaleExtent([1, 8])
-  .on("zoom", zoomed);
+// var zoom = d3.zoom()
+//   .translateExtent([[0, 0], [width, height]])
+//   .scaleExtent([1, 8])
+//   .on("zoom", zoomed);
 
-function zoomed() {
-    map.attr("transform", d3.event.transform);
-}
+// function zoomed() {
+//     map.attr("transform", d3.event.transform);
+// }
 
-svg.call(zoom)
-  .on("dblclick.zoom", null);
+// svg.call(zoom)
+//   .on("dblclick.zoom", null);
 
 var tooltip = d3.select("body")
         .append("div")
