@@ -51,49 +51,6 @@ var r = d3.scaleLinear()
 svg.append("g")
     .call(d3.axisLeft(y));
 
-    // Draw legend
-//     let legendData = data.map(function(d) {
-//         return {route: d.route};
-//   });
-//   console.log(legendData);
-
-//   let legendX = width - margin.left * 4;
-//   let legendY = margin.top;
-//   let legendSize = 20;
-
-//   let legend = svg.select("#legend")
-//     .attr("transform", `translate(${legendX}, ${legendY})`);
-
-//   let legendRects = legend.selectAll("rect")
-//     .data(legendData);
-
-//   let legendRectsEnter = legendRects.enter().append("rect");
-
-//   legendRects.merge(legendRectsEnter)
-//     .attr("x", 0)
-//     .attr("y", function(d, i) {
-//       return i * legendSize + i * 10;
-//     })
-//     .attr("fill", fill)
-//     .attr("width", legendSize)
-//     .attr("height", legendSize);      
-
-//   var legendTexts = legend.selectAll("text")
-//     .data(legendData);
-
-//   var legendTextsEnter = legendTexts.enter().append("text")
-//     .attr("baseline-shift", "-100%");
-
-//   legendTexts.merge(legendTextsEnter)
-//     .attr("x", legendSize + 5)
-//     .attr("y", function(d, i) {
-//       return i * legendSize + i * 10;
-//     })
-//     .text(function(d) {
-//       return d.route;
-//     });
-
-//   }
 
 svg.append('g')
     .selectAll("circle")

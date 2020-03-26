@@ -23,12 +23,12 @@ function zoomed() {
 svg.call(zoom)
   .on("dblclick.zoom", null);
 
-var tooltip = d3.select("body")
-        .append("div")
-        .attr("class", "tooltip")
-        .style("position", "absolute")
-        .style("background", "#ccf5ff")
-        .style("border-radius", "6px");
+// var tooltip = d3.select("body")
+//         .append("div")
+//         .attr("class", "tooltip")
+//         .style("position", "absolute")
+//         .style("background", "#ccf5ff")
+//         .style("border-radius", "6px");
 
 d3.queue()
   .defer(d3.csv, "H1BEmployerMain.csv")
@@ -71,9 +71,9 @@ function drawMap(error, h1bData, geoData) {
           .on("mouseover", function(d, i) {
               d3.select(this).style("opacity", "0.4");
               var state = d.properties.NAME;
-              var employer = findEmployer(state, h1bData);
+              var approvals = findEmployer(state, h1bData);
               tooltip.transition().duration(100)
-              tooltip.html(`<b>${state}:</b> ${employer}`)
+              tooltip.html(`<b>${state}:</b> ${approvals}`)
               .style("left", d3.event.pageX + 20 + "px")
               .style("top", d3.event.pageY + 20 + "px")
               .style("opacity", 1)
@@ -94,7 +94,7 @@ function drawMap(error, h1bData, geoData) {
 function findEmployer(stateToFind, allStates) {
   for (state of allStates) {
     if (state.state === stateToFind) {
-      return state.employer;
+      return state.totalapprovals;
     }
   }
 }
