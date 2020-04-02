@@ -1,6 +1,7 @@
-var margin = {top: 90, right: 30, bottom: 60, left: 60},
-    width = 900 - margin.left - margin.right,
-    height = 600 - margin.top - margin.bottom;
+
+var margin = {top: 120, right: 40, bottom: 50, left: 70},
+    width = window.innerWidth/1.5 - margin.left - margin.right,
+    height = window.innerHeight/1.4 - margin.top - margin.bottom;
 
 var legendMargin = {
     top: 20,
@@ -9,19 +10,28 @@ var legendMargin = {
     left: 50
       };
 
-var tooltip = d3.select("body")
-    .append("div")
-    .attr("class", "tooltip")
-    .style("position", "absolute")
-    .style("background", "#ccf5ff")
-    .style("border-radius", "6px");
-
 var svg = d3.select("#viz4")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
+
+var xLabel = svg.append("text")
+    .attr("class", "axisLabel")
+    .attr("x", width/2)
+    .attr("y", height + margin.bottom)
+    .attr("text-anchor", "middle")
+    .text("Year");
+
+
+var yLabel = svg.append("text")
+    .attr("class", "axisLabel")
+    .attr("transform", "rotate(-90)")
+    .attr("y", -40)
+    .attr("x", -height/2)
+    .attr("text-anchor", "middle")
+    .text("Denial Rate (%)");
 
 d3.csv("h1bDenialRate.csv", function(error, data) {
 console.log(data);
@@ -52,21 +62,19 @@ svg.append("g")
     .call(d3.axisLeft(y));
 
 
-svg.append('g')
+var chart = svg.append('g')
     .selectAll("circle")
     .attr("class", "circle")
     .data(data)
     .enter()
     .append("circle")
       .attr("cx", function (d) { 
-          return x(d.year); 
-        } )
+        return x(d.year); 
+      })
       .attr("cy", function (d) { 
         return y(d.denialrate); 
-    } )
-      .attr("r", function (d) {
-          return r(d.totalapplication);
-      })
+        } )
+      .attr("r", 0)
       .style("fill", "#039DFA")
       .style("opacity", "0.3")
       .on("mouseover", function(d, i) {
@@ -75,7 +83,8 @@ svg.append('g')
         tooltip.html(`Denial rate: ${d.denialrate}<br> Total application: ${d.totalapplication}`)
         .style("left", d3.event.pageX - 80 + "px")
         .style("top", d3.event.pageY - 80 + "px")
-        .style("opacity", 1)
+        .style("opacity", 0.8)
+        .attr("class", "tooltipText")
         .style("padding", "8px 10px")
         .style("border-radius", "5px");
       })
@@ -85,4 +94,26 @@ svg.append('g')
         .style("padding", "0");
       });
 
+    chart.transition()
+        .delay(2000)
+        .attr("r", function (d) {
+        return r(d.totalapplication);
+        })
+        .delay(function(d,i) {
+            return i * 150;
+        });
+
+    var legendX = margin.left*2;
+    var legendY = margin.top *2;
+    // var legendSize = 20;
+    // var legendPadding = 10;
+    var legend = svg.select("#legend")
+    //     .attr("transform", "translate(" + legendX + ", " + legendY + ")");
+
+    var circle = legend.select("circle")
+        .style("fill", "blue")
+        .attr("r", 100)
+        .attr("cx", legendX)
+        .attr("cy", legendY);
+        
 });

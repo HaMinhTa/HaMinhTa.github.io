@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="lib/noframework.waypoints.js"></script>
     <title>The State of the H1B</title>
     <link rel="stylesheet" href="style.css"/>
   </head>
@@ -16,7 +17,7 @@
 
 
     <div id="main">
-        <h4>By Ha Ta</h4>
+        <h4 id="byline">By Ha Ta</h4>
         <p>The H1B is one of the most popular non-immigrant work visas for international students in the U.S. If you are a prospective or are currently an international student, chances are that you will come across people talking about or applying for this visa and you will one day need to get one yourself.
         </p>
         <p>Policies revolving around the visa have been changing and can affect applicants' chances of getting the visa. Visualizations in this page are based on data collected from U.S. Citizenship and Immigration Services’ <a href="https://www.uscis.gov/tools/reports-studies/h-1b-employer-data-hub-files">Employer Data Hub</a>. The USCIS is the agency responsible for managing the process of applying for H-1B visas.</p>
@@ -25,31 +26,52 @@
     <section id='scrolly-overlay'>
       <div class="scrolly">
         <svg id="viz" class="viz sticky">
-          <rect id="ocean" fill="#b8f1fc"></rect>
           <g id="map" class="map"></g>
           <defs>
-          <pattern id="AlabamaLogo" patternUnits="userSpaceOnUse" width="100" height="100">
-            <image xlink:href="Logo/Alabama.png" x="0" y="0" width="100" height="100" />
+
+          <pattern id="AlabamaLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+          viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/Alabama.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
+
 
           <pattern id="AlaskaLogo" patternUnits="userSpaceOnUse" width="100" height="90">
             <image xlink:href="Logo/Alaska.png" x="0" y="0" width="100" height="90" />
           </pattern>
 
-          <pattern id="ArizonaLogo" patternUnits="userSpaceOnUse" width="100" height="66">
+          <!-- <pattern id="ArizonaLogo" patternUnits="userSpaceOnUse" width="100" height="66">
             <image xlink:href="Logo/Arizona.png" x="0" y="0" width="100" height="66" />
+          </pattern> -->
+          <pattern id="ArizonaLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+            viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/Arizona.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
-          <pattern id="ArkansasLogo" patternUnits="userSpaceOnUse" width="100" height="100">
+          <!-- <pattern id="ArkansasLogo" patternUnits="userSpaceOnUse" width="100" height="100">
             <image xlink:href="Logo/Arkansas.png" x="0" y="0" width="100" height="100" />
+          </pattern> -->
+
+
+          <pattern id="ArkansasLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+          viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/Arkansas.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
-          <pattern id="CaliforniaLogo" patternUnits="userSpaceOnUse" width="100" height="102">
-            <image xlink:href="Logo/California.png" x="0" y="0" width="100" height="102" />
+          <!-- <pattern id="CaliforniaLogo" patternUnits="userSpaceOnUse" width="100" height="102">
+            <image href="Logo/California.png" x="0" y="0" width="100" height="102" />
+          </pattern> -->
+          <pattern id="CaliforniaLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+            viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/California.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
-          <pattern id="ColoradoLogo" patternUnits="userSpaceOnUse" width="100" height="100">
+          <!-- <pattern id="ColoradoLogo" patternUnits="userSpaceOnUse" width="100" height="100">
             <image xlink:href="Logo/Colorado.png" x="0" y="0" width="100" height="100" />
+          </pattern> -->
+
+          <pattern id="ColoradoLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+          viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/Colorado.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
           <pattern id="ConnecticutLogo" patternUnits="userSpaceOnUse" width="100" height="100">
@@ -64,8 +86,9 @@
             <image xlink:href="Logo/Delaware.png" x="0" y="0" width="100" height="43" />
           </pattern>
 
-          <pattern id="FloridaLogo" patternUnits="userSpaceOnUse" width="100" height="100">
-            <image xlink:href="Logo/Florida.png" x="0" y="0" width="100" height="100" />
+          <pattern id="FloridaLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+          viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/Florida.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
           <pattern id="GeorgiaLogo" patternUnits="userSpaceOnUse" width="100" height="61">
@@ -76,32 +99,57 @@
             <image xlink:href="Logo/Hawaii.png" x="0" y="0" width="100" height="105" />
           </pattern>
 
-          <pattern id="IdahoLogo" patternUnits="userSpaceOnUse" width="100" height="63">
+          <!-- <pattern id="IdahoLogo" patternUnits="userSpaceOnUse" width="100" height="63">
             <image xlink:href="Logo/Idaho.png" x="0" y="0" width="100" height="63" />
+          </pattern> -->
+
+          <pattern id="IdahoLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+          viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/Idaho.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
-          <pattern id="IndianaLogo" patternUnits="userSpaceOnUse" width="100" height="53">
+          <!-- <pattern id="IllinoisLogo" patternUnits="userSpaceOnUse" width="100" height="53">
+            <image xlink:href="Logo/Illinois.png" x="0" y="0" width="100" height="53" />
+          </pattern> -->
+
+          <pattern id="IllinoisLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+          viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/Illinois.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
+          </pattern>
+
+          <pattern id="IndianaLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+          viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/Indiana.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
+          </pattern>
+
+          <!-- <pattern id="IndianaLogo" patternUnits="userSpaceOnUse" width="100" height="53">
             <image xlink:href="Logo/Indiana.png" x="0" y="0" width="100" height="53" />
+          </pattern> -->
+
+          <pattern id="IowaLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+          viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/Iowa.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
-          <pattern id="IowaLogo" patternUnits="userSpaceOnUse" width="100" height="100">
-            <image xlink:href="Logo/Iowa.png" x="0" y="0" width="100" height="100" />
+
+          <pattern id="KansasLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+          viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/Kansas.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
-          <pattern id="KansasLogo" patternUnits="userSpaceOnUse" width="100" height="42">
-            <image xlink:href="Logo/Kansas.png" x="0" y="0" width="100" height="42" />
+          <pattern id="KentuckyLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+          viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/Kentucky.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
-          <pattern id="KentuckyLogo" patternUnits="userSpaceOnUse" width="100" height="100">
-            <image xlink:href="Logo/Kentucky.png" x="0" y="0" width="100" height="100" />
+          <pattern id="LouisianaLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+          viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/Louisiana.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
-          <pattern id="LouisianaLogo" patternUnits="userSpaceOnUse" width="100" height="65">
-            <image xlink:href="Logo/Louisiana.png" x="0" y="0" width="100" height="65" />
-          </pattern>
-
-          <pattern id="MaineLogo" patternUnits="userSpaceOnUse" width="100" height="56">
-            <image xlink:href="Logo/Maine.png" x="0" y="0" width="100" height="56" />
+          <pattern id="MaineLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+          viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/Maine.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
           <pattern id="MarylandLogo" patternUnits="userSpaceOnUse" width="100" height="47">
@@ -112,96 +160,160 @@
             <image xlink:href="Logo/Massachusetts.png" x="0" y="0" width="100" height="41" />
           </pattern>
 
-          <pattern id="MichiganLogo" patternUnits="userSpaceOnUse" width="100" height="52">
-            <image xlink:href="Logo/Michigan.png" x="0" y="0" width="100" height="52" />
+          <pattern id="MichiganLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+          viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/Michigan.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
           <pattern id="MinnesotaLogo" patternUnits="userSpaceOnUse" width="100" height="107">
             <image xlink:href="Logo/Minnesota.png" x="0" y="0" width="100" height="107" />
           </pattern>
 
-          <pattern id="MississippiLogo" patternUnits="userSpaceOnUse" width="100" height="100">
+          <!-- <pattern id="MississippiLogo" patternUnits="userSpaceOnUse" width="100" height="100">
             <image xlink:href="Logo/Mississippi.png" x="0" y="0" width="100" height="100" />
+          </pattern> -->
+
+          <pattern id="MississippiLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+          viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/Mississippi.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
-          <pattern id="MissouriLogo" patternUnits="userSpaceOnUse" width="100" height="66">
+          <pattern id="MissouriLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+          viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/Missouri.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
+          </pattern>
+
+         <!-- <pattern id="MissouriLogo" patternUnits="userSpaceOnUse" width="100" height="66">
             <image xlink:href="Logo/Missouri.png" x="0" y="0" width="100" height="66" />
-          </pattern>
+          </pattern>  -->
 
-          <pattern id="MontanaLogo" patternUnits="userSpaceOnUse" width="100" height="56">
+          <!-- <pattern id="MontanaLogo" patternUnits="userSpaceOnUse" width="100" height="56">
             <image xlink:href="Logo/Montana.png" x="0" y="0" width="100" height="56" />
+          </pattern> -->
+
+          <pattern id="MontanaLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+          viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/Montana.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
-          <pattern id="NebraskaLogo" patternUnits="userSpaceOnUse" width="100" height="50">
+          <!-- <pattern id="NebraskaLogo" patternUnits="userSpaceOnUse" width="100" height="50">
             <image xlink:href="Logo/Nebraska.png" x="0" y="0" width="100" height="50" />
+          </pattern> -->
+
+          <pattern id="NebraskaLogo" patternContentUnits="objectBoundingBox" width="98%" height="100%" 
+            viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/Nebraska.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
-          <pattern id="NevadaLogo" patternUnits="userSpaceOnUse" width="100" height="53">
+          <!-- <pattern id="NevadaLogo" patternUnits="userSpaceOnUse" width="100" height="53">
             <image xlink:href="Logo/Nevada.png" x="0" y="0" width="100" height="53" />
+          </pattern> -->
+
+          <pattern id="NevadaLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+          viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/Nevada.png" width="0.8" height="0.7" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
           <pattern id="NewHampshireLogo" patternUnits="userSpaceOnUse" width="100" height="100">
-            <image xlink:href="Logo/New Hampshire.png" x="0" y="0" width="100" height="100" />
+            <image xlink:href="Logo/NewHampshire.png" x="0" y="0" width="100" height="100" />
           </pattern>
 
           <pattern id="NewJerseyLogo" patternUnits="userSpaceOnUse" width="100" height="99">
-            <image xlink:href="Logo/New Jersey.png" x="0" y="0" width="100" height="99" />
+            <image xlink:href="Logo/NewJersey.png" x="0" y="0" width="100" height="99" />
           </pattern>
 
-          <pattern id="NewMexicoLogo" patternUnits="userSpaceOnUse" width="100" height="79">
-            <image xlink:href="Logo/New Mexico.png" x="0" y="0" width="100" height="79" />
+          <!-- <pattern id="NewMexicoLogo" patternUnits="userSpaceOnUse" width="100" height="79">
+            <image xlink:href="Logo/NewMexico.png" x="0" y="0" width="100" height="79" />
+          </pattern> -->
+
+          <pattern id="NewMexicoLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+          viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/NewMexico.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
           <pattern id="NewYorkLogo" patternUnits="userSpaceOnUse" width="100" height="48">
-            <image xlink:href="Logo/New York.png" x="0" y="0" width="100" height="48" />
+            <image xlink:href="Logo/NewYork.png" x="0" y="0" width="100" height="48" />
           </pattern>
 
           <pattern id="NorthCarolinaLogo" patternUnits="userSpaceOnUse" width="100" height="40">
-            <image xlink:href="Logo/North Carolina.png" x="0" y="0" width="100" height="40" />
+            <image xlink:href="Logo/NorthCarolina.png" x="0" y="0" width="100" height="40" />
           </pattern>
 
-          <pattern id="NorthDakotaLogo" patternUnits="userSpaceOnUse" width="100" height="61">
-            <image xlink:href="Logo/North Dakota.png" x="0" y="0" width="100" height="61" />
+          <!-- <pattern id="NorthDakotaLogo" patternUnits="userSpaceOnUse" width="100" height="61">
+            <image xlink:href="Logo/NorthDakota.png" x="0" y="0" width="100" height="61" />
+          </pattern> -->
+
+          <pattern id="NorthDakotaLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+          viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/NorthDakota.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
           <pattern id="OhioLogo" patternUnits="userSpaceOnUse" width="100" height="35">
             <image xlink:href="Logo/Ohio.png" x="0" y="0" width="100" height="35" />
           </pattern>
 
-          <pattern id="OklahomaLogo" patternUnits="userSpaceOnUse" width="100" height="26">
+          <!-- <pattern id="OklahomaLogo" patternUnits="userSpaceOnUse" width="100" height="26">
             <image xlink:href="Logo/Oklahoma.png" x="0" y="0" width="100" height="26" />
+          </pattern> -->
+
+          <pattern id="OklahomaLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+          viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/Oklahoma.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
-          <pattern id="OregonLogo" patternUnits="userSpaceOnUse" width="100" height="59">
+
+          <!-- <pattern id="OregonLogo" patternUnits="userSpaceOnUse" width="100" height="59">
             <image xlink:href="Logo/Oregon.png" x="0" y="0" width="100" height="59" />
+          </pattern> -->
+          <pattern id="OregonLogo" patternContentUnits="objectBoundingBox" width="110%" height="100%" 
+            viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/Oregon.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
-          <pattern id="PennsylvaniaLogo" patternUnits="userSpaceOnUse" width="100" height="41">
+          <!-- <pattern id="PennsylvaniaLogo" patternUnits="userSpaceOnUse" width="100" height="41">
             <image xlink:href="Logo/Pennsylvania.png" x="0" y="0" width="100" height="41" />
+          </pattern> -->
+          <pattern id="PennsylvaniaLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+            viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/Pennsylvania.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
           <pattern id="RhodeIslandLogo" patternUnits="userSpaceOnUse" width="100" height="80">
-            <image xlink:href="Logo/Rhode Island.png" x="0" y="0" width="100" height="80" />
+            <image xlink:href="Logo/RhodeIsland.png" x="0" y="0" width="100" height="80" />
           </pattern>
 
           <pattern id="SouthCarolinaLogo" patternUnits="userSpaceOnUse" width="100" height="69">
-            <image xlink:href="Logo/South Carolina.png" x="0" y="0" width="100" height="69" />
+            <image xlink:href="Logo/SouthCarolina.png" x="0" y="0" width="100" height="69" />
           </pattern>
 
-          <pattern id="SouthDakotaLogo" patternUnits="userSpaceOnUse" width="100" height="100">
-            <image xlink:href="Logo/South Dakota.png" x="0" y="0" width="100" height="100" />
+          <!-- <pattern id="SouthDakotaLogo" patternUnits="userSpaceOnUse" width="100" height="100">
+            <image xlink:href="Logo/SouthDakota.png" x="0" y="0" width="100" height="100" />
+          </pattern> -->
+
+          <pattern id="SouthDakotaLogo" patternContentUnits="objectBoundingBox" width="98%" height="100%" 
+            viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/SouthDakota.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
           <pattern id="TennesseeLogo" patternUnits="userSpaceOnUse" width="100" height="56">
             <image xlink:href="Logo/Tennessee.png" x="0" y="0" width="100" height="56" />
           </pattern>
 
-          <pattern id="TexasLogo" patternUnits="userSpaceOnUse" width="100" height="30">
+          <!-- <pattern id="TexasLogo" patternUnits="userSpaceOnUse" width="100" height="30">
             <image xlink:href="Logo/Texas.png" x="0" y="0" width="100" height="30" />
+          </pattern> -->
+          <pattern id="TexasLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+            viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/Texas2.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
-          <pattern id="UtahLogo" patternUnits="userSpaceOnUse" width="100" height="100">
+          <!-- <pattern id="UtahLogo" patternUnits="userSpaceOnUse" width="100" height="100">
             <image xlink:href="Logo/Utah.png" x="0" y="0" width="100" height="100" />
+          </pattern> -->
+
+          <pattern id="UtahLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+          viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/Utah.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
           <pattern id="VermontLogo" patternUnits="userSpaceOnUse" width="100" height="100">
@@ -212,26 +324,42 @@
             <image xlink:href="Logo/Virginia.png" x="0" y="0" width="100" height="100" />
           </pattern>
 
-          <pattern id="WashingtonLogo" patternUnits="userSpaceOnUse" width="100" height="82">
+          <!-- <pattern id="WashingtonLogo" patternUnits="userSpaceOnUse" width="100" height="82">
             <image xlink:href="Logo/Washington.png" x="0" y="0" width="100" height="82" />
+          </pattern> -->
+
+          <pattern id="WashingtonLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+          viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/Washington.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
           <pattern id="WestViginiaLogo" patternUnits="userSpaceOnUse" width="100" height="100">
-            <image xlink:href="Logo/West Virginia.png" x="0" y="0" width="100" height="100" />
+            <image xlink:href="Logo/WestVirginia.png" x="0" y="0" width="100" height="100" />
           </pattern>
-
+<!-- 
           <pattern id="WisconsinLogo" patternUnits="userSpaceOnUse" width="100" height="60">
             <image xlink:href="Logo/Wisconsin.png" x="0" y="0" width="100" height="60" />
+          </pattern> -->
+          <pattern id="WisconsinLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+          viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/Wisconsin.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
-          <pattern id="WyomingLogo" patternUnits="userSpaceOnUse" width="100" height="43">
+
+          <!-- <pattern id="WyomingLogo" patternUnits="userSpaceOnUse" width="100" height="43">
             <image xlink:href="Logo/Wyoming.png" x="0" y="0" width="100" height="43" />
+          </pattern> -->
+
+          <pattern id="WyomingLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+            viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/Wyoming.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
+
           </defs>
         </svg>
         <article>
           <div class='step'>
-            <p>Tech giants lead the field of biggest H1B visa sponsor in 2019. American multinational corporation Cognizant is the biggest sponsor, followed by Amazon, according to data from USCIS’s Employer Data Hub.</p> 
+            <p id="trigger1">Tech giants lead the field of biggest H1B visa sponsor in 2019. American multinational corporation Cognizant is the biggest sponsor, followed by Amazon, according to data from USCIS’s Employer Data Hub.</p> 
           </div>
 
           <div class='step'>
@@ -256,8 +384,8 @@
     <section id='scrolly-overlay'>
       <div class="scrolly">
         <svg id="viz2" class="viz sticky">
-          <rect id="ocean2" fill="#b8f1fc"></rect>
           <g id="map2" class="map"></g>
+          <g id="legend"></g>    
         </svg>
         <article>
           <div class='step'>
@@ -279,6 +407,10 @@
           <div class='step'>
             <p>However, through the American Competitiveness in the 21st Century Act of 2000, universities, nonprofits related or affiliated to an institution of higher education and nonprofit research organizations or government research institutions are exempt from this H-1B cap.</p>
           </div>
+
+          <div class='step'>
+            <p>Texas has the company with the most H1B visa approved is the biggest provider of H1B visa among 52 (need to improve data accuracy and more texts).</p>
+          </div>
         </article>
       </div>
     </section>
@@ -286,7 +418,6 @@
     <section id='scrolly-overlay'>
       <div class="scrolly">
         <svg id="viz3" class="viz sticky">
-          <rect id="ocean3" fill="#b8f1fc"></rect>
           <g id="map3" class="map"></g>
         </svg>
         <article>
@@ -316,6 +447,7 @@
 
     <section id='scrolly-overlay'>
       <div class="scrolly">
+        <h1 class="chartTitle viz sticky">H1B Application Volume and Denial Rate (2009 - 2019) </h1>
         <svg id="viz4" class="viz sticky">
           <g id="legend"></g>
         </svg>
@@ -343,11 +475,12 @@
         </article>
       </div>
     </section>
-
     <script src="map.js"></script>
     <script src="map2.js"></script>
     <script src="map3.js"></script>
     <script src="scatterplotrate.js"></script>
+    <script src="waypoint.js"></script>
+
 
 
   </body>
