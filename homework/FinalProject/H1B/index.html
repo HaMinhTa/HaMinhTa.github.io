@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8" />
     <script src="https://d3js.org/d3.v4.min.js"></script>
-    <script src="lib/noframework.waypoints.js"></script>
     <title>The State of the H1B</title>
     <link rel="stylesheet" href="style.css"/>
   </head>
@@ -20,11 +19,12 @@
         <h4 id="byline">By Ha Ta</h4>
         <p>The H1B is one of the most popular non-immigrant work visas for international students in the U.S. If you are a prospective or are currently an international student, chances are that you will come across people talking about or applying for this visa and you will one day need to get one yourself.
         </p>
-        <p>Policies revolving around the visa have been changing and can affect applicants' chances of getting the visa. Visualizations in this page are based on data collected from U.S. Citizenship and Immigration Services’ <a href="https://www.uscis.gov/tools/reports-studies/h-1b-employer-data-hub-files">Employer Data Hub</a>. The USCIS is the agency responsible for managing the process of applying for H-1B visas.</p>
+        <p>Policies revolving around the visa have been changing rapidly under the current administration and can affect applicants' chances of getting the visa. Visualizations in this page are based on data collected from U.S. Citizenship and Immigration Services’ <a href="https://www.uscis.gov/tools/reports-studies/h-1b-employer-data-hub-files">Employer Data Hub</a>. The USCIS is the agency responsible for managing the process of applying for H-1B visas.</p>
     </div>
    
     <section id='scrolly-overlay'>
       <div class="scrolly">
+        <h1 id="chart1Title" class="chartTitle viz sticky">Who is the biggest H1B visa sponsor in each state?</h1>
         <svg id="viz" class="viz sticky">
           <g id="map" class="map"></g>
           <defs>
@@ -34,9 +34,9 @@
             <image href="Logo/Alabama.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
-
-          <pattern id="AlaskaLogo" patternUnits="userSpaceOnUse" width="100" height="90">
-            <image xlink:href="Logo/Alaska.png" x="0" y="0" width="100" height="90" />
+          <pattern id="AlaskaLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+          viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/Alaska.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
           <pattern id="ArizonaLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
@@ -76,8 +76,9 @@
             <image href="Logo/Florida.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
-          <pattern id="GeorgiaLogo" patternUnits="userSpaceOnUse" width="100" height="61">
-            <image xlink:href="Logo/Georgia.png" x="0" y="0" width="100" height="61" />
+          <pattern id="GeorgiaLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+          viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/Georgia.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
           <pattern id="HawaiiLogo" patternUnits="userSpaceOnUse" width="100" height="105">
@@ -127,18 +128,21 @@
           <pattern id="MarylandLogo" patternUnits="userSpaceOnUse" width="100" height="47">
             <image xlink:href="Logo/Maryland.png" x="0" y="0" width="100" height="47" />
           </pattern>
-
-          <pattern id="MassachusettsLogo" patternUnits="userSpaceOnUse" width="100" height="41">
-            <image xlink:href="Logo/Massachusetts.png" x="0" y="0" width="100" height="41" />
+          
+          <pattern id="MassachusettsLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+          viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/Massachusetts.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
+
 
           <pattern id="MichiganLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
           viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
             <image href="Logo/Michigan.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
-          <pattern id="MinnesotaLogo" patternUnits="userSpaceOnUse" width="100" height="107">
-            <image xlink:href="Logo/Minnesota.png" x="0" y="0" width="100" height="107" />
+          <pattern id="MinnesotaLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+          viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/Minnesota.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
           <pattern id="MississippiLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
@@ -179,8 +183,9 @@
             <image href="Logo/NewMexico.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
-          <pattern id="NewYorkLogo" patternUnits="userSpaceOnUse" width="100" height="48">
-            <image xlink:href="Logo/NewYork.png" x="0" y="0" width="100" height="48" />
+          <pattern id="NewYorkLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+          viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/NewYork.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
           <pattern id="NorthCarolinaLogo" patternUnits="userSpaceOnUse" width="100" height="40">
@@ -192,8 +197,9 @@
             <image href="Logo/NorthDakota.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
-          <pattern id="OhioLogo" patternUnits="userSpaceOnUse" width="100" height="35">
-            <image xlink:href="Logo/Ohio.png" x="0" y="0" width="100" height="35" />
+          <pattern id="OhioLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+          viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
+            <image href="Logo/Ohio.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
           <pattern id="OklahomaLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
@@ -206,7 +212,7 @@
             <image href="Logo/Oregon.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
 
-          <pattern id="PennsylvaniaLogo" patternContentUnits="objectBoundingBox" width="100%" height="100%" 
+          <pattern id="PennsylvaniaLogo" patternContentUnits="objectBoundingBox" width="80%" height="100%" 
             viewBox="0 0 1 1" preserveAspectRatio="xMidYMid slice">
             <image href="Logo/Pennsylvania.png" width="1" height="1" preserveAspectRatio="xMidYMid slice"/>
           </pattern>
@@ -269,7 +275,7 @@
         </svg>
         <article>
           <div class='step'>
-            <p id="trigger1">Tech giants lead the field of biggest H1B visa sponsor in 2019. American multinational corporation Cognizant is the biggest sponsor, followed by Amazon, according to data from USCIS’s Employer Data Hub.</p> 
+            <p id="trigger1">Tech giants lead the field of biggest H1B visa sponsors in 2019. American multinational corporation Cognizant is the biggest sponsor, followed by Amazon, according to data from USCIS’s Employer Data Hub.</p> 
           </div>
 
           <div class='step'>
@@ -281,21 +287,26 @@
           </div>
 
           <div class='step'>
-            <p>This is probably because universities are taking advantage of what’s called an H1B cap exemption. Since 2005, H-1B visas have been capped at 65,000 a year, plus an additional 20,000 for graduate degree holders.</p>
-          </div>
-
-          <div class='step'>
-            <p>However, through the American Competitiveness in the 21st Century Act of 2000, universities, nonprofits related or affiliated to an institution of higher education and nonprofit research organizations or government research institutions are exempt from this H-1B cap.</p>
+            <p id="trigger2">This is probably because universities are taking advantage of what’s called an H1B cap exemption. Since 2005, H-1B visas have been capped at 65,000 a year, plus an additional 20,000 for graduate degree holders.</p>
           </div>
         </article>
       </div>
     </section>
 
     <section id='scrolly-overlay'>
+      <h1 id="chart1Title" class="chartTitle viz sticky">Which States Give the Most H1B Visas?</h1>
       <div class="scrolly">
         <svg id="viz2" class="viz sticky">
+          <defs>
+            <linearGradient id="colorGradient">
+              
+            </linearGradient>
+          </defs>
           <g id="map2" class="map"></g>
-          <g id="legend"></g>    
+          <g id="scale">
+            <rect id="scaleRect" fill="url(#colorGradient)"/>
+            <g id="scaleAxis"></g>
+          </g>        
         </svg>
         <article>
           <div class='step'>
@@ -327,8 +338,10 @@
 
     <section id='scrolly-overlay'>
       <div class="scrolly">
+        <h1 id="chart1Title" class="chartTitle viz sticky">Which Industry Gives the Most H1B Visas?</h1>
         <svg id="viz3" class="viz sticky">
           <g id="map3" class="map"></g>
+          <g id="legend3"></g>
         </svg>
         <article>
           <div class='step'>
@@ -359,28 +372,36 @@
       <div class="scrolly">
         <h1 class="chartTitle viz sticky">H1B Application Volume and Denial Rate (2009 - 2019) </h1>
         <svg id="viz4" class="viz sticky">
-          <g id="legend"></g>
+          <g id="legend4"></g>
         </svg>
         <article>
           <div class='step'>
-            <p>Tech giants lead the field of biggest H1B visa sponsor in 2019. American multinational corporation Cognizant is the biggest sponsor, followed by Amazon, according to data from USCIS’s Employer Data Hub.</p> 
+            <p>USCIS is denying H-1B petitions at historically high rates since 2018, according to the data. The rate of denial has been consistenly under 7.5% between 2010 and 2017 but climbed to nearly 16% in 2018 and 2019.</p>
           </div>
 
           <div class='step'>
-            <p>Cognizant last year had nearly 13,500 approved H1B applications and nearly 6,000 denied applications while Amazon had more than 8,700 approvals and 300 denials.</p>
+            <p>The dramatic decrease came in the wake of President Trump's <a href="https://www.whitehouse.gov/presidential-actions/presidential-executive-order-buy-american-hire-american/">"Buy American, Hire American" </a> executive order - signed in April, 2017 and was aimed to enable higher wages and employment rates for U.S. workers by enforcing and administering stricter immigration laws.</p>
           </div>
 
           <div class='step'>
-            <p>Beside tech companies, higher education institutions are also among places that hire the most H1B visa workers in each state. Universities are the biggest employer of H1-B in 12 states and the second biggest employer of H1B in eight states.</p>
+            <p>The order specifically directs the Department of Homeland Security to "ensure H-1B visas are awarded to the most-skilled or highest-paid beneficiaries."</p>
           </div>
 
           <div class='step'>
-            <p>This is probably because universities are taking advantage of what’s called an H1B cap exemption. Since 2005, H-1B visas have been capped at 65,000 a year, plus an additional 20,000 for graduate degree holders.</p>
+            <p>According to a new National Foundation for American Policy (NFAP) <a href="https://nfap.com/wp-content/uploads/2019/10/H-1B-Denial-Rates-Analysis-of-FY-2019-Numbers.NFAP-Policy-Brief.October-2019.pdf">analysis</a>, the denial rates of H-1B application for new employees have increased for nearly all leading sponsor companies, particularly those in the information technology (IT) field.</p>
           </div>
 
           <div class='step'>
-            <p>However, through the American Competitiveness in the 21st Century Act of 2000, universities, nonprofits related or affiliated to an institution of higher education and nonprofit research organizations or government research institutions are exempt from this H-1B cap.</p>
+            <p>The NFAP analysis concluded that the Trump administration, through its memos and policy changes, has aimed to "make it more difficult for well-educated foreign nationals to work in America in science and engineering fields." </p>
           </div>
+
+          <div class='step'>
+            <p>Whether we like it or not, employers and employees can expect the process of filing for an H1B visa more challenging in the near future.</p>
+          </div>
+
+
+
+          </article>
 
         </article>
       </div>
@@ -389,7 +410,7 @@
     <script src="map2.js"></script>
     <script src="map3.js"></script>
     <script src="scatterplotrate.js"></script>
-    <script src="waypoint.js"></script>
+    <!-- <script src="waypoint.js"></script> -->
 
 
 

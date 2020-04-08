@@ -1,5 +1,5 @@
 
-var margin = {top: 120, right: 40, bottom: 50, left: 70},
+var margin = {top: 120, right: 60, bottom: 50, left: 70},
     width = window.innerWidth/1.5 - margin.left - margin.right,
     height = window.innerHeight/1.4 - margin.top - margin.bottom;
 
@@ -13,7 +13,7 @@ var legendMargin = {
 var svg = d3.select("#viz4")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
-  .append("g")
+    .append("g")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
@@ -37,13 +37,21 @@ d3.csv("h1bDenialRate.csv", function(error, data) {
 console.log(data);
 
 // var x = d3.scaleLinear()
-var x = d3.scaleBand()
-    .domain(data.map(function(d) {return d.year; }))
+var x = d3.scaleLinear()
+    .domain([2008, 2019])
+    // .domain(data.map(function(d) {return d.year; }))
     .range([0, width]);
 
-svg.append("g")
+// var x = d3.scaleTime()
+//     .domain(d3.extent(data, function(d) { return data.year; }))
+//     .range([ 0, width ]);
+
+
+var xAxis = svg.append("g")
     .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x));
+    .call(d3.axisBottom(x).tickFormat(d3.format("d")));
+
+//xAxis.d3.tickFormat(d3.format("d"));
 
 var y = d3.scaleLinear()
     .domain([0, d3.max(data, function(d) {
@@ -57,6 +65,10 @@ var r = d3.scaleLinear()
         return parseInt(d.totalapplication);
     })])
     .range([0, 60]);
+
+var z = d3.scaleSqrt()
+    .domain([205495, 458836])
+    .range([ 2, 30]);
 
 svg.append("g")
     .call(d3.axisLeft(y));
@@ -103,17 +115,50 @@ var chart = svg.append('g')
             return i * 150;
         });
 
-    var legendX = margin.left*2;
-    var legendY = margin.top *2;
-    // var legendSize = 20;
-    // var legendPadding = 10;
-    var legend = svg.select("#legend")
-    //     .attr("transform", "translate(" + legendX + ", " + legendY + ")");
+ 
 
-    var circle = legend.select("circle")
-        .style("fill", "blue")
-        .attr("r", 100)
-        .attr("cx", legendX)
-        .attr("cy", legendY);
+    // Add legend: circles
+    var valuesToShow = [200000, 300000, 400000]
+    var xCircle = 390
+    var xLabel = 440
+      d3.select("#legend4")
+      .data(valuesToShow)
+      .enter()
+      .append("circle")
+        .attr("cx", xCircle)
+        .attr("cy", function(d){ return height - 100 - r(d) } )
+        .attr("r", function(d){ return z(d) })
+        .style("fill", "none")
+        .attr("stroke", "black")
+
+    // Add legend: segments
+      d3.select("#legend4")
+      .data(valuesToShow)
+      .enter()
+      .append("line")
+        .attr('x1', function(d){ return xCircle + r(d) } )
+        .attr('x2', xLabel)
+        .attr('y1', function(d){ return height - 100 - z(d) } )
+        .attr('y2', function(d){ return height - 100 - z(d) } )
+        .attr('stroke', 'black')
+        .style('stroke-dasharray', ('2,2'))
+
+    // Add legend: labels
+      d3.select("#legend4")
+      .data(valuesToShow)
+      .enter()
+      .append("text")
+        .attr('x', xLabel)
+        .attr('y', function(d){ return height - 100 - z(d) } )
+        .text( function(d){ return d/1000000 } )
+        .style("font-size", 10)
+        .attr('alignment-baseline', 'middle')
+
+    // Legend title
+    svg.append("text")
+      .attr('x', xCircle)
+      .attr("y", height - 100 +30)
+      .text("Population (M)")
+      .attr("text-anchor", "middle")
         
 });
