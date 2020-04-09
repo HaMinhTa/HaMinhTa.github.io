@@ -33,6 +33,13 @@
     text-align: right;
 }
 
+.legendText3 {
+    fill: #4287f5;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 18px;
+
+}
+
 #subtitle {
     width: 50%;
     margin-right: 25%;
@@ -146,14 +153,19 @@
 
     #viz {
         padding-top: 15%;
+        padding-bottom: 2%;
     }
 
     #viz2 {
         padding-top: 15%;
+        padding-bottom: 2%;
+
     }
 
     #viz3 {
         padding-top: 15%;
+        padding-bottom: 2%;
+
     }
 
     #scaleRect {
@@ -162,7 +174,7 @@
 
    
     a:link, a:visited{
-    color: #4287f5;
+    color: #72a4f5;
     text-decoration: none;
     }
 

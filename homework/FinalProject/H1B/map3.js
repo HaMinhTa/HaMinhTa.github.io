@@ -60,6 +60,7 @@ function drawMap(error, h1bData, geoData) {
     .data(legendData);
 
   var legendTextsEnter = legendTexts.enter().append("text")
+    .attr("class", "legendText3")
     .attr("baseline-shift", "-100%");
 
   legendTexts.merge(legendTextsEnter)

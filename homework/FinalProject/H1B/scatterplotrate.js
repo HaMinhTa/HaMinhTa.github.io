@@ -118,10 +118,10 @@ var chart = svg.append('g')
  
 
     // Add legend: circles
-    var valuesToShow = [200000, 300000, 400000]
-    var xCircle = 390
-    var xLabel = 440
-      d3.select("#legend4")
+    var valuesToShow = [200000, 300000, 400000];
+    var xCircle = 0;
+    var xLabel = 0;
+      d3.select("#viz4")
       .data(valuesToShow)
       .enter()
       .append("circle")
@@ -132,7 +132,7 @@ var chart = svg.append('g')
         .attr("stroke", "black")
 
     // Add legend: segments
-      d3.select("#legend4")
+      d3.select("#viz4")
       .data(valuesToShow)
       .enter()
       .append("line")
@@ -144,7 +144,7 @@ var chart = svg.append('g')
         .style('stroke-dasharray', ('2,2'))
 
     // Add legend: labels
-      d3.select("#legend4")
+      d3.select("#viz4")
       .data(valuesToShow)
       .enter()
       .append("text")
@@ -155,10 +155,10 @@ var chart = svg.append('g')
         .attr('alignment-baseline', 'middle')
 
     // Legend title
-    svg.append("text")
-      .attr('x', xCircle)
-      .attr("y", height - 100 +30)
-      .text("Population (M)")
-      .attr("text-anchor", "middle")
+    // svg.append("text")
+    //   .attr('x', xCircle)
+    //   .attr("y", height - 100 +30)
+    //   .text("Application Number")
+    //   .attr("text-anchor", "middle")
         
 });
