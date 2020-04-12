@@ -1,0 +1,444 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600&display=swap');
+
+.bodytext a:link, a:visited {
+  color: #3573e7 ! important;
+  text-decoration: none;
+}
+
+.bodytext a:hover{
+  color: rgb(204, 213, 245)! important;
+  text-decoration: underline;
+  }
+
+#credit {
+  text-align: right;
+  margin-top: 8%;
+  margin-right: 2%;
+  font-size: 16px;
+}
+
+body {
+    background-color: black;
+    /* background: #e6e6e6; */
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+
+  }
+
+.header {
+    font-size: 25px;
+    /* background-color: #00b0bd; */
+    /* background-color: #242424; */
+    color: white;
+    background-image: url("background.jpg");
+    background-position: 90% 100%;
+    background-size: cover;
+    padding-top: 10%;
+    padding-bottom: 7%;
+    /* padding-left: 20%; */
+    text-align: center;
+    margin-top: -10;
+    margin-left: -8;
+    margin-right: -8;
+    background-attachment: fixed;
+    height: 260px;
+    text-shadow: 0 6px 10px black;
+
+  }
+
+.timeline-article p.seemore {
+    margin-top: 5%;
+    margin-right: 18%;
+    text-align: center;
+}
+
+.bodytext {
+    color: white;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    line-height: 2em;
+
+}
+
+#subtitle {
+    line-height: 2.4rem;
+    font-family: 'Crimson Text', serif;
+    font-size: 25px;
+
+}
+
+#legend {
+   text-align: left;
+}
+
+  
+  /*===== Vertical Timeline =====*/
+  #conference-timeline {
+    position: relative;
+    max-width: 920px;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+  }
+  #conference-timeline .timeline-start,
+  #conference-timeline .timeline-end {
+    display: table;
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    font-weight: 900;
+    text-transform: uppercase;
+    /* background: #00b0bd; */
+    background-color: white;
+    padding: 15px 23px;
+    color: rgb(12, 12, 12);
+    max-width: 5%;
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+  }
+  #conference-timeline .conference-center-line {
+    position: absolute;
+    width: 3px;
+    height: 635%;
+    top: 0;
+    left: 50%;
+    margin-left: -2px;
+    /* background: #00b0bd; */
+    background-color: white;
+    z-index: -1;
+  }
+  #conference-timeline .conference-timeline-content {
+    padding-top: 67px;
+    padding-bottom: 67px;
+  }
+  .timeline-article {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    margin: 20px 0;
+  }
+  .timeline-article .content-left-container,
+  .timeline-article .content-right-container {
+    max-width: 44%;
+    width: 100%;
+  }
+  .timeline-article .timeline-author {
+    display: block;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #242424;
+    text-align: right;
+  }
+  .timeline-article .content-left,
+  .timeline-article .content-right {
+    position: relative;
+    width: auto;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border: 1px solid #131212;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);   
+    padding: 27px 25px;
+    margin-bottom: 5%;
+  }
+
+  .left {
+    margin-top: -6%;
+    padding-left: 15%;
+    position: relative;
+    width: auto;
+    float: left;
+    font-weight: bold;
+    font-size: 43px;
+  }
+
+  .right {
+    margin-top: -6%;
+    padding-right: 7%;
+    position: relative;
+    width: auto;
+    float: right;
+    font-weight: bold;
+    font-size: 43px;
+  }
+
+  #righText{
+    text-align: center;
+  }
+
+  .timeline-article p.sub{
+    font-family: 'Crimson Text', serif;
+    font-size: 18px;
+    text-align: center;
+    margin-right: 10%;
+    padding-top: 5%;
+  }
+
+  .timeline-article p {
+    margin: 0 0 0 60px;
+    padding: 0;
+    font-weight: 400;
+    color: #242424;
+    font-size: 14px;
+    line-height: 24px;
+    position: relative;
+  }
+  .timeline-article p span.article-number {
+    position: absolute;
+    font-weight: 300;
+    font-size: 44px;
+    top: 10px;
+    left: -60px;
+  }
+
+  .timeline-article p.article-number {
+    font-family: 'Crimson Text', serif;
+    text-align: center;
+    margin-right: 15%;
+    font-weight: bold;
+    font-size: 30px;
+    color: #3c3d3d;
+    margin-bottom: 15;
+  }
+
+  .timeline-article .content-left-container {
+    z-index: 1;
+    position: relative;
+    float: left;
+  }
+  .timeline-article .content-right-container {
+    position: relative;
+    float: right;
+  }
+  .timeline-article .content-left:before,
+  .timeline-article .content-right:before{
+    position: absolute;
+    top: 5;
+    font-size: 22px;
+    font-family: "FontAwesome";
+    color: rgba(87, 87, 87, 0.795);
+  }
+  .timeline-article .content-left:before {
+    content: "\f0da";
+    right: -8px;
+  }
+  .timeline-article .content-right:before {
+    content: "\f0d9";
+    left: -8px;
+  }
+  .timeline-article .meta-date {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 62px;
+    height: 62px;
+    margin-left: -31px;
+    color: rgb(7, 7, 7);
+    border-radius: 100%;
+    /* background: #00b0bd; */
+    /* background-color: #242424; */
+    background-color: white;
+
+  }
+  .timeline-article .meta-date .date,
+  .timeline-article .meta-date .month {
+    margin-top: 15%;
+    display: block;
+    text-align: center;
+    font-weight: 800;
+  }
+  /* .timeline-article .meta-date .date {
+    font-size: 27px;
+    line-height: 40px;
+  } */
+  .timeline-article .meta-date .month {
+    font-size: 26px;
+    line-height: 40px;
+  }
+  /*===== // Vertical Timeline =====*/
+  
+  /*===== Resonsive Vertical Timeline =====*/
+  @media only screen and (max-width: 830px) {
+    #conference-timeline .timeline-start,
+    #conference-timeline .timeline-end {
+      margin: 0;
+    }
+    #conference-timeline .conference-center-line {
+      margin-left: 0;
+      left: 50px;
+    }
+    .timeline-article .meta-date {
+      margin-left: 0;
+      left: 20px;
+    }
+    .timeline-article .content-left-container,
+    .timeline-article .content-right-container {
+      max-width: 100%;
+      width: auto;
+      float: none;
+      margin-left: 110px;
+      min-height: 53px;
+    }
+    .timeline-article .content-left-container {
+      margin-bottom: 20px;
+    }
+
+    .timeline-article .content-left,
+    .timeline-article .content-right {
+      padding: 10px 25px;
+      min-height: 65px;
+    }
+    .timeline-article .content-left:before {
+      content: "\f0d9";
+      right: auto;
+      left: -8px;
+    }
+    .timeline-article .content-right:before {
+      display: none;
+    }
+  }
+  @media only screen and (max-width: 400px) {
+    .timeline-article p {
+      margin: 0;
+    }
+    .timeline-article p span.article-number {
+      display: none;
+    }
+    
+  }
+  /*===== // Resonsive Vertical Timeline =====*/
+
+a:link, a:visited{
+    color: #4e3939;
+    text-decoration: none;
+}
+
+a:hover{
+    color: rgb(5, 43, 168);
+    text-decoration: underline;
+    }
+
+
+#two {
+  background-color: #e6f5ff;
+}
+
+#three {
+  background-color: #ccebff;
+}
+
+#four {
+  background-color: #b3e0ff;
+}
+
+#seven {
+  background-color: #80ccff;
+  color: white ! important;
+
+}
+
+#nine {
+  background-color: #66c2ff;
+  color: white ! important;
+
+}
+
+#ten {
+  background-color:  #4db8ff;
+  color: white ! important;
+
+}
+
+#fourteen {
+  background-color: #1aa3ff;
+}
+
+#seventeen {
+  background-color:  #008ae6;
+}
+
+
+#neg2 {
+  background-color: #ffe6e6;
+}
+
+#neg3 {
+  background-color: #ffcccc;
+}
+
+#neg5 {
+  background-color: #ff9999;
+}
+
+#neg8 {
+  background-color: #ff6666;
+}
+
+#neg9 {
+  background-color: #ff4d4d;
+  color: white ! important;
+
+}  
+
+
+#neg10 {
+  background-color: #ff3333;
+  color: white ! important;
+}
+
+#neg11 {
+  background-color:  #ff1a1a;
+  color: white ! important;
+
+}
+
+#neg12 {
+  background-color:  #ff0000;
+  color: white ! important;
+}
+
+#neg13 {
+  background-color:  #e60000;
+  color: white ! important;
+}
+
+#neg14{
+  background-color:  #cc0000;
+  color: white ! important;
+}
+
+#neg18 {
+  background-color:  #b30000;
+  color: white ! important;
+}
+
+#neg19 {
+  background-color:   #990000;
+  color: white ! important;
+}
+
+#neg20 {
+  background-color:  #800000;
+  color: white ! important;
+}
+
+#neg21 {
+  background-color:  #660000;
+  color: white ! important;
+
+}
+#neg28 {
+  background-color:  #4d0000;
+  color: white ! important;
+}
+
+#neg34 {
+  background-color:  #330000;
+  color: white ! important;
+}
+

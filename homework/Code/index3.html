@@ -1,0 +1,458 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <title>Timeline</title>
+    <link rel="stylesheet" href="style3.css"/> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="jquery-3.4.1.min.js"></script>
+  </head>
+  <body>
+
+    <div class="container">
+        <div class="page-header">
+            <h1 id="title">Early Coronavirus Reactions</h1>
+        </div>
+        <p id ="bodytext">The coronavirus outbreak has seem to explode and soon the U.S. may end up with the worst COVID-19 outbreak in the industrialized world. How did a country with supposedly the best medical infrastructure in the world be so ill-prepared for the pandemic when we were warned about it since early January. Let's take a look at the sentiment of President Trump's reaction to the coronavirus and compare that to the reaction of health experts, scientists, the Center for Disease Control and the World Health Organization.</p>
+        <div id="timeline"><div class="row timeline-movement timeline-movement-top">
+        <div class="timeline-badge timeline-future-movement">
+            <a href="#">
+                <!-- <span class="glyphicon glyphicon-plus"></span> -->
+            </a>
+        </div>
+        <div class="timeline-badge timeline-filter-movement">
+            <a href="#">
+                <span class="glyphicon glyphicon-time"></span>
+            </a>
+        </div>
+
+    </div>
+    <div class="row timeline-movement">
+
+        <div class="timeline-badge">
+            <span class="timeline-balloon-date-day">22</span>
+            <span class="timeline-balloon-date-month">JAN</span>
+        </div>
+
+
+        <div class="col-sm-6  timeline-item">
+            <div class="row">
+                <div class="col-sm-11">
+                    <div class="timeline-panel credits" id="four">
+                        <ul class="timeline-panel-ul">
+                            <li><span class="importo">Trump in an interview with CNBC</span></li>
+                            <li><span class="causale">"Oh no, not at all. We have [the coronavirus] totally under control..."</span> </li>
+                            <li><p><small><i class="glyphicon glyphicon-time"></i> 01/22/2020</small></p> </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6  timeline-item">
+            <div class="row">
+                <div class="col-sm-offset-1 col-sm-11">
+                    <div class="timeline-panel debits" id="neg9">
+                        <ul class="timeline-panel-ul">
+                            <li><span class="importo">Former CDC director Tom Frieden wrote in an op-ed on Statnews</span></li>
+                            <li><span class="causale">“We need to learn — and fast — about how [the coronavirus] spreads...”</span> </li>
+                            <li><span class="seemore">See the full text</span> </li>
+                            <li><p><small><i class="glyphicon glyphicon-time"></i> 01/22/2020</small></p> </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-offset-6 col-sm-6  timeline-item">
+            <div class="row">
+                <div class="col-sm-offset-1 col-sm-11">
+                    <div class="timeline-panel debits" id="neg5">
+                        <ul class="timeline-panel-ul">
+                            <li><span class="importo">World Health Organization</span></li>
+                            <li><span class="causale">WHO held meeting of the International Health Regulations (2005) Emergency Committee regarding the outbreak of novel coronavirus (2019-nCoV)</span> </li>
+                            <li><p><small><i class="glyphicon glyphicon-time"></i> 01/22/2020</small></p> </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--Next -->
+
+    <div class="row timeline-movement">
+
+
+        <div class="timeline-badge">
+            <span class="timeline-balloon-date-day">24</span>
+            <span class="timeline-balloon-date-month">JAN</span>
+        </div>
+
+        <div class="col-sm-6  timeline-item">
+            <div class="row">
+                <div class="col-sm-11">
+                    <div class="timeline-panel credits" id="three">
+                        <ul class="timeline-panel-ul">
+                            <li><span class="importo">Trump</span></li>
+                            <li><span class="causale">“It will all work out well.  In particular, on behalf of the American People, I want to thank President Xi!”</span> </li>
+                            <li><p><small><i class="glyphicon glyphicon-time"></i> 01/24/2020</small></p> </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6  timeline-item">
+            <div class="row">
+                <div class="col-sm-offset-1 col-sm-11">
+                    <div class="timeline-panel debits" id="neg20">
+                        <ul class="timeline-panel-ul">
+                            <li><span class="importo" id="white">Dr. Allison McGeer, Toronto-based infectious disease specialist </span></li>
+                            <li><span class="causale">“The more we learn about it, the greater the possibility is that transmission will not be able to be controlled with public health measures.”</span> </li>
+                            <li><p><small><i class="glyphicon glyphicon-time"></i> 01/24/2020</small></p> </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+<!-- Next -->
+    <div class="row timeline-movement">
+
+        <div class="timeline-badge">
+            <span class="timeline-balloon-date-day">28</span>
+            <span class="timeline-balloon-date-month">JAN</span>
+        </div>
+
+        <div class="col-sm-offset-6 col-sm-6  timeline-item">
+            <div class="row">
+                <div class="col-sm-offset-1 col-sm-11">
+                    <div class="timeline-panel debits" id="neg10">
+                        <ul class="timeline-panel-ul">
+                            <li><span class="importo">Luciana Borio, physician & public health administrator; Scott Gottlieb, Former Commissioner of Food and Drugs</span></li>
+                            <li><span class="causale">“Act Now to Prevent an American Epidemic.”</span> </li>
+                            <li><span class="seemore">See the full text</span> </li>
+                            <li><p><small><i class="glyphicon glyphicon-time"></i> 01/28/2014</small></p> </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-offset-6 col-sm-6  timeline-item">
+            <div class="row">
+                <div class="col-sm-offset-1 col-sm-11">
+                    <div class="timeline-panel debits" id="two">
+                        <ul class="timeline-panel-ul">
+                            <li><span class="importo">World Health Organization</span></li>
+                            <li><span class="causale">"WHO, China leaders discuss next steps in battle against coronavirus outbreak"</span> </li>
+                            <li><p><small><i class="glyphicon glyphicon-time"></i> 01/28/2020</small></p> </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Next -->
+
+    <div class="row timeline-movement">
+
+        <div class="timeline-badge">
+            <span class="timeline-balloon-date-day">30</span>
+            <span class="timeline-balloon-date-month">JAN</span>
+        </div>
+
+
+        <div class="col-sm-6  timeline-item">
+            <div class="row">
+                <div class="col-sm-11">
+                    <div class="timeline-panel credits" id="ten">
+                        <ul class="timeline-panel-ul">
+                            <li><span class="importo">Trump in a Presidential Remark</span></li>
+                            <li><span class="causale">"We have it very well under control. We have very little problem in this country at this moment — five. And those people are all recuperating successfully.”</span> </li>
+                            <li><p><small><i class="glyphicon glyphicon-time"></i>01/30/2020</small></p> </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6  timeline-item">
+            <div class="row">
+                <div class="col-sm-offset-1 col-sm-11">
+                    <div class="timeline-panel debits" id="seven">
+                        <ul class="timeline-panel-ul">
+                            <li><span class="importo">World Health Organization</span></li>
+                            <li><span class="causale">WHO declared coronavirus a “public-health emergency of international concern,” announced 7,818 confirmed cases worldwide.</span> </li>
+                            <li><span class="seemore">See the full text</span> </li>
+                            <li><p><small><i class="glyphicon glyphicon-time"></i> 01/30/2020</small></p> </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-offset-6 col-sm-6  timeline-item">
+            <div class="row">
+                <div class="col-sm-offset-1 col-sm-11">
+                    <div class="timeline-panel debits" id="zero">
+                        <ul class="timeline-panel-ul">
+                            <li><span class="importo">Chinese and international health authorities.</span></li>
+                            <li><span class="causale">The total number of cases reached more than 7,900 worldwide with 170 deaths in China.</span> </li>
+                            <li><p><small><i class="glyphicon glyphicon-time"></i> 11/09/2020</small></p> </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<!-- Next -->
+    <div class="row timeline-movement">
+
+        <div class="timeline-badge">
+            <span class="timeline-balloon-date-day">31</span>
+            <span class="timeline-balloon-date-month">JAN</span>
+        </div>
+
+        <div class="col-sm-offset-6 col-sm-6  timeline-item">
+            <div class="row">
+                <div class="col-sm-offset-1 col-sm-11">
+                    <div class="timeline-panel debits" id="neg2">
+                        <ul class="timeline-panel-ul">
+                            <li><span class="importo">Alex Azar, U.S Secretary of Health and Human Services</span></li>
+                            <li><span class="causale">Secretary Azar Declares Public Health Emergency for United States for 2019 Novel Coronavirus</span> </li>
+                            <li><span class="seemore">See the full text</span> </li>
+                            <li><p><small><i class="glyphicon glyphicon-time"></i> 01/31/2014</small></p> </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-offset-6 col-sm-6  timeline-item">
+            <div class="row">
+                <div class="col-sm-offset-1 col-sm-11">
+                    <div class="timeline-panel debits" id="zero">
+                        <ul class="timeline-panel-ul">
+                            <li><span class="importo">Health Experts</span></li>
+                            <li><span class="causale">Declaring coronavirus emergency alone is not enough</span> </li>
+                            <li><span class="seemore">See the full text</span> </li>
+                            <li><p><small><i class="glyphicon glyphicon-time"></i> 01/31/2020</small></p> </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Next -->
+
+<div class="row timeline-movement">
+
+    <div class="timeline-badge">
+        <span class="timeline-balloon-date-day">02</span>
+        <span class="timeline-balloon-date-month">FEB</span>
+    </div>
+
+
+    <div class="col-sm-6  timeline-item">
+        <div class="row">
+            <div class="col-sm-11">
+                <div class="timeline-panel credits" id="three">
+                    <ul class="timeline-panel-ul">
+                        <li><span class="importo">Trump in an interview with Sean Hannity</span></li>
+                        <li><span class="causale">"We pretty much shut [the coronavirus] down coming in from China"</span> </li>
+                        <li><p><small><i class="glyphicon glyphicon-time"></i> 02/02/2020</small></p> </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Next -->
+
+<div class="row timeline-movement">
+
+    <div class="timeline-badge">
+        <span class="timeline-balloon-date-day">04</span>
+        <span class="timeline-balloon-date-month">FEB</span>
+    </div>
+
+    <div class="col-sm-offset-6 col-sm-6  timeline-item">
+        <div class="row">
+            <div class="col-sm-offset-1 col-sm-11">
+                <div class="timeline-panel debits" id="neg12">
+                    <ul class="timeline-panel-ul">
+                        <li><span class="importo">Infectious disease specialists and scientists</span></li>
+                        <li><span class="causale">"[The virus] has demonstrated the capacity to spread globally," Dr. Nancy Messonnier, director of the National Center for Immunization and Respiratory Diseases.</span> </li>
+                        <li><span class="seemore">See the full text</span> </li>
+                        <li><p><small><i class="glyphicon glyphicon-time"></i> 02/04/2020</small></p> </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Next -->
+
+<div class="row timeline-movement">
+
+
+    <div class="timeline-badge">
+        <span class="timeline-balloon-date-day">10</span>
+        <span class="timeline-balloon-date-month">FEB</span>
+    </div>
+
+    <div class="col-sm-6  timeline-item">
+        <div class="row">
+            <div class="col-sm-11">
+                <div class="timeline-panel credits" id="seven">
+                    <ul class="timeline-panel-ul">
+                        <li><span class="importo">Trump at a rally in New Hampshire</span></li>
+                        <li><span class="causale">"It's going to work out fine. Looks like by April, you know, in theory, when it gets a little warmer, it miraculously goes away"</span> </li>
+                        <li><p><small><i class="glyphicon glyphicon-time"></i> 02/10/2020</small></p> </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Blank -->
+    <div class="col-sm-6  timeline-item">
+        <div class="row">
+            <div class="col-sm-offset-1 col-sm-11">
+                <div class="timeline-panel debits" id="blank">
+                    <ul class="timeline-panel-ul">
+                        <li><span class="importo" id="white2">Dr. Allison McGeer, Toronto-based infectious disease specialist </span></li>
+                        <li><span class="causale">“The more we learn about it, the greater the possibility is that transmission will not be able to be controlled with public health measures.”</span> </li>
+                        <li><p><small><i class="glyphicon glyphicon-time"></i> 01/24/2020</small></p> </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6  timeline-item">
+        <div class="row">
+            <div class="col-sm-11">
+                <div class="timeline-panel credits" id="two">
+                    <ul class="timeline-panel-ul">
+                        <li><span class="importo">Trump at a White House Briefing</span></li>
+                        <li><span class="causale">"A lot of people think [the virus] goes away in April"</span> </li>
+                        <li><p><small><i class="glyphicon glyphicon-time"></i> 02/10/2020</small></p> </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Blank -->
+
+    <div class="col-sm-6  timeline-item">
+        <div class="row">
+            <div class="col-sm-offset-1 col-sm-11">
+                <div class="timeline-panel debits" id="blank">
+                    <ul class="timeline-panel-ul">
+                        <li><span class="importo" id="white2">Dr. Allison McGeer, Toronto-based infectious disease specialist </span></li>
+                        <li><span class="causale">“The more we learn about it, the greater the possibility is that transmission will not be able to be controlled with public health measures.”</span> </li>
+                        <li><p><small><i class="glyphicon glyphicon-time"></i> 01/24/2020</small></p> </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6  timeline-item">
+        <div class="row">
+            <div class="col-sm-11">
+                <div class="timeline-panel credits" id="ten">
+                    <ul class="timeline-panel-ul">
+                        <li><span class="importo">Trump on Fox News</span></li>
+                        <li><span class="causale">"We're in very good shape."</span> </li>
+                        <li><p><small><i class="glyphicon glyphicon-time"></i> 02/10/2020</small></p> </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<!-- Next -->
+
+<div class="row timeline-movement">
+
+
+    <div class="timeline-badge">
+        <span class="timeline-balloon-date-day">10</span>
+        <span class="timeline-balloon-date-month">APR</span>
+    </div>
+
+    <div class="col-sm-offset-6 col-sm-6  timeline-item">
+        <div class="row">
+            <div class="col-sm-offset-1 col-sm-11">
+                <div class="timeline-panel debits">
+                    <ul class="timeline-panel-ul">
+                        <li><span class="importo">Mussum ipsum cacilds</span></li>
+                        <li><span class="causale">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </span> </li>
+                        <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11/09/2020</small></p> </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6  timeline-item">
+        <div class="row">
+            <div class="col-sm-11">
+                <div class="timeline-panel credits">
+                    <ul class="timeline-panel-ul">
+                        <li><span class="importo">Mussum ipsum cacilds</span></li>
+                        <li><span class="causale">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </span> </li>
+                        <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11/09/2020</small></p> </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Next -->
+</div>
+</div>
+    </body>
+</html>

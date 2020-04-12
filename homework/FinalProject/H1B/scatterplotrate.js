@@ -39,20 +39,15 @@ console.log(data);
 // var x = d3.scaleLinear()
 var x = d3.scaleLinear()
     .domain([2008, 2019])
-    // .domain(data.map(function(d) {return d.year; }))
     .range([0, width]);
 
-// var x = d3.scaleTime()
-//     .domain(d3.extent(data, function(d) { return data.year; }))
-//     .range([ 0, width ]);
 
 
 var xAxis = svg.append("g")
     .attr("transform", "translate(0," + height + ")")
     .call(d3.axisBottom(x).tickFormat(d3.format("d")));
 
-//xAxis.d3.tickFormat(d3.format("d"));
-
+ 
 var y = d3.scaleLinear()
     .domain([0, d3.max(data, function(d) {
         return parseFloat(d.denialrate);
@@ -115,44 +110,63 @@ var chart = svg.append('g')
             return i * 150;
         });
 
- 
-
     // Add legend: circles
-    var valuesToShow = [200000, 300000, 400000];
-    var xCircle = 0;
-    var xLabel = 0;
-      d3.select("#viz4")
-      .data(valuesToShow)
-      .enter()
-      .append("circle")
-        .attr("cx", xCircle)
-        .attr("cy", function(d){ return height - 100 - r(d) } )
-        .attr("r", function(d){ return z(d) })
-        .style("fill", "none")
-        .attr("stroke", "black")
+    var smallCircles = [30, 40, 50];
+
+    var maxRadius = d3.max(smallCircles);
+
+    var lineEnd = 300;
+    
+    var legend = d3.select("#legend4")
+      .attr("transform", `translate(${200}, ${100})`);
+
+
+    legend.selectAll("circle")
+      .data(smallCircles)
+      .enter().append("circle")
+        .attr("r", function(d) {
+          return d;
+        })
+        .attr("stroke", "#039DFA")
+        .attr("opacity", "0.4")
+        .attr("fill", "none")
+        .attr("cx", 0)
+        .attr("cy", function(d) {
+          return maxRadius - d;
+        });
+    
+    legend.selectAll("line")
+      .data(smallCircles)
+      .enter().append("line")
+      .attr("x1", 100)
+      .attr("y1", 100)
+      .attr("x2", lineEnd)
+      .attr("y2", 100)
+      .attr('stroke', 'black')
+      .style('stroke-dasharray', ('2,2'));
 
     // Add legend: segments
-      d3.select("#viz4")
-      .data(valuesToShow)
-      .enter()
-      .append("line")
-        .attr('x1', function(d){ return xCircle + r(d) } )
-        .attr('x2', xLabel)
-        .attr('y1', function(d){ return height - 100 - z(d) } )
-        .attr('y2', function(d){ return height - 100 - z(d) } )
-        .attr('stroke', 'black')
-        .style('stroke-dasharray', ('2,2'))
+      // d3.select("#legend4")
+      // .data(valuesToShow)
+      // .enter()
+      // .append("line")
+      //   .attr('x1', function(d){ return xCircle + r(d) } )
+      //   .attr('x2', xLabel)
+      //   .attr('y1', function(d){ return height - 100 - z(d) } )
+      //   .attr('y2', function(d){ return height - 100 - z(d) } )
+      //   .attr('stroke', 'black')
+      //   .style('stroke-dasharray', ('2,2'))
 
     // Add legend: labels
-      d3.select("#viz4")
-      .data(valuesToShow)
-      .enter()
-      .append("text")
-        .attr('x', xLabel)
-        .attr('y', function(d){ return height - 100 - z(d) } )
-        .text( function(d){ return d/1000000 } )
-        .style("font-size", 10)
-        .attr('alignment-baseline', 'middle')
+      // d3.select("#legend4")
+      // .data(valuesToShow)
+      // .enter()
+      // .append("text")
+      //   .attr('x', xLabel)
+      //   .attr('y', function(d){ return height - 100 - z(d) } )
+      //   .text( function(d){ return d/1000000 } )
+      //   .style("font-size", 10)
+      //   .attr('alignment-baseline', 'middle')
 
     // Legend title
     // svg.append("text")

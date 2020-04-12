@@ -1,0 +1,208 @@
+#timeline {
+  list-style: none;
+  position: relative;
+}
+/* Timeline */
+#timeline:before {
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  content: " ";
+  width: 2px;
+  background-color: #4997cd;
+  left: 50%;
+  margin-left: -1.5px;
+}
+
+#timeline .clearFix {
+  clear: both;
+  height: 0;
+}
+
+/* The time cirlce */
+#timeline .timeline-badge {
+  color: #fff;
+  width: 55px;
+  height: 55px;
+  font-size: 1.2em;
+  text-align: center;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  margin-left: -25px;
+  background-color: #4997cd;
+  z-index: 100;
+  border-top-right-radius: 50%;
+  border-top-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+
+#timeline .timeline-badge span.timeline-balloon-date-day {
+  font-size: 1.2em;
+}
+#timeline .timeline-badge span.timeline-balloon-date-month {
+  /* font-size: .7em;
+  position: relative;
+  top: -10px; 
+  */
+}
+
+
+/* The clock */
+#timeline .timeline-badge.timeline-filter-movement {
+  background-color: #ffffff;
+  font-size: 1.7em;
+  height: 35px;
+  margin-left: -18px;
+  width: 35px;
+  top: 40px;
+}
+
+#timeline .timeline-badge.timeline-filter-movement a span {
+  color: #4997cd;
+  font-size: 1.3em;
+  top: -1px;
+}
+
+#timeline .timeline-badge.timeline-future-movement {
+  background-color: #ffffff;
+  height: 35px;
+  width: 35px;
+  font-size: 1.7em;
+  top: -16px;
+  margin-left: -18px;
+}
+#timeline .timeline-badge.timeline-future-movement a span {
+  color: #4997cd;
+  font-size: .9em;
+  top: 2px;
+  left: 1px;
+}
+#timeline .timeline-movement {
+  border-bottom: dashed 1px #4997cd;
+  position: relative;
+}
+#timeline .timeline-movement.timeline-movement-top {
+  height: 60px;
+}
+#timeline .timeline-movement .timeline-item {
+  padding: 20px 0;
+}
+#timeline .timeline-movement .timeline-item .timeline-panel {
+  border: 1px solid #d4d4d4;
+  border-radius: 10px;
+  color: rgb(19, 18, 18);
+  padding: 10px;
+  position: relative;
+  -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+}
+#timeline .timeline-movement .timeline-item .timeline-panel .timeline-panel-ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+#timeline .timeline-movement .timeline-item .timeline-panel.credits .timeline-panel-ul {
+  text-align: right;
+}
+
+/* Style for Trump's text */
+#timeline .timeline-movement .timeline-item .timeline-panel.credits .timeline-panel-ul li {
+  color: rgb(8, 8, 8);
+}
+
+/* Style for the word Trump */
+#timeline .timeline-movement .timeline-item .timeline-panel.credits .timeline-panel-ul li span.importo {
+  color: #0c0c0c;
+  font-size: 1.3em;
+}
+#timeline .timeline-movement .timeline-item .timeline-panel.debits .timeline-panel-ul {
+  text-align: left;
+}
+
+/* Style for the word other such as Tom Frieden */
+#timeline .timeline-movement .timeline-item .timeline-panel.debits .timeline-panel-ul span.importo {
+  color: #0e0d0d;
+  font-size: 1.3em;
+}
+
+#title {
+  text-align: center;
+}
+
+#bodytext {
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  font-size: 15px;
+  line-height: 2.5rem;
+}
+
+#four {
+  background-color: #5EBC72;
+}
+
+#neg9 {
+  background-color: #ff8080;
+}
+
+#neg5 {
+  background-color: #ffb3b3;
+}
+
+#three {
+  background-color: #8FD08A;
+}
+
+#neg20 {
+  background-color: #b30000;
+  color: white ! important;
+}
+
+#blank {
+  background-color: #fdfdfd;
+  color: white ! important;
+  border: 1px solid #ffffff ! important;
+  -webkit-box-shadow: 0 1px 0px rgb(255, 255, 255) ! important;
+  box-shadow: 0 1px 6px rgb(255, 255, 255) ! important;
+}
+
+#neg2 {
+  background-color: #ffe6e6;
+}
+
+#white {
+  color: white ! important;
+}
+
+#white2 {
+  color: white ! important;
+}
+
+#neg10 {
+  background-color: #ff6666;
+}
+
+#neg12 {
+  background-color:  #ff4d4d;
+}
+
+#two {
+  background-color: #C7E4B8;
+}
+
+#ten {
+  background-color: #137177;
+}
+
+#seven {
+  background-color: #1D9A6C;
+}
+
+
+
+
+
