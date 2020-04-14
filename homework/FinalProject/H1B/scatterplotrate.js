@@ -32,6 +32,11 @@ var yLabel = svg.append("text")
     .attr("x", -height/2)
     .attr("text-anchor", "middle")
     .text("Denial Rate (%)");
+  
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 
 d3.csv("h1bDenialRate.csv", function(error, data) {
 console.log(data);
@@ -40,7 +45,6 @@ console.log(data);
 var x = d3.scaleLinear()
     .domain([2008, 2019])
     .range([0, width]);
-
 
 
 var xAxis = svg.append("g")
@@ -87,7 +91,7 @@ var chart = svg.append('g')
       .on("mouseover", function(d, i) {
         d3.select(this).style("opacity", "0.7")
         tooltip.transition().duration(50)
-        tooltip.html(`Denial rate: ${d.denialrate}<br> Total application: ${d.totalapplication}`)
+        tooltip.html(`Denial rate: ${d.denialrate}<br> Total application: ${numberWithCommas(d.totalapplication)}`)
         .style("left", d3.event.pageX - 80 + "px")
         .style("top", d3.event.pageY - 80 + "px")
         .style("opacity", 0.8)
@@ -118,7 +122,7 @@ var chart = svg.append('g')
     var lineEnd = 300;
     
     var legend = d3.select("#legend4")
-      .attr("transform", `translate(${200}, ${100})`);
+      .attr("transform", `translate(${200}, ${150})`);
 
 
     legend.selectAll("circle")
@@ -145,34 +149,5 @@ var chart = svg.append('g')
       .attr('stroke', 'black')
       .style('stroke-dasharray', ('2,2'));
 
-    // Add legend: segments
-      // d3.select("#legend4")
-      // .data(valuesToShow)
-      // .enter()
-      // .append("line")
-      //   .attr('x1', function(d){ return xCircle + r(d) } )
-      //   .attr('x2', xLabel)
-      //   .attr('y1', function(d){ return height - 100 - z(d) } )
-      //   .attr('y2', function(d){ return height - 100 - z(d) } )
-      //   .attr('stroke', 'black')
-      //   .style('stroke-dasharray', ('2,2'))
-
-    // Add legend: labels
-      // d3.select("#legend4")
-      // .data(valuesToShow)
-      // .enter()
-      // .append("text")
-      //   .attr('x', xLabel)
-      //   .attr('y', function(d){ return height - 100 - z(d) } )
-      //   .text( function(d){ return d/1000000 } )
-      //   .style("font-size", 10)
-      //   .attr('alignment-baseline', 'middle')
-
-    // Legend title
-    // svg.append("text")
-    //   .attr('x', xCircle)
-    //   .attr("y", height - 100 +30)
-    //   .text("Application Number")
-    //   .attr("text-anchor", "middle")
-        
+   
 });

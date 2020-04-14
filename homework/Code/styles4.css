@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600&display=swap');
 
 .bodytext a:link, a:visited {
-  color: #3573e7 ! important;
+  color: #313131 ! important;
   text-decoration: none;
 }
 
@@ -50,6 +50,12 @@ body {
     margin-top: 5%;
     margin-right: 18%;
     text-align: center;
+}
+
+.timeline-article p.seemore2 {
+  margin-top: 5%;
+  margin-right: 18%;
+  text-align: center;
 }
 
 .bodytext {
@@ -319,7 +325,7 @@ a:link, a:visited{
 }
 
 a:hover{
-    color: rgb(5, 43, 168);
+    color: rgb(120, 146, 230);
     text-decoration: underline;
     }
 

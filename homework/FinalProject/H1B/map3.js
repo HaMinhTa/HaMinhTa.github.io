@@ -87,7 +87,7 @@ function drawMap(error, h1bData, geoData) {
           var state = d.properties.NAME;
           var category = findCategory(state, h1bData);
           tooltip.transition().duration(100)
-          tooltip.html(`<b>${state}:</b> ${category}`)
+          tooltip.html(`<span class="state_text">${state}<br></span> <span class="category_text">Industry: ${category}</span>`)
           .attr("class", "tooltipText")
           .style("left", d3.event.pageX + 20 + "px")
           .style("top", d3.event.pageY + 20 + "px")
