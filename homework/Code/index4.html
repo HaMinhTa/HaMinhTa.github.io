@@ -9,7 +9,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
   <!-- // Fonts -->
-</head>
+</head> 
 <body>
     <div class="header">
         <h1 id="title">Coronavirus Early Reaction</h1>
@@ -20,8 +20,18 @@
     <div class="bodytext">
         <p>The coronavirus outbreak has seem to hit the U.S. hard. As of <a href="https://www.bbc.com/news/world-us-canada-52258284">April 12</a>, US death toll has overtaken Italy as world's highest, with New York state being the epicenter of the outbreak. The country is well on its way to end up with the worst COVID-19 outbreak in the industrialized world. How did a country with supposedly the best medical infrastructure in the world be so ill-prepared for the pandemic when we were warned about it since early January. Let's take a look at the difference in reactions to the coronavirus situation between President Trump's and health experts, scientists, the Center for Disease Control and the World Health Organization (WHO) by looking at the sentiment scores for their speeches, articles or tweets.</p>
         <p>The project uses lexicon “Bing” and R scripts to analyze the sentiments of the texts. The “Bing” lexicon assigns words into positive and negative categories with scores. Articles are mostly written by the health experts themselves. The colors of the text boxes represent the sentiment of the texts. Shades of red color represent “negative” sentiment (having “Bing” score lower than 0). Shades of blue represent “positive” sentiment (having “Bing” score greater than 0). White color represent a “Bing” score of zero.</p>
-        <div id="legend"><img src="scaleleft.png" height="270" width="430"></div>
+        <div class="container">
+          <img class="image" src="chartf.png">
+          <div class="middle">
+            <a href="#fullChart"><button class="button">See the timeline <br>in detail</button></a>
+          </div>
+        </div>
 
+        <hr size="2">
+
+
+        <div id="fullChart"><p>Detailed Timeline</p></div>
+        <div  class="legend"><img src="scalerb.png" width="700px"></div>
     </div>
   <!-- Vertical Timeline -->
   <section id="conference-timeline">

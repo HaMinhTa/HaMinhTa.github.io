@@ -122,7 +122,7 @@ var chart = svg.append('g')
     var lineEnd = 300;
     
     var legend = d3.select("#legend4")
-      .attr("transform", `translate(${200}, ${150})`);
+      .attr("transform", `translate(${150}, ${150})`);
 
 
     legend.selectAll("circle")
@@ -138,7 +138,8 @@ var chart = svg.append('g')
         .attr("cy", function(d) {
           return maxRadius - d;
         });
-    
+        
+    var line
     legend.selectAll("line")
       .data(smallCircles)
       .enter().append("line")
