@@ -139,7 +139,6 @@ var chart = svg.append('g')
           return maxRadius - d;
         });
         
-    var line
     legend.selectAll("line")
       .data(smallCircles)
       .enter().append("line")
