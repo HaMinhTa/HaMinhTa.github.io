@@ -4,7 +4,13 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
 
-
+#title {
+  font-family: 'Alfa Slab One', cursive;
+  letter-spacing: 2;
+  /* text-transform: uppercase; */
+  font-size: 50px;
+  font-weight: lighter;
+}
 #credit {
   text-align: right;
   margin-top: 8%;
@@ -57,7 +63,7 @@ body {
 
 #subtitle {
     line-height: 2.4rem;
-    font-family: 'Crimson Text', serif;
+    font-family: "Roboto", sans-serif;
     font-size: 25px;
 
 }
@@ -158,11 +164,10 @@ body {
   #conference-timeline .conference-center-line {
     position: absolute;
     width: 3px;
-    height: 635%;
+    height: 610%;
     top: 0;
     left: 50%;
     margin-left: -2px;
-    /* background: #00b0bd; */
     background-color: rgb(0, 0, 0);
     z-index: -1;
   }
