@@ -2,16 +2,8 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
 
-.bodytext a:link, a:visited {
-  color: #313131 ! important;
-  text-decoration: none;
-}
-
-.bodytext a:hover{
-  color: rgb(62, 99, 235);
-  text-decoration: underline;
-} 
 
 #credit {
   text-align: right;
@@ -47,15 +39,10 @@ body {
 
 .timeline-article p.seemore {
     margin-top: 5%;
-    margin-right: 18%;
-    text-align: center;
+    font-style: italic;
 }
 
-.timeline-article p.seemore2 {
-    margin-top: 5%;
-    margin-right: 18%;
-    text-align: center;
-}
+
 
 .bodytext {
     color: rgb(22, 22, 22);
@@ -144,9 +131,6 @@ body {
 
 }
 
-
-
-  
   /*===== Vertical Timeline =====*/
   #conference-timeline {
     position: relative;
@@ -245,10 +229,9 @@ body {
   }
 
   .timeline-article p.sub{
-    font-family: 'Crimson Text', serif;
-    font-size: 18px;
-    text-align: center;
-    margin-right: 10%;
+    font-weight: bold;
+    font-size: 15px;
+    text-align: left;
     padding-top: 5%;
   }
 
@@ -386,15 +369,24 @@ body {
   /*===== // Resonsive Vertical Timeline =====*/
 
 a:link, a:visited{
-    color: #4e3939;
+    color: #3d3d3d;
     text-decoration: none;
 }
 
 a:hover{
-    color: rgb(120, 146, 230);
-    text-decoration: underline;
-    }
+  color: rgb(0, 0, 0);
+  text-decoration: underline;
+}
+/* 
+#special a:link, a:visited{
+  color: #ffffff;
+  text-decoration: none;
+}
 
+#special a:hover{
+  color: rgb(138, 138, 138);
+  text-decoration: underline;
+} */
 
 #two {
   background-color: #e6f5ff;

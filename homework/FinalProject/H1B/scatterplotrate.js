@@ -115,14 +115,14 @@ var chart = svg.append('g')
         });
 
     // Add legend: circles
-    var smallCircles = [30, 40, 50];
+    var smallCircles = [20, 30, 40];
 
     var maxRadius = d3.max(smallCircles);
 
     var lineEnd = 300;
     
     var legend = d3.select("#legend4")
-      .attr("transform", `translate(${150}, ${150})`);
+      .attr("transform", `translate(${140}, ${120})`);
 
 
     legend.selectAll("circle")
@@ -138,14 +138,20 @@ var chart = svg.append('g')
         .attr("cy", function(d) {
           return maxRadius - d;
         });
+
+    legend.append("text")
+        .attr("x", 140)
+        .attr("y", 5)
+        .text("Total Application")
+        .attr("text-anchor", "middle")
+        .attr("class", "axisLabel");
         
-    legend.selectAll("line")
-      .data(smallCircles)
-      .enter().append("line")
-      .attr("x1", 100)
-      .attr("y1", 100)
-      .attr("x2", lineEnd)
-      .attr("y2", 100)
+    legend
+      .append("line")
+      .attr("x1", 5)
+      .attr("y1", 0)
+      .attr("x2", 75)
+      .attr("y2", 0)
       .attr('stroke', 'black')
       .style('stroke-dasharray', ('2,2'));
 
