@@ -25,6 +25,8 @@ body {
 
   }
 
+
+
 .header {
     font-size: 25px;
     color: rgb(255, 255, 255);
@@ -234,11 +236,17 @@ body {
   }
 
   .timeline-article p.sub{
-    font-weight: bold;
-    font-size: 15px;
+    font-size: 13px;
     text-align: left;
     padding-top: 5%;
+    font-style: italic;
   }
+
+  .timeline-article p.score {
+    padding-top: 5%;
+    font-weight: bold;
+
+}
 
   .timeline-article p {
     margin: 0 0 0 60px;

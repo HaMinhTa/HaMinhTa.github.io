@@ -21,7 +21,7 @@
         <p>The coronavirus outbreak has seem to hit the U.S. hard. As of <a href="https://www.bbc.com/news/world-us-canada-52258284">April 12</a>, US death toll has overtaken Italy as world's highest, with New York state being the epicenter of the outbreak. The country is well on its way to end up with the worst COVID-19 outbreak in the industrialized world. How did a country with supposedly the best medical infrastructure in the world be so ill-prepared for the pandemic when we were warned about it since early January. Let's take a look at the difference in reactions to the coronavirus situation between President Trump's and health experts, scientists, the Center for Disease Control and the World Health Organization (WHO) by looking at the sentiment scores for their speeches, articles or tweets.</p>
         <p>The project uses lexicon “Bing” and R scripts to analyze the sentiments of the texts. The “Bing” lexicon assigns words into positive and negative categories with scores. Articles are mostly written by the health experts themselves. The colors of the text boxes represent the sentiment of the texts. Shades of red color represent “negative” sentiment (having “Bing” score lower than 0). Shades of blue represent “positive” sentiment (having “Bing” score greater than 0). White color represent a “Bing” score of zero.</p>
         <div class="container">
-          <img class="image" src="chartf.png">
+          <img class="image" src="chartfinal.png">
           <div class="middle">
             <a href="#fullChart"><button class="button">See the timeline <br>in detail</button></a>
           </div>
@@ -45,8 +45,9 @@
         <div class="content-left-container">
           <div class="content-left" id="four">
             <p class="article-number">22th</p>
-            <p>"It’s one person coming in from China. We have it under control. It’s going to be just fine," <span class="article-number"><img src="trump.png" height="55" width="55"></span></p><br>
+            <p>"It’s one person coming in from China. We have it under control. It’s going to be just fine," <span class="article-number"><img src="trump.png" height="55" width="55"></span></p>
             <p class="sub">In an interview with CNBC’s Joe Kernen from the World Economic Forum in Davos</p>
+            <p class="score">Sentiment score: 4</p>
             <p class="seemore"><a href="https://www.cnbc.com/2020/01/22/trump-on-coronavirus-from-china-we-have-it-totally-under-control.html">See the full text</a></p>
           </div>
         </div>
@@ -56,6 +57,7 @@
             <p class="article-number">22th</p>
             <p>“We need to learn — and fast — about how [the coronavirus] spreads...”<span class="article-number"><img src="tom.png" height="55" width="55"></span></p>
             <p class="sub">Former CDC director Tom Frieden in an op-ed</p>
+            <p class="score">Sentiment score: -9</p>
             <p class="seemore"><a href="https://www.statnews.com/2020/01/22/former-cdc-director-tom-frieden-3-key-questions-novel-coronavirus-in-wuhan/">See the full text</a></p>
           </div>
         </div>
@@ -65,6 +67,7 @@
             <p class="article-number">22th</p>
             <p>WHO held meeting of the International Health Regulations Emergency Committee regarding the outbreak of novel coronavirus<span class="article-number"><img src="who.png" height="50" width="50"></span></p>
             <p class="sub">World Health Organization</p>
+            <p class="score">Sentiment score: -5</p>
             <p class="seemore"><a href="https://www.who.int/news-room/detail/23-01-2020-statement-on-the-meeting-of-the-international-health-regulations-(2005)-emergency-committee-regarding-the-outbreak-of-novel-coronavirus-(2019-ncov)">See the full text</a></p>
           </div>
       </div>
@@ -74,6 +77,7 @@
               <p class="article-number">24th</p>
               <p>“China has been working very hard to contain the Coronavirus. The United States greatly appreciates their efforts and transparency. It will all work out well. In particular, on behalf of the American People, I want to thank President Xi!"<span class="article-number"><img src="trump.png" height="55" width="55"></span></p>
               <p class="sub">A status on Twitter</p>
+              <p class="score">Sentiment score: 3</p>
               <p class="seemore"><a href="https://twitter.com/realdonaldtrump/status/1220818115354923009?lang=en">See the full text</a></p>
             </div>
         </div>
@@ -83,6 +87,7 @@
             <p class="article-number">28th</p>
             <p>“Act Now to Prevent an American Epidemic.”<span class="article-number"><img src="borio.png" height="50" width="50"><br></nr><img src="scott.png" height="50" width="50"></span></p>
             <p class="sub">Luciana Borio, public health administrator. Scott Gottlieb, Former Commissioner of Food and Drugs</p>
+            <p class="score">Sentiment score: -10</p>
             <p class="seemore"><a href="https://www.wsj.com/articles/act-now-to-prevent-an-american-epidemic-11580255335">See the full text</a></p>
           </div>
       </div>
@@ -92,6 +97,7 @@
             <p class="article-number">30th</p>
             <p>"We have it very well under control. We have very little problem in this country at this moment — five. And those people are all recuperating successfully."<span class="article-number"><img src="trump.png" height="55" width="55"></span></p>
             <p class="sub">In a Presidential Remark</p>
+            <p class="score">Sentiment score: 10</p>
             <p class="seemore"><a href="https://www.whitehouse.gov/briefings-statements/remarks-president-trump-usmca-celebration-american-workers-warren-mi/">See the full text</a></p>
           </div>
       </div>
@@ -104,6 +110,7 @@
             <p class="article-number">31st</p>
             <p>Declares Public Health Emergency for United States for 2019 Novel Coronavirus<span class="article-number"><img src="alex.png" height="55" width="55"></span></p>
             <p class="sub">Alex Azar, U.S Secretary of Health and Human Services</p>
+            <p class="score">Sentiment score: -2</p>
             <p class="seemore"><a href="https://www.hhs.gov/about/news/2020/01/31/secretary-azar-declares-public-health-emergency-us-2019-novel-coronavirus.html">See the full text</a></p>
           </div>
       </div>
@@ -122,6 +129,7 @@
             <p class="article-number">2nd</p>
             <p>"We pretty much shut [the coronavirus] down coming in from China"<span class="article-number"><img src="trump.png" height="55" width="55"></span></p>
             <p class="sub">In an interview with Sean Hannity</p>
+            <p class="score">Sentiment score: 3</p>
             <p class="seemore"><a href="https://factba.se/transcript/donald-trump-interview-sean-hannity-part-1-february-2-2020">See the full text</a></p>
           </div>
         </div>
@@ -131,7 +139,8 @@
             <p class="article-number" id="neg28">13rd</p>
             <p id="neg28">‘Tip of the iceberg:’ Why Covid-19 deaths will keep rising even as the coronavirus outbreak wanes<span class="article-number"><img src="fortune.png" height="55" width="55"></span></p>
             <p class="sub" id="neg28">Interview with infectious disease experts</p>
-            <p class="seemore" id="special"><a href="https://fortune.com/2020/02/13/covid-19-deaths-rising-coronavirus-outbreak/">See the full text</a></p>
+            <p class="score" id="neg28">Sentiment score: -28</p>
+            <p class="seemore" id="special"><a id="neg28" href="https://fortune.com/2020/02/13/covid-19-deaths-rising-coronavirus-outbreak/">See the full text</a></p>
           </div>
         </div>
 
@@ -141,6 +150,7 @@
             <p class="article-number">10th</p>
             <p>"A lot of people think that goes away in April"<span class="article-number"><img src="trump.png" height="55" width="55"></span></p>
             <p class="sub">In a Presidential Remark</p>
+            <p class="score">Sentiment score: 2</p>
             <p class="seemore"><a href="https://www.whitehouse.gov/briefings-statements/remarks-president-trump-white-house-business-session-nations-governors/">See the full text</a></p>
           </div>
         </div>
@@ -150,6 +160,7 @@
             <p class="article-number">20th</p>
             <p>“The infectious-disease epidemiology community and policymakers have come to the conclusion that it’s very likely that this virus is going to continue spreading throughout the world over time"<span class="article-number"><img src="mina.png" height="55" width="55"></span></p>
             <p class="sub">An interview with Dr. Michael Mina, Professor of Epidemiology at Harvard</p>
+            <p class="score">Sentiment score: -14</p>
             <p class="seemore"><a href="https://news.harvard.edu/gazette/story/2020/02/health-officials-expect-coronavirus-to-spread-worldwide/">See the full text</a></p>
           </div>
         </div>
@@ -159,6 +170,7 @@
             <p class="article-number">10th</p>
             <p>"Looks like by April, you know, in theory, when it gets a little warmer, it miraculously goes away"<span class="article-number"><img src="trump.png" height="55" width="55"></span></p>
             <p class="sub">In a rally in New Hampshire</p>
+            <p class="score">Sentiment score: 7</p>
             <p class="seemore"><a href="https://factba.se/transcript/donald-trump-speech-kag-rally-manchester-new-hampshire-february-10-2020">See the full text</a></p>
           </div>
         </div>
@@ -168,7 +180,8 @@
             <p class="article-number" id="neg21">20th</p>
             <p id="neg21">"We need to start preparing for the next viral outbreak now"<span class="article-number"><img src="david.png" height="55" width="55"><br><img src="Daniel.png" height="55" width="55"></span></p>
             <p class="sub" id="neg21">David Bloom & Daniel Cadarette, researchers at Harvard's Global Health Population Department.</p>
-            <p class="seemore" id="special"><a href="https://theconversation.com/coronavirus-we-need-to-start-preparing-for-the-next-viral-outbreak-now-132051">See the full text</a></p>
+            <p class="score" id="neg21">Sentiment score: -21</p>
+            <p class="seemore" id="special"><a id="neg21" href="https://theconversation.com/coronavirus-we-need-to-start-preparing-for-the-next-viral-outbreak-now-132051">See the full text</a></p>
           </div>
         </div>
      
@@ -178,6 +191,7 @@
             <p class="article-number">10th</p>
             <p>"We're in very good shape ... You know in April, supposedly, it dies with the hotter weather"<span class="article-number"><img src="trump.png" height="55" width="55"></span></p>
             <p class="sub">In an interview on Fox News</p>
+            <p class="score">Sentiment score: 10</p>
             <p class="seemore"><a href="https://factba.se/transcript/donald-trump-interview-trish-regan-fox-business-february-10-2020">See the full text</a></p>
           </div>
         </div>
@@ -187,6 +201,7 @@
             <p class="article-number">25th</p>
             <p>“As we’ve seen from recent countries with community spread ... it has moved quite rapidly.”<span class="article-number"><img src="Nancy.png" height="58" width="58"></span></p>
             <p class="sub">Nancy Messonnier, director of CDC’s National Center for Immunization and Respiratory Diseases</p>
+            <p class="score">Sentiment score: -5</p>
             <p class="seemore"><a href="https://www.statnews.com/2020/02/25/cdc-expects-community-spread-of-coronavirus-as-top-official-warns-disruptions-could-be-severe/">See the full text</a></p>
           </div>
         </div>     
@@ -196,35 +211,29 @@
             <p class="article-number">23th</p>
             <p id="four">"We have it very much under control in this country"<span class="article-number"><img src="trump.png" height="55" width="55"></span></p>
             <p class="sub" id="four">In a White House Remark</p>
+            <p class="score">Sentiment score: 4</p>
             <p class="seemore"><a href="https://www.whitehouse.gov/briefings-statements/remarks-president-trump-marine-one-departure-83/">See the full text</a></p>
           </div>
         </div>
 
-        <div class="content-left-container">
-          <div class="content-left" id="neg3">
-            <p class="article-number">26th</p>
-            <p>"USA in great shape!"<span class="article-number"><img src="trump.png" height="55" width="55"></span></p>
-            <p class="sub">Tweeted on Twitter</p>
-            <p class="seemore"><a href="https://twitter.com/realDonaldTrump/status/1232652371832004608">See the full text</a></p>
-          </div>
-        </div>
 
         <div class="content-right-container">
           <div class="content-right" id="zero">
             <p class="article-number">26th</p>
             <p>"U.S. isn’t ready to detect stealth coronavirus spread."<span class="article-number"><img src="politico.jpg" height="30" width="60"></span></p>
             <p class="sub">Article on Politico</p>
+            <p class="score">Sentiment score: 0</p>
             <p class="seemore"><a href="https://www.politico.com/news/2020/02/26/coronavirus-cdc-117779">See the full text</a></p>
           </div>
         </div>    
 
-  
         <div class="content-left-container">
           <div class="content-left" id="neg3">
             <p class="article-number">26th</p>
-            <p>"This is like a flu."<span class="article-number"><img src="trump.png" height="55" width="55"></span></p>
-            <p class="sub">In a White House Coronavirus Briefing</p>
-            <p class="seemore"><a href="https://factba.se/transcript/donald-trump-press-conference-white-house-coronavirus-february-26-2020">See the full text</a></p>
+            <p>"USA in great shape!"<span class="article-number"><img src="trump.png" height="55" width="55"></span></p>
+            <p class="sub">Tweeted on Twitter</p>
+            <p class="score">Sentiment score: -3</p>
+            <p class="seemore"><a href="https://twitter.com/realDonaldTrump/status/1232652371832004608">See the full text</a></p>
           </div>
         </div>
 
@@ -233,16 +242,28 @@
             <p class="article-number">28th</p>
             <p>"The writing has been on the wall. The chances of stopping [coronavirus] spread have dwindled to a very, very low probability."<span class="article-number"><img src="mina.png" height="55" width="55"></span></p>
             <p class="sub">Dr. Michael Mina, Professor of Epidemiology at Harvard</p>
+            <p class="score">Sentiment score: -12</p>
             <p class="seemore"><a href="https://www.wbur.org/commonhealth/2020/02/28/coronavirus-diagnostic-testing">See the full text</a></p>
           </div>
         </div>    
    
+          
+        <div class="content-left-container">
+          <div class="content-left" id="neg3">
+            <p class="article-number">26th</p>
+            <p>"This is like a flu."<span class="article-number"><img src="trump.png" height="55" width="55"></span></p>
+            <p class="sub">In a White House Coronavirus Briefing</p>
+            <p class="score">Sentiment score: -3</p>
+            <p class="seemore"><a href="https://factba.se/transcript/donald-trump-press-conference-white-house-coronavirus-february-26-2020">See the full text</a></p>
+          </div>
+        </div>
 
         <div class="content-left-container">
           <div class="content-left" id="nine">
             <p class="article-number">28th</p>
             <p>"It’s going to disappear. One day — it’s like a miracle — it will disappear"<span class="article-number"><img src="trump.png" height="55" width="55"></span></p>
             <p class="sub">In a Presidential Remark</p>
+            <p class="score">Sentiment score: 9</p>
             <p class="seemore"><a href="https://www.whitehouse.gov/briefings-statements/remarks-president-trump-meeting-african-american-leaders/">See the full text</a></p>
           </div>
         </div>
@@ -260,6 +281,7 @@
               <p class="article-number">2nd</p>
               <p>"They're going to have vaccines...The U.S. is, right now, ranked by far No. 1 in the world for preparedness"<span class="article-number"><img src="trump.png" height="55" width="55"></span></p>
               <p class="sub">In a rally in North Carolina</p>
+              <p class="score">Sentiment score: 9</p>
               <p class="seemore"><a href="https://factba.se/transcript/donald-trump-speech-kag-rally-charlotte-north-carolina-march-2-2020">See the full text</a></p>
             </div>
         </div>
@@ -269,6 +291,7 @@
             <p class="article-number">2nd</p>
             <p>"40-70% of the world's adult population could be infected"<span class="article-number"><img src="marc.png" height="58" width="58"></span></p>
             <p class="sub">Marc Lipsitch from Harvard University, one of the country's top experts on viruses.</p>
+            <p class="score">Sentiment score: -8</p>
             <p class="seemore"><a href="cbsnews.com/news/coronavirus-infection-outbreak-worldwide-virus-expert-warning-today-2020-03-02/">See the full text</a></p>
           </div>
         </div>
@@ -278,6 +301,7 @@
             <p class="article-number">4th</p>
             <p>"It wasn't something that was going to affect us...It’s very mild."<span class="article-number makeblank"><img src="trump.png" height="55" width="55"></span></p>
             <p class="sub">In an interview with Sean Hannity</p>
+            <p class="score">Sentiment score: 10</p>
             <p class="seemore"><a href="https://factba.se/transcript/donald-trump-interview-sean-hannity-fox-telephone-march-4-2020">See the full text</a></p>
           </div>
         </div>
@@ -288,6 +312,7 @@
             <p class="article-number">3rd</p>
             <p>This virus is not SARS, it’s not MERS, and it’s not influenza. It is a unique virus with unique characteristics.<span class="article-number"><img src="director.png" height="58" width="55"></span></p>
             <p class="sub">WHO Director-General's opening remarks at the media briefing on COVID-19</p>
+            <p class="score">Sentiment score: -11</p>
             <p class="seemore"><a href="https://www.who.int/dg/speeches/detail/who-director-general-s-opening-remarks-at-the-media-briefing-on-covid-19---3-march-2020">See the full text</a></p>
           </div>
         </div>
@@ -297,6 +322,7 @@
             <p class="article-number">8th</p>
             <p id="three">"We’ve done a fantastic job with respect to that subject on the virus ... No I'm not concerned at all"<span class="article-number makeblank"><img src="trump.png" height="55" width="55"></span></p>
             <p class="sub" id="three">In a Presidential Remark</p>
+            <p class="score">Sentiment score: 3</p>
             <p class="seemore"><a href="https://www.whitehouse.gov/briefings-statements/remarks-president-trump-president-bolsonaro-brazil-working-dinner-west-palm-beach-fl/">See the full text</a></p>
           </div>
         </div>
@@ -307,6 +333,7 @@
             <p>"Testing for the coronavirus might have stopped it. Now it’s too late."
               <span class="article-number"><img src="william.png" height="58" width="58"></span></p>
             <p class="sub">William Hanage, a Harvard epidemiologist</p>
+            <p class="score">Sentiment score: -13</p>
             <p class="seemore"><a href="https://www.washingtonpost.com/outlook/coronavirus-testing-united-states/2020/03/05/a6ced5aa-5f0f-11ea-9055-5fa12981bbbf_story.html">See the full text</a></p>
           </div>
         </div>
@@ -316,6 +343,7 @@
             <p class="article-number">10th</p>
             <p id="fourteen">"Just stay calm. It will go away, be calm. It’s really working out."<span class="article-number makeblank"><img src="trump.png" height="55" width="55"></span></p>
             <p class="sub" id="fourteen">In a Meeting with Republican Senators</p>
+            <p class="score">Sentiment score: 14</p>
             <p class="seemore"><a href="https://www.whitehouse.gov/briefings-statements/remarks-president-trump-meeting-republican-senators-2/?utm_source=link&utm_medium=header">See the full text</a></p>
           </div>
         </div>
@@ -325,6 +353,7 @@
             <p class="article-number">10th</p>
             <p>"We are all at risk of infection right now, some more than others, depending on where they live or the jobs they do. And it is only going to get worse."<span class="article-number"><img src="william.png" height="55" width="55"></span></p>
             <p class="sub">William Hanage, a Harvard epidemiologist</p>
+            <p class="score">Sentiment score: -18</p>
             <p class="seemore"><a href="https://www.washingtonpost.com/outlook/2020/03/10/coronavirus-work-home/">See the full text</a></p>
           </div>
         </div>
@@ -334,6 +363,7 @@
             <p class="article-number">11th</p>
             <p>"This is the most aggressive and comprehensive effort to confront a foreign virus in modern history."<span class="article-number makeblank"><img src="trump.png" height="55" width="55"></span></p>
             <p class="sub">Remarks by President Trump in Address to the Nation</p>
+            <p class="score">Sentiment score: 17</p>
             <p class="seemore"><a href="https://www.whitehouse.gov/briefings-statements/remarks-president-trump-address-nation/">See the full text</a></p>
           </div>
         </div>
@@ -343,6 +373,7 @@
             <p class="article-number">10th</p>
             <p id="zero">"Some of the best epidemiologists in the world are estimating that between 40 and 70% of adults will end up getting an infections."<span class="article-number"><img src="jha.png" height="55" width="55"></span></p>
             <p class="sub" id="zero">Dr. Ashish Jha, Harvard Global Health Expert</p>
+            <p class="score">Sentiment score: 0</p>
             <p class="seemore"><a href="https://www.wbur.org/news/2020/03/10/coronavirus-covid-19-massachusetts-hospital-capacity-ashish-jha">See the full text</a></p>
           </div>
         </div>
