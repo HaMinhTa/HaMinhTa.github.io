@@ -22,7 +22,7 @@ d3.queue()
 
 function drawMap(error, h1bData, geoData) {
   var projection = d3.geoAlbersUsa()
-    .fitSize([width, height], geoData);
+    .fitSize([width+100, height+100], geoData);
 
   var path = d3.geoPath()
       .projection(projection);

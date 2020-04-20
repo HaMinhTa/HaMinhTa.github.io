@@ -14,7 +14,7 @@ d3.queue()
 
 function drawMap(error, h1bData, geoData) {
   var projection = d3.geoAlbersUsa()
-    .fitSize([width, height], geoData);
+    .fitSize([width+90, height+90], geoData);
 
   var path = d3.geoPath()
       .projection(projection);
@@ -27,8 +27,8 @@ function drawMap(error, h1bData, geoData) {
   //     .domain([0, maximum]);
   var scaleWidth = 300;
   var scaleHeight = 20;
-  var scaleX = width/3;
-  var scaleY = height + 40;
+  var scaleX = width/2.7;
+  var scaleY = height + 100;
 
   var scale = d3.select("#scale")
     .attr("transform", "translate(" + scaleX + ", " + scaleY + ")");
