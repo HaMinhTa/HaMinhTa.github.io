@@ -23,6 +23,14 @@
   font-size: 14px;
 }
 
+.footnote {
+  padding-top: 8%;  
+  padding-bottom: 8%;
+  font-family: "Roboto", sans-serif;
+  line-height: 2rem;
+  font-size: 14px;
+}
+
 body {
     background: #ffffff;
     font-family: "Roboto", sans-serif;
