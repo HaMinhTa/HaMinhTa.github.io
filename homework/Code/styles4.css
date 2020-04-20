@@ -18,6 +18,11 @@
   font-size: 16px;
 }
 
+#disclaimer {
+  font-style: italic;
+  font-size: 14px;
+}
+
 body {
     background: #ffffff;
     font-family: "Roboto", sans-serif;
