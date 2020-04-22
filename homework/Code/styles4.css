@@ -38,8 +38,6 @@ body {
 
   }
 
-
-
 .header {
     font-size: 25px;
     color: rgb(255, 255, 255);
@@ -60,7 +58,6 @@ body {
 
 .timeline-article p.seemore {
     margin-top: 5%;
-    font-style: italic;
 }
 
 
@@ -167,19 +164,17 @@ body {
     font-size: 18px;
     font-weight: 900;
     text-transform: uppercase;
-    /* background: #00b0bd; */
     background-color: rgb(0, 0, 0);
     padding: 15px 23px;
     color: rgb(255, 255, 255);
-    max-width: 5%;
-    width: 100%;
+    width: 40px;
     text-align: center;
     margin: 0 auto;
   }
   #conference-timeline .conference-center-line {
     position: absolute;
     width: 3px;
-    height: 690%;
+    height: 5350px;
     top: 0;
     left: 50%;
     margin-left: -2px;
@@ -395,24 +390,16 @@ body {
   /*===== // Resonsive Vertical Timeline =====*/
 
 a:link, a:visited{
-    color: #3d3d3d;
+    color: #5e5bf6;
     text-decoration: none;
+    font-weight: bold;
 }
 
 a:hover{
   color: rgb(0, 0, 0);
   text-decoration: underline;
 }
-/* 
-#special a:link, a:visited{
-  color: #ffffff;
-  text-decoration: none;
-}
 
-#special a:hover{
-  color: rgb(138, 138, 138);
-  text-decoration: underline;
-} */
 
 #two {
   background-color: #e6f5ff;

@@ -18,8 +18,9 @@
 
     </div>
     <div class="bodytext">
-        <p>The coronavirus outbreak has seem to hit the U.S. hard. As of <a href="https://www.bbc.com/news/world-us-canada-52258284">April 12</a>, US death toll has overtaken Italy as world's highest, with New York state being the epicenter of the outbreak. The country is well on its way to end up with the worst COVID-19 outbreak in the industrialized world. How did a country with supposedly the best medical infrastructure in the world be so ill-prepared for the pandemic when we were warned about it since early January. Let's take a look at the difference in reactions to the coronavirus situation between President Trump's and health experts, scientists, the Center for Disease Control and the World Health Organization (WHO) by looking at the sentiment scores for their speeches, articles or tweets.</p>
-        <p>The project uses lexicon <a href="https://www.tidytextmining.com/sentiment.html">“Bing” and R scripts</a> to analyze the sentiments of the texts. The “Bing” lexicon assigns words into positive and negative categories with scores. Articles are mostly written by the health experts themselves. The colors of the text boxes represent the sentiment of the texts. Shades of red color represent “negative” sentiment (having “Bing” score lower than 0). Shades of blue represent “positive” sentiment (having “Bing” score greater than 0). White color represent a “Bing” score of zero.</p>
+        <p>The coronavirus outbreak has seemed to hit the U.S. hard. As of <a href="https://www.bbc.com/news/world-us-canada-52258284">April 12</a>, US death toll has overtaken Italy as world's highest, with New York state being the epicenter of the outbreak. The country is well on its way to end up with the worst COVID-19 outbreak in the industrialized world. How did a country with supposedly the best medical infrastructure in the world be so ill-prepared for the pandemic when world leaders were warned about it since early January.</p>
+        <p>This visualization takes a look at the contrast in reactions to the coronavirus between President Trump's and a range of health experts and scientists, the US Department of Health and Human Services (HHS) and the World Health Organization (WHO) in the period between Jan. 22 to March 11, 2020 through an analysis of the sentiment scores of their speeches, articles or tweets.</p>
+        <p>The project uses <a href="https://cran.r-project.org/web/packages/syuzhet/vignettes/syuzhet-vignette.html">Syuzhet Package</a> in R and the lexicon <a href="https://www.tidytextmining.com/sentiment.html">“Bing”</a> to analyze the sentiments of the texts. The “Bing” lexicon assigns words into positive and negative categories with scores. The colors of the text boxes represent the sentiment of the texts. Shades of red color represent “negative” sentiment (having “Bing” score lower than 0). Shades of blue represent “positive” sentiment (having “Bing” score greater than 0). White color represent a “Bing” score of zero.</p>
         <p>The sentiment scores are not reflective or intended to be reflective of any specific quality of the texts and the speakers, nor are they useful in representing and illustrating the complexities and nuances of these texts. They simply provide a unit of measurement to measure and illustrate a contrast in reactions from two sides. Thus, snippets of the respective texts as well as link to the full texts are provided in each textbox for your reference.
         </p>
         <div class="container">
@@ -34,7 +35,7 @@
 
         <div id="fullChart"><p>Detailed Timeline</p></div>
         <div  class="legend"><img src="scalerb.png" width="700px"></div>
-        <p id="disclaimer">*The sentiment scores are certainly not reflective of any specific quality of the texts and the speakers, nor are they useful in representing and illustrating the complexities and nuances of these texts. Thus, snippets of the respective texts as well as link to the full texts are provided in each textbox for your reference.
+        <p id="disclaimer">*The sentiment scores in this visualization are not reflective of any specific quality of the texts and the speakers, nor are they meant to represent and illustrate the complexities and nuances of these texts. Thus, snippets of the respective texts as well as link to the full texts are provided in each textbox for your reference.
         </p>
     </div>
   <!-- Vertical Timeline -->
@@ -396,8 +397,8 @@
         <div class="footnote">
           <h2>Summary of methodology</h2>
           <h3>Sentiment analysis</h3>
-            <p>
-              The project uses lexicon “Bing” and R scripts to analyze the sentiments of the texts. The “Bing” lexicon assigns words into positive and negative categories with scores. Texts by health experts are retrieved mostly from op-ed articles written by the health experts themselves.        
+            <p>  
+              The project uses <a href="https://cran.r-project.org/web/packages/syuzhet/vignettes/syuzhet-vignette.html">Syuzhet Package</a> in R and the lexicon <a href="https://www.tidytextmining.com/sentiment.html">“Bing”</a> to analyze the sentiments of the texts. The “Bing” lexicon assigns words into positive and negative categories with scores. 
             </p>
             
             <p>
@@ -410,6 +411,7 @@
             
             <p>The small snippets, together with the varying degrees of positivity or negativity are added in the hope to offset the simplicity and personal bias to an extent. When the method of analysis was (negative and positive spectrum) chosen for the project, it was intended to help highlight the contrasting reactions, but what it lost was richness of the sentiments (anger, anticipation, disgust, fear, joy, sadness, surprise…). These are the shortcomings of the visualization’s analysis method.
             </p>
+
          <h3>Origins of articles, speeches and tweets from Trump, the WHO, the HHS and health experts</h3>
           <p>Texts analyzed in this project are taken from transcripts of interviews and rallies by President Trump or published on President Trump's Twitter, the WHO's website, the HHS's website, the White House's website as well as on the following publications, which has been checked of the “media bias check” on <a href="mediabiasfactcheck.com">mediabiasfactcheck.com</a>:</p>
             <ol>
