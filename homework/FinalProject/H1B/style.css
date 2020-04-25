@@ -191,12 +191,13 @@
 
    
     a:link, a:visited{
-    color: #adadad;
+    color: #ff4e4e;
     text-decoration: none;
+    /* font-weight: bold; */
     }
 
     a:hover{
-    color: rgb(255, 255, 255);
+    color: rgb(238, 169, 169);
     text-decoration: underline;
     }
   
