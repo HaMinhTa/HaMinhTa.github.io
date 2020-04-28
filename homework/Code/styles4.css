@@ -4,18 +4,18 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
 
-#title {
-  font-family: 'Alfa Slab One', cursive;
-  letter-spacing: 2;
-  /* text-transform: uppercase; */
-  font-size: 50px;
-  font-weight: lighter;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
+
+
+.highlight {
+  color: #5e5bf6;
 }
-#credit {
-  text-align: right;
-  margin-top: 8%;
-  margin-right: 2%;
-  font-size: 16px;
+
+#title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 50px;
+  color: rgb(58, 58, 58);
 }
 
 #disclaimer {
@@ -38,33 +38,21 @@ body {
 
   }
 
-.header {
-    font-size: 25px;
-    color: rgb(255, 255, 255);
-    background-image: url("background.jpg");
-    background-position: 90% 100%;
-    background-size: cover;
-    padding-top: 10%;
-    padding-bottom: 7%;
+.header { 
+    padding-top: 5%;
+    padding-bottom: 5%;
     text-align: center;
     margin-top: -10;
     margin-left: -8;
     margin-right: -8;
-    background-attachment: fixed;
-    height: 260px;
-    text-shadow: 0 6px 10px black;
-
   }
 
 .timeline-article p.seemore {
     margin-top: 5%;
 }
 
-
-
 .bodytext {
     color: rgb(22, 22, 22);
-    padding-top: 5%;
     padding-bottom: 5%;
     width: 50%;
     margin-left: 25%;
@@ -75,8 +63,9 @@ body {
 
 #subtitle {
     line-height: 2.4rem;
-    font-family: "Roboto", sans-serif;
-    font-size: 25px;
+    font-family: "Crimson Text", serif;
+    font-size: 24px;
+    color: rgb(58, 58, 58);
 
 }
 
