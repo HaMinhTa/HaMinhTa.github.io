@@ -11,6 +11,12 @@
   color: #5e5bf6;
 }
 
+#byline {
+  padding-top: 3%;
+  font-size: 18px;
+  color: #818181;
+}
+
 #title {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
