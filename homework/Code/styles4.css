@@ -12,6 +12,7 @@
 }
 
 #byline {
+  font-family: "Roboto", sans-serif;
   padding-top: 3%;
   font-size: 18px;
   color: #818181;
@@ -26,7 +27,7 @@
 
 #disclaimer {
   font-style: italic;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .footnote {
@@ -39,9 +40,8 @@
 
 body {
     background: #ffffff;
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
-
+    font-family: "Crimson Text", serif;
+    font-size: 18px;
   }
 
 .header { 
@@ -239,7 +239,7 @@ body {
   }
 
   .timeline-article p.sub{
-    font-size: 13px;
+    font-size: 15px;
     text-align: left;
     padding-top: 5%;
     font-style: italic;
@@ -248,7 +248,8 @@ body {
   .timeline-article p.score {
     padding-top: 5%;
     font-weight: bold;
-
+    font-family: "Roboto", sans-serif;
+    font-size: 13px;
 }
 
   .timeline-article p {
@@ -256,7 +257,7 @@ body {
     padding: 0;
     font-weight: 400;
     color: #242424;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 24px;
     position: relative;
   }
