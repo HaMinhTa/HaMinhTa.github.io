@@ -12,5 +12,16 @@ h1 {
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-
+.footnote {
+    padding-top: 2%; 
+    padding-bottom: 2%; 
+    font-family: "Roboto", sans-serif;
+    text-align: left;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    line-height: 2rem;
+    font-size: 15px;
+    font-style: italic;
+}
 

@@ -11,11 +11,15 @@
 </head>
 <body>
     <h1>Facebook pages that are "superspreaders" of Covid-19 misinformation</h1>
-	<svg></svg>
+    <div class="footnote">"Superspreaders" Facebook Pages are pages that have large Facebook audiences (likes and followers). Combined, these accounts reach 21,352,918 followers.</div>
+
 	<div>
-		<input type="search" id="search_input" placeholder="Search for website...">
+		<input type="search" id="search_input" placeholder="Search for account...">
 		<button id="search_button">Search</button>
-	</div>
+    </div>
+    
+    <svg></svg>
+
 	<script type="text/javascript">
 
 	d3.csv("Facebook.csv", function(data) {
@@ -68,7 +72,7 @@
           tooltip.html(`Name: <b>${d.data.Name}</b><br> Number of page likes: <b>${numberWithCommas(d.data.Count)}</b> <br> ${d.data.Notes}`)
           .style("left", "850px")
             .style("width", "450px")
-            .style("top", "160px")
+            .style("top", "300px")
             .style("opacity", 1)
             .style("font-size", "16px")
             .style("line-height", "1.9")
