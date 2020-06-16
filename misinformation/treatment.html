@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+		<title>D3: A simple packed Bubble Chart</title>
+		<script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+
+        <link rel="stylesheet" href="chartstyle.css"/> 
+	
+		</style>
+</head>
+<body>
+    <h1>Misinformation about Covid-19 Vaccine</h1>
+    <svg></svg>
+	<script type="text/javascript">
+
+        dataset = {
+            "children": [{"Name":"Garlic","Count":10, "Tooltip": "<b>MYTH</b>: “Garlic can cure COVID-19.” <br> <b>FACT</b>: The World Health Organization has stated, “Garlic is a healthy food that may have some antimicrobial properties. However, there is no evidence from the 2020 outbreak that eating garlic has protected people from the new strain of coronavirus.” <br><b>HOW THE HOAX EMERGED</b>: The earliest example of this claim was a Jan. 31, 2020 post from an anonymous Twitter account based in the Philippines, sharing a recipe claiming the virus “can be cured by one bowl of freshly boiled garlic water,” according to a February 2020 article from FactCheck.org."},
+                {"Name":"Vitamin C","Count":10, "Tooltip": "<b>MYTH</b>: “High doses of vitamin C have been proven to be an effective treatment for COVID-19.” <br> <b>FACT</b>: While a clinical trial is underway in China to test whether a high-dose vitamin C regimen is effective against COVID-19, the claim that it is a proven treatment for COVID-19 is not supported by scientific evidence. Vitamin C has some marginal benefits for the common cold, such as reducing the duration of symptoms if it is taken before catching the cold, but those benefits can be achieved with a diet that includes 200 milligrams of vitamin C, according to Harvard Health Publishing. The daily dosage being tested in the Chinese trial is 60 times higher. <br><b>HOW THE HOAX EMERGED</b>: The claim originated in a Jan. 26, 2020 press release titled “Vitamin C Protects Against Coronavirus,” from the International Society for Orthomolecular Medicine, which promotes large doses of nutritional supplements. The article was then republished in full the next day on HealthImpactNews.com, a Red-rated network of health sites with 450,000 Facebook followers that has promoted false health claims such as the debunked link between vaccines and autism."},
+                {"Name":"Lemon and hot water","Count":10, "Tooltip": "<b>MYTH</b>: “Lemon and hot water can cure COVID-19.” <br> <b>FACT</b>: This myth relies on the false claim that what you eat or drink creates an alkaline environment in your body, making it less acidic by raising its pH level. In reality, drinking lemon juice (or anything else) cannot change your body’s pH level. Similar alkaline diet remedies have been falsely promoted as cancer cures, prompting Cancer Research UK to call them “biological nonsense” in a March 2014 article. <br><b>HOW THE HOAX EMERGED</b>: This claim, according to a March 2020 article from PolitiFact.com, has its origins in a video shared on Facebook Messenger by Marian Gorban the owner of MrHealthyChannel, an alternative health channel on YouTube with more than 22,000 subscribers. This claim was first published by the Italian website ViralMagazine.it and received more than 70,000 interactions on Facebook, including more than 40,000 shares, according to data from social media metrics company CrowdTangle. The false claim was also published on the site FanMagazine.it, which is connected to the Facebook Pages ღஐღ Semplicemente Charlie ღஐღ and Ti amo, però ღஐღ Semplicemente Charlie ღஐღ, which have more than 2 million followers and more than 600,000 followers, respectively."},
+                {"Name":"Miracle Mineral Solution","Count":10, "Tooltip": "<b>MYTH</b>: “Miracle Mineral Solution can cure COVID-19.” <br> <b>FACT</b>: Miracle Mineral Solution, or MMS, is chlorine dioxide, a powerful bleaching agent that has been promoted as a cure-all for everything from cancer to autism. There is no reliable evidence supporting its use for COVID-19 or any other disease, and ingesting it can cause serious side effects such as severe vomiting and acute liver failure, according to the U.S. Food and Drug Administration. <br><b>HOW THE HOAX EMERGED</b>: The earliest mention of the theory that MMS could treat the new coronavirus strain was a January 25, 2020 tweet from Jordan Sather, the U.S. conspiracy theorist described above as originating the Bill Gates patent conspiracy. It was later promoted in a January 27, 2020 article posted on the website of Jim Humble, a former Scientologist and gold prospector who claimed to have discovered MMS in 1996."},
+                {"Name":"Colloidal silver","Count":10, "Tooltip": "<b>MYTH</b>: “Colloidal silver can cure COVID-19.” <br> <b>FACT</b>: Colloidal silver is a liquid substance containing silver particles. According to the U.S. National Center for Complementary and Integrative Health, “scientific evidence doesn’t support the use of colloidal silver dietary supplements for any disease or condition.” Using colloidal silver can cause a condition called argyria, a permanent bluish-gray discoloration of the skins, nails, and gums. In an article by The Associated Press, NCCIH director Helene Langevin said, “There are no complementary products, such as colloidal silver or herbal remedies, that have been proven effective in preventing or treating this disease, and colloidal silver can have serious side effects. <br><b>HOW THE HOAX EMERGED</b>: Despite the lack of evidence supporting its use, colloidal silver has been promoted as a cure for all kinds of ailments, from bacterial and viral infections to cancer, since the late 19th century. Sellers began promoting it as a treatment for COVID-19, most prominently on a Feb. 12, 2020 broadcast of televangelist Jim Bakker’s TV show. On March 6, the U.S. Food and Drug Administration and Federal Trade Commission warned Bakker to stop representing his silver products as a treatment for COVID-19 on his show and website."},
+                {"Name":"Hydroxychloroquine","Count":10, "Tooltip": "<b>MYTH</b>: “Hydroxychloroquine can cure COVID-19.” <br> <b>FACT</b>: In January, some doctors in China began treating COVID-19 patients with Hydroxychloroquine, an anti-malarial drug, but it was just one of many treatments attempted to fend off the quickly spreading virus. In March, at least two Nigerians were in hospital after being poisoned by the drug after U.S. President Donald Trump endorsed it as a possible cure for COVID-19. In late April, the U.S. Food and Drug Administration issued a warning against using Hydroxychloroquine to treat COVID-19 because it has caused serious heart-rhythm problems in patients. The drug is also linked to increased risk of death in COVID-19 patients, according to a study published in  medical journal Lancet.<br><b>HOW THE HOAX EMERGED</b>: President Donald Trump has consistently touted hydroxychloroquine as a potential cure for COVID-19. In May, he told the press that he’s taking the drug as a preventative to ward off the coronavirus. In February, Didier Raoult, a French doctor, posted a video promoting the use of hydroxychloroquine to treat COVID-19. The following day, an interview he did with La Provence was posted to Facebook and started to gain traction. In March, billionaire Elon Musk tweeted in favor of using the drug to treat COVID-19 to his 36 million followers."}]
+                // {"Name":"Chloroquine","Count":10, "Tooltip":""}]
+        };
+
+        var diameter = 600;
+        var color = d3.scaleOrdinal(d3.schemeCategory20);
+
+        var bubble = d3.pack(dataset)
+            .size([diameter, diameter])
+            .padding(1.5);
+
+        var svg = d3.select("svg")
+            .attr("width", diameter)
+            .attr("height", diameter)
+            .attr("class", "bubble");
+
+        var nodes = d3.hierarchy(dataset)
+            .sum(function(d) { return d.Count; });
+
+        var node = svg.selectAll(".node")
+            .data(bubble(nodes).descendants())
+            .enter()
+            .filter(function(d){
+                return  !d.children
+            })
+            .append("g")
+            .attr("class", "node")
+            .attr("transform", function(d) {
+                return "translate(" + d.x + "," + d.y + ")";
+            });
+        
+        var tooltip = d3.select("body")
+            .append("div")
+            .attr("class", "tooltip")
+            .style("position", "absolute")
+            .style("background", "#dedede")
+            .style("border-radius", "6px");
+
+        node.on("mouseover", function(d,i) {
+            d3.select(this).attr("fill", "#D3D3D3");
+            tooltip.transition().duration(100)
+            tooltip.html(`${d.data.Tooltip}`)
+            .style("left", "850px")
+            .style("width", "420px")
+            .style("top", "40px")
+            .style("opacity", 1)
+            .style("font-size", "16px")
+            .style("line-height", "1.9")
+            .style("text-align", "left")
+            .style("padding", "30px 40px");
+            })
+            .on("mouseout", function() {
+            d3.select(this).attr("fill", "#dedede")
+            tooltip.html("")
+            .style("padding", "0");
+            });
+
+
+        node.append("circle")
+            .attr("r", function(d) {
+                return d.r;
+            })
+            .style("fill", "#03D5FA");
+
+        node.append("text")
+            .attr("dy", ".2em")
+            .style("text-anchor", "middle")
+            .text(function(d) {
+                return d.data.Name.substring(0, d.r / 3);
+            })
+            .attr("font-family", "sans-serif")
+            .attr("font-size", function(d){
+                return d.r/5.8;
+            })
+            .attr("fill", "white");
+
+        // node.append("text")
+        //     .attr("dy", "1.3em")
+        //     .style("text-anchor", "middle")
+        //     .text(function(d) {
+        //         return d.data.Count;
+        //     })
+        //     .attr("font-family",  "Gill Sans", "Gill Sans MT")
+        //     .attr("font-size", function(d){
+        //         return d.r/5;
+        //     })
+        //     .attr("fill", "white");
+
+        d3.select(self.frameElement)
+            .style("height", diameter + "px");
+
+
+
+	</script>
+</body>
+</html>

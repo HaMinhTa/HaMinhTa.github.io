@@ -1,0 +1,44 @@
+
+h1 {
+    color: rgb(0, 119, 255);
+    font-size: 50px;
+    text-align: center;
+    padding-top: 5%;
+    padding-bottom: 3%;
+}
+
+h2 {
+    color: rgb(0, 119, 255);
+    font-size: 30px;
+    text-align: center;
+    padding-top: 4%;
+    padding-bottom: 2%;
+}
+
+.box {
+    text-align: center;
+    border: 1px solid rgb(224, 224, 224);
+    box-shadow: 0 8px 16px 0 rgba(109, 109, 109, 0.5);
+    padding: 50px;
+    margin: 20px;
+  }
+
+
+.box:hover {
+    box-shadow: 0 12px 20px 0 rgba(128, 128, 128, 0.9);
+}
+
+.footnote {
+    /* padding-top: 4%;  
+    padding-bottom: 8%; */
+    font-family: "Roboto", sans-serif;
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+    line-height: 2rem;
+    font-size: 16px;
+}
+
+.end {
+    padding-top: 150px;  
+}

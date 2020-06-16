@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+		<title>D3: A simple packed Bubble Chart</title>
+		<script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+
+        <link rel="stylesheet" href="chartstyle.css"/>
+
+		</style>
+</head>
+<body>
+    <h1>Websites that delivered Covid-19 misinformation</h1>
+	<svg></svg>
+	<div>
+		<input type="search" id="search_input" placeholder="Search for website...">
+		<button id="search_button">Search</button>
+	</div>
+    <script type="text/javascript">
+
+		d3.csv("Website.csv", function(data) {
+
+			let dataset = { "children": [] };
+			let setOfSites = new Set();
+
+			for (row of data) {
+				dataset["children"].push({ "Name": row["Name"], "Count": row["Visitors"], "Notes": row["Notes"]});
+				setOfSites.add(row["Name"]);
+			}
+
+      console.log(dataset)
+      var diameter = 690;
+      var color = d3.scaleOrdinal(d3.schemeCategory20);
+
+      var bubble = d3.pack(dataset)
+          .size([diameter, diameter])
+          .padding(1.5);
+
+      var svg = d3.select("svg")
+          .attr("width", diameter)
+          .attr("height", diameter)
+          .attr("class", "bubble");
+
+      var nodes = d3.hierarchy(dataset)
+          .sum(function(d) { return d.Count; });
+
+      var node = svg.selectAll(".node")
+          .data(bubble(nodes).descendants())
+          .enter()
+          .filter(function(d){
+              return  !d.children
+          })
+          .append("g")
+          .attr("class", "node")
+          .attr("transform", function(d) {
+              return "translate(" + d.x + "," + d.y + ")";
+          });
+
+      var tooltip = d3.select("body")
+          .append("div")
+          .attr("class", "tooltip")
+          .style("position", "absolute")
+          .style("background", "#dedede")
+          .style("border-radius", "6px");
+
+      node.on("mouseover", function(d,i) {
+          d3.select(this).attr("fill", "#D3D3D3");
+          tooltip.transition().duration(100)
+          tooltip.html(`Name: <b>${d.data.Name}</b><br> Site views, May: <b>${numberWithCommas(d.data.Count)}</b>`)
+          .style("left", "850px")
+            .style("width", "420px")
+            .style("top", "200px")
+            .style("opacity", 1)
+            .style("font-size", "16px")
+            .style("line-height", "1.9")
+            .style("text-align", "left")
+            .style("padding", "30px 40px");
+            })
+          .on("mouseout", function() {
+          d3.select(this).attr("fill", "#dedede")
+          tooltip.html("")
+          .style("padding", "0");
+          });
+
+
+      node.append("circle")
+          .attr("r", function(d) {
+              return d.r;
+          })
+					.attr("id", function(d) {
+						return d.data.Name.split(" ").join("_");
+					})
+          .attr("fill", "#FF828F");
+
+      node.append("text")
+          .attr("dy", ".2em")
+          .style("text-anchor", "middle")
+          .text(function(d) {
+              return d.data.Name.substring(0, d.r / 3);
+          })
+          .attr("font-family", "sans-serif")
+          .attr("font-size", function(d){
+              return d.r/5.6;
+          })
+          .attr("fill", "white");
+    
+      function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        };
+
+      node.append("text")
+          .attr("dy", "1.6em")
+          .style("text-anchor", "middle")
+          .text(function(d) {
+              return `${numberWithCommas(d.data.Count)} Site Views in May`;
+          })
+          .attr("font-family",  "Gill Sans", "Gill Sans MT")
+          .attr("font-size", function(d){
+              return d.r/8;
+          })
+          .attr("fill", "white");
+
+      d3.select(self.frameElement)
+          .style("height", diameter + "px");
+
+			document.getElementById("search_button").addEventListener("click", searchForWebsite);
+
+			function searchForWebsite() {
+				website = document.getElementById("search_input").value;
+				websiteId = website.split(" ").join("_");
+
+				if (setOfSites.has(website)) {
+					console.log("Has website");
+					d3.select(`#${websiteId}`)
+						.attr("fill", "#3437EB");
+				} else {
+					console.log("Doesn't have website");
+				}
+			}
+		});
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+		<title>D3: A simple packed Bubble Chart</title>
+		<script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+
+        <link rel="stylesheet" href="chartstyle.css"/> 
+
+		</style>
+</head>
+<body>
+    <h1>Misinformation about Covid-19 Vaccine</h1>
+	<script type="text/javascript">
+
+        dataset = {
+            "children": [{"Name":"Bill Gates inserts surveillance microchip in vaccine","Count":10, "Tooltip": "<b>MYTH</b>: “Bill Gates plans to use COVID-19 to implement a mandatory vaccine program with microchips to surveil people.” <br><b>FACT</b>: In December 2019, researchers at MIT, who had received funding from the Gates Foundation, published a paper about a technology they developed that can keep vaccination record on a patient’s skin with an ink-like injection that could be read by smartphone. The technology does not have the capacity to track patients’ movements, Kevin McHugh, a Rice University bioengineering professor who worked on the study while at MIT, told FactCheck.org. The Gates Foundation told FactCheck.org that the research is unrelated to COVID-19. Some versions of this conspiracy theory also assert that the purpose of the “tracking” vaccine is to control or reduce the world population, which is also false. <br> <b>HOW THE HOAX EMERGED</b>: According to FactCheck.org and BuzzFeed News, conspiracy theorists have distorted comments that Gates made during a March 18 Reddit forum. Gates discussed “digital certificates,” a technology used to transmit encrypted information online, as part of a solution to expand COVID-19 testing. However, conspiracy theorists claim that Gates was referring instead to the MIT research into skin-based vaccination records. The website BioHackInfo.com published a story containing the false claims on March 19, 2020, the day after Gates’ Reddit forum, using the term “microchip,” which did not appear in either Gates’ statements or the research. FactCheck.org and BuzzFeed News reported that the conspiracy theory was subsequently amplified by a YouTube video from the Jacksonville, Florida-based Law of Liberty Baptist Church, which received 1.9 million views as of publication."}]};
+
+        var diameter = 400;
+        var color = d3.scaleOrdinal(d3.schemeCategory20);
+
+        var bubble = d3.pack(dataset)
+            .size([diameter, diameter])
+            .padding(1.5);
+
+        var svg = d3.select("body")
+            .append("svg")
+            .attr("width", diameter)
+            .attr("height", diameter)
+            .attr("class", "bubble");
+
+        var nodes = d3.hierarchy(dataset)
+            .sum(function(d) { return d.Count; });
+
+        var node = svg.selectAll(".node")
+            .data(bubble(nodes).descendants())
+            .enter()
+            .filter(function(d){
+                return  !d.children
+            })
+            .append("g")
+            .attr("class", "node")
+            .attr("transform", function(d) {
+                return "translate(" + d.x + "," + d.y + ")";
+            });
+
+        var tooltip = d3.select("body")
+            .append("div")
+            .attr("class", "tooltip")
+            .style("position", "absolute")
+            .style("background", "#dedede")
+            .style("border-radius", "6px");
+
+        node.on("mouseover", function(d,i) {
+            d3.select(this).attr("fill", "#D3D3D3");
+            tooltip.transition().duration(100)
+            tooltip.html(`${d.data.Tooltip}`)
+            .style("left", "800px")
+            .style("width", "500px")
+            .style("top", "40px")
+            .style("opacity", 1)
+            .style("font-size", "14px")
+            .style("line-height", "1.9")
+            .style("text-align", "left")
+            .style("padding", "30px 40px");
+            })
+            .on("mouseout", function() {
+            d3.select(this).attr("fill", "#dedede")
+            tooltip.html("")
+            .style("padding", "0");
+            });
+
+
+        node.append("circle")
+            .attr("r", function(d) {
+                return d.r;
+            })
+            .style("fill", "#03D5FA");
+
+        node.append("text")
+            .attr("dy", ".2em")
+            .style("text-anchor", "middle")
+            .text(function(d) {
+                return d.data.Name.substring(0, d.r / 3);
+            })
+            .attr("font-family", "sans-serif")
+            .attr("font-size", function(d){
+                return d.r/14;
+            })
+            .attr("fill", "white");
+
+        // node.append("text")
+        //     .attr("dy", "1.3em")
+        //     .style("text-anchor", "middle")
+        //     .text(function(d) {
+        //         return d.data.Count;
+        //     })
+        //     .attr("font-family",  "Gill Sans", "Gill Sans MT")
+        //     .attr("font-size", function(d){
+        //         return d.r/5;
+        //     })
+        //     .attr("fill", "white");
+
+        // d3.select(self.frameElement)
+        //     .style("height", diameter + "px");
+
+
+
+	</script>
+</body>
+</html>
