@@ -67,7 +67,7 @@
         .style("background", "#dedede")
         .style("border-radius", "6px");
 
-        node.on("mouseover", function(d,i) {
+        node.on("click", function(d,i) {
         d3.select(this).attr("fill", "#D3D3D3");
         tooltip.transition().duration(100)
         tooltip.html(`Name: <b>${d.data.Name}</b><br> Number of followers: <b>${numberWithCommas(d.data.Count)}</b> <br> ${d.data.Notes}`)
