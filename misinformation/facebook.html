@@ -78,12 +78,7 @@
             .style("line-height", "1.9")
             .style("text-align", "left")
             .style("padding", "30px 40px");
-            })
-          .on("mouseout", function() {
-          d3.select(this).attr("fill", "#dedede")
-          tooltip.html("")
-          .style("padding", "0");
-          });
+            });
 
 
       node.append("circle")

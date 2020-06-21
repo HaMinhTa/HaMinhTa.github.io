@@ -11,6 +11,7 @@
 </head>
 <body>
     <h1>Websites that published Covid-19 misinformation</h1>
+    <div class="buttoncontainer"><button class="button">Home</button></div>
 
 	<div>
 		<input type="search" id="search_input" placeholder="Search for website...">
@@ -78,12 +79,7 @@
             .style("line-height", "1.9")
             .style("text-align", "left")
             .style("padding", "30px 40px");
-            })
-          .on("mouseout", function() {
-          d3.select(this).attr("fill", "#dedede")
-          tooltip.html("")
-          .style("padding", "0");
-          });
+            });
 
 
       node.append("circle")
@@ -115,7 +111,7 @@
           .attr("dy", "1.6em")
           .style("text-anchor", "middle")
           .text(function(d) {
-              return `${numberWithCommas(d.data.Count)} Site Views in May`;
+              return `${numberWithCommas(d.data.Count)} Monthly Views*`;
           })
           .attr("font-family",  "Gill Sans", "Gill Sans MT")
           .attr("font-size", function(d){
