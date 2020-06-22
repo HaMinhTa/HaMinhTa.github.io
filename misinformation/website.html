@@ -11,7 +11,7 @@
 </head>
 <body>
     <h1>Websites that published Covid-19 misinformation</h1>
-    <div class="buttoncontainer"><button class="button">Home</button></div>
+    <div class="buttoncontainer"><a href="covid19page.html"><button class="button">Return to Home</button></a></div>
 
 	<div>
 		<input type="search" id="search_input" placeholder="Search for website...">
@@ -21,6 +21,7 @@
     <svg></svg>
 
     <script type="text/javascript">
+        var orange = "#FF828F";
 
 		d3.csv("Website.csv", function(data) {
 
@@ -28,7 +29,7 @@
 			let setOfSites = new Set();
 
 			for (row of data) {
-				dataset["children"].push({ "Name": row["Name"], "Count": row["Visitors"], "Notes": row["Notes"]});
+				dataset["children"].push({ "Name": row["Name"], "Count": row["Visitors"], "Notes": row["Notes"], "Misinformation": row["Hoax"], "DateRecorded": row["Date Recorded"]});
 				setOfSites.add(row["Name"]);
 			}
 
@@ -70,7 +71,7 @@
       node.on("click", function(d,i) {
           d3.select(this).attr("fill", "#D3D3D3");
           tooltip.transition().duration(100)
-          tooltip.html(`Name: <b>${d.data.Name}</b><br> Site views, May: <b>${numberWithCommas(d.data.Count)}</b>`)
+          tooltip.html(`Name: <b>${d.data.Name}</b><br> Monthly site views: <b>${numberWithCommas(d.data.Count)}</b> <br><b>Examples of misinformation:</b> ${d.data.Misinformation} <br> <b>Date Recorded</b>: ${d.data.DateRecorded}`)
           .style("left", "850px")
             .style("width", "420px")
             .style("top", "200px")
@@ -86,10 +87,10 @@
           .attr("r", function(d) {
               return d.r;
           })
-					.attr("id", function(d) {
+		  .attr("id", function(d) {
 						return d.data.Name.split(" ").join("_");
 					})
-          .attr("fill", "#FF828F");
+          .attr("fill", orange);
 
       node.append("text")
           .attr("dy", ".2em")

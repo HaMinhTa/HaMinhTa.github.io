@@ -12,6 +12,7 @@
 <body>
     <h1>Facebook pages that are "superspreaders" of Covid-19 misinformation</h1>
     <div class="footnote">"Superspreaders" Facebook Pages are pages that have large Facebook audiences (likes and followers). Combined, these accounts reach 21,352,918 followers.</div>
+    <div class="buttoncontainer"><a href="covid19page.html"><button class="button">Return to Home</button></a></div>
 
 	<div>
 		<input type="search" id="search_input" placeholder="Search for account...">
@@ -20,7 +21,9 @@
     
     <svg></svg>
 
-	<script type="text/javascript">
+    <script type="text/javascript">
+    var orange = "#FF828F";
+
 
 	d3.csv("Facebook.csv", function(data) {
 
@@ -28,7 +31,7 @@
 			let setOfSites = new Set();
 
 			for (row of data) {
-				dataset["children"].push({ "Name": row["Name"], "Count": row["Page Likes"], "Notes": row["Notes"]});
+				dataset["children"].push({ "Name": row["Name"], "Count": row["Page Likes"], "Notes": row["Notes"], "Date": row["Date"]});
 				setOfSites.add(row["Name"]);
 			}
 
@@ -43,6 +46,11 @@
           .attr("width", diameter)
           .attr("height", diameter)
           .attr("class", "bubble");
+
+      svg.append("circle").attr("cx",15).attr("cy",30).attr("r", 12).style("fill", orange).style("opacity", 0.5)
+      svg.append("circle").attr("cx",15).attr("cy",60).attr("r", 12).style("fill", orange).style("opacity", 1)
+      svg.append("text").attr("x", 35).attr("y", 30).text("Recorded before today").style("font-size", "15px").attr("alignment-baseline","middle")
+      svg.append("text").attr("x", 35).attr("y", 60).text("Recorded today").style("font-size", "15px").attr("alignment-baseline","middle")
 
       var nodes = d3.hierarchy(dataset)
           .sum(function(d) { return d.Count; });
@@ -80,15 +88,25 @@
             .style("padding", "30px 40px");
             });
 
+      var color = function(d) {
+            if (d.data.Date === "today") {
+                return "1";
+            } else {
+                return "0.4";
+            }
+      };
+
+      console.log(dataset.children.Date);
 
       node.append("circle")
           .attr("r", function(d) {
               return d.r;
           })
-					.attr("id", function(d) {
+		  .attr("id", function(d) {
 						return d.data.Name.split(" ").join("_");
 					})
-          .attr("fill", "#FF828F");
+          .attr("fill", orange)
+          .attr("opacity", color);
 
       node.append("text")
           .attr("dy", ".2em")

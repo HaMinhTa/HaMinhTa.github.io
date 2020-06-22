@@ -13,6 +13,8 @@
     <h1>Twitter accounts that are "superspreaders" of Covid-19 misinformation</h1>
     <div class="footnote">"Superspreaders" Twitter accounts are accounts with 100,000 or more followers — who have shared links with false information from websites NewsGuard has found to be generally unreliable sources of news, or who have shared other COVID-19 misinformation reviewed by NewsGuard. Accounts with these many followers represent an infinitesimal percentage of Twitter accounts.
     </div>
+    <div class="buttoncontainer"><a href="covid19page.html"><button class="button">Return to Home</button></a></div>
+
   
 	<div>
 		<input type="search" id="search_input" placeholder="Search for account...">
@@ -21,7 +23,9 @@
 
     <svg></svg>
     
-	<script type="text/javascript">
+    <script type="text/javascript">
+        var orange = "#FF828F";
+
 
         d3.csv("Twitter.csv", function(data) {
 
@@ -89,7 +93,7 @@
                 .attr("id", function(d) {
                     return d.data.Name.split(" ").join("_");
                 })
-        .attr("fill", "#FF828F");
+        .attr("fill", orange);
 
         node.append("text")
         .attr("dy", ".2em")

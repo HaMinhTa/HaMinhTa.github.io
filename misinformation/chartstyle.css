@@ -7,14 +7,13 @@ h1 {
     color: rgb(0, 119, 255);
     font-size: 25px;
     text-align: center;
-    padding-top: 3%;
+    padding-top: 2%;
     padding-bottom: -4%;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .footnote {
     padding-top: 2%; 
-    padding-bottom: 2%; 
     font-family: "Roboto", sans-serif;
     text-align: left;
     width: 80%;
@@ -25,14 +24,23 @@ h1 {
     font-style: italic;
 }
 
-.buttoncontainer {    
-    padding-bottom: 10px; 
-
+.buttoncontainer { 
+    padding-top: 2%;
+    padding-bottom: 2%; 
 }
 
+
 .button:hover {
-    background-color: #555555;
+    background-color: #a09d9d;
     color: white;
-  }
+}
+
+.minus {
+    margin-top: -5%;
+}
+
+.plus {
+    padding-top: 8%;
+}
 
 
