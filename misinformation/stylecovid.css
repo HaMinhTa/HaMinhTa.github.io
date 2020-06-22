@@ -5,6 +5,8 @@ h1 {
     text-align: center;
     padding-top: 5%;
     padding-bottom: 3%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
 }
 
 h2 {
@@ -13,6 +15,8 @@ h2 {
     text-align: center;
     padding-top: 4%;
     padding-bottom: 2%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
 }
 
 .box {
@@ -41,4 +45,7 @@ h2 {
 
 .end {
     padding-top: 150px;  
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
 }
