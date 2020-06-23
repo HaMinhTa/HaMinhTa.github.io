@@ -25,6 +25,8 @@ h2 {
     box-shadow: 0 8px 16px 0 rgba(109, 109, 109, 0.5);
     padding: 50px;
     margin: 20px;
+    font-weight: bold;
+
   }
 
 
@@ -47,5 +49,6 @@ h2 {
     padding-top: 150px;  
     text-align: center;
     font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
 
 }
