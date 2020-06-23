@@ -20,6 +20,8 @@
 
     <svg></svg>
 
+    <div id="snackbar">Website not found</div>
+
     <script type="text/javascript">
         var orange = "#FF828F";
 
@@ -88,8 +90,8 @@
               return d.r;
           })
 		  .attr("id", function(d) {
-						return d.data.Name.split(" ").join("_");
-					})
+				return d.data.Name.split(".").join("_");
+		  })
           .attr("fill", orange);
 
       node.append("text")
@@ -123,21 +125,22 @@
       d3.select(self.frameElement)
           .style("height", diameter + "px");
 
-			document.getElementById("search_button").addEventListener("click", searchForWebsite);
+        document.getElementById("search_button").addEventListener("click", searchForWebsite);
 
-			function searchForWebsite() {
-				website = document.getElementById("search_input").value;
-				websiteId = website.split(" ").join("_");
+        function searchForWebsite() {
+            website = document.getElementById("search_input").value;
+            websiteId = website.split(".").join("_");
 
-				if (setOfSites.has(website)) {
-					console.log("Has website");
-					d3.select(`#${websiteId}`)
-						.attr("fill", "#3437EB");
-				} else {
-					console.log("Doesn't have website");
-				}
-			}
-		});
+            if (setOfSites.has(website)) {
+                d3.select(`#${websiteId}`)
+                    .attr("fill", "rgb(0, 119, 255)");
+            } else {
+                let snackbar = document.getElementById("snackbar");
+                snackbar.className = "show";
+                setTimeout(function() { snackbar.className = snackbar.className.replace("show", ""); }, 3000);
+            }
+        }
+	});
 
 	</script>
 </body>

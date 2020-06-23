@@ -7,7 +7,6 @@
 
         <link rel="stylesheet" href="chartstyle.css"/>
 
-		</style>
 </head>
 <body>
     <h1>Facebook pages that are "superspreaders" of Covid-19 misinformation</h1>
@@ -21,9 +20,11 @@
     
     <svg></svg>
 
-    <script type="text/javascript">
-    var orange = "#FF828F";
+    <div id="snackbar">Facebook page not found</div>
 
+    <script type="text/javascript">
+   
+    var orange = "#FF828F";
 
 	d3.csv("Facebook.csv", function(data) {
 
@@ -103,8 +104,8 @@
               return d.r;
           })
 		  .attr("id", function(d) {
-						return d.data.Name.split(" ").join("_");
-					})
+				return d.data.Name.split(" ").join("_");
+		  })
           .attr("fill", orange)
           .attr("opacity", color);
 
@@ -135,6 +136,7 @@
               return d.r/8;
           })
           .attr("fill", "white");
+        
 
       d3.select(self.frameElement)
           .style("height", diameter + "px");
@@ -146,11 +148,12 @@
 				websiteId = website.split(" ").join("_");
 
 				if (setOfSites.has(website)) {
-					console.log("Has website");
 					d3.select(`#${websiteId}`)
-						.attr("fill", "#3437EB");
+						.attr("fill", "rgb(0, 119, 255)");
 				} else {
-					console.log("Doesn't have website");
+                    let snackbar = document.getElementById("snackbar");
+                    snackbar.className = "show";
+                    setTimeout(function() { snackbar.className = snackbar.className.replace("show", ""); }, 3000);
 				}
 			}
 		});

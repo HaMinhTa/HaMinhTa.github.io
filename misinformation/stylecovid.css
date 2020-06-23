@@ -1,4 +1,5 @@
 
+
 h1 {
     color: rgb(0, 119, 255);
     font-size: 50px;
@@ -23,7 +24,7 @@ h2 {
     text-align: center;
     border: 1px solid rgb(224, 224, 224);
     box-shadow: 0 8px 16px 0 rgba(109, 109, 109, 0.5);
-    padding: 50px;
+    padding: 20px;
     margin: 20px;
     font-weight: bold;
     border-radius: 4px;
@@ -51,4 +52,12 @@ h2 {
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-style: italic;
 
+}
+
+.category {
+    padding-top: 3%;
+}
+
+a:hover{
+    text-decoration: none;
 }
