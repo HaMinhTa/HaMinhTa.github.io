@@ -108,6 +108,10 @@
       height: 140px;
     }
 
+    #lesspadding {
+      margin-top: -10%;
+    }
+
     .projects {
       font-family: "Staatliches", cursive;
       font-size: 40px;
