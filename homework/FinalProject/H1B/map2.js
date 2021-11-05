@@ -22,9 +22,7 @@ function drawMap(error, h1bData, geoData) {
   var maximum = d3.max(h1bData, function(d) {
       return parseInt(d.totalapprovals);
     });
-  
-  // var stateColor = d3.scaleSequential(d3.interpolateWarm)
-  //     .domain([0, maximum]);
+
   var scaleWidth = 300;
   var scaleHeight = 20;
   var scaleX = width/2.7;
@@ -42,6 +40,7 @@ function drawMap(error, h1bData, geoData) {
   var gradientScale = d3.scaleLinear().domain([0, maximum]).range([0, scaleWidth]);
   
   var gradientAxis = d3.axisBottom(gradientScale).ticks(8);
+  
   scale.select("#scaleAxis")
     .attr("transform", "translate(0, " + scaleHeight + ")")
     .call(gradientAxis);

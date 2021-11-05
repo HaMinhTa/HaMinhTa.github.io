@@ -11,7 +11,7 @@ var map = svg.select("#map");
 var tooltip = d3.select("body")
         .append("div")
         .attr("class", "tooltip")
-        .style("position", "absolute")
+        // .style("position", "absolute")
         .style("background", "black")
         .style("border-radius", "6px");
 
