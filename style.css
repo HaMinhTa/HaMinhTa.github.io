@@ -53,7 +53,13 @@ section {
   width: 30%;
 }
 
+.menu {
+  font-weight: bold;
+}
 
+.row {
+  text-align: center;
+}
 /* ----- Class selector styles ----- */
 
 a:link, a:visited {
@@ -63,6 +69,10 @@ a:link, a:visited {
 
 a:hover {
   text-decoration: underline;
+}
+
+.backToTop {
+  font-size: 14px;
 }
 
 .axisLabel {
@@ -263,5 +273,7 @@ h1 {
 .sticky-graphic {
   flex: 1 0 100%;
 }
+
+
 
 }
