@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css?family=Staatliches');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+    /* BODY STRUCTURE STYLES */
+
+    body {
+      font-family: "Open Sans", sans-serif;
+      background-color: #fffed0;
+      width: 50%;
+      padding-left: 25%;
+      padding-right: 25%;
+      padding-top: 7%;
+      padding-bottom: 7%;
+    }
+
+    h1 {
+      /* text-align: center; */
+      font-family: "Open Sans", sans-serif;
+      font-size: 45px;
+      font-weight: bold;
+      margin: 0px;
+    }
+
+    h2 {
+      font-family: "Open Sans", sans-serif;
+      font-size: 30px;
+      font-weight: bold;
+      margin: 0px;
+      /* text-align: center; */
+
+    }
+
+    h3 {
+      font-family: "Open Sans", sans-serif;
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .content{
+      padding-top: 5%;
+    }
+
+    ol {
+      line-height: 2.5em;
+    }
+
+    ul {
+      line-height: 2.5em;
+    }
+
+    .intro {
+      font-style: italic;
+    }
+  
