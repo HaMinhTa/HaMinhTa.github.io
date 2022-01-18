@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
 
 
-.body {
+.bodyContainer {
       font-family: "Open Sans", sans-serif;
       background-color: #fffbff;
       width: 50%;
@@ -12,7 +12,11 @@
       padding-right: 25%;
       padding-bottom: 5%; 
       padding-top: 2%;
-    }
+}
+
+.picker {
+  text-align: center;
+}
 
 .headerText {
   text-align:center;
@@ -53,7 +57,11 @@ a:hover {
 }
 
 #name {
-  color:rgb(2, 175, 152)
+  color:rgb(150, 0, 0)
+}
+
+.pickerName {
+  margin-top: 2%;
 }
 
 #button {

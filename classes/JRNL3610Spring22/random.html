@@ -1,69 +1,65 @@
 
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>Random Name Picker Tool</title>
-
-  <link rel="stylesheet" href="css/style.css"/> 
-
-  <script src="http://d3js.org/d3.v4.min.js"></script>
-
+    <!-- Code adapted from Dave Landry https://www.dave-landry.com/classes/artg5430-spring2020/random/ -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Random Name Picker Tool</title>
+    <link rel="stylesheet" href="css/style.css"/> 
+    <script src="http://d3js.org/d3.v4.min.js"></script>
 </head>
 
 <body>
     <h1>Random Name Picker Tool</h1>
 
     <section class="randomPicker">
-        <center>
+        <div class="picker">
             <button id="button">Start</button>
             <br /><br />
-            <h1>
-            <p id="name"></p>
+            <h1 class="pickerName">
+                <a id="name" target="_blank"></a>
             </h1>
-        </center>
+        </div>
     </section>
 
     <script>
 
-    var roster = [
-        "Quillan",
-        "Ariana",
-        "Riana",
-        "Julia C.",
-        "Ali",
-        "Daniel",
-        "Ilana",
-        "Abigail",
-        "Maya",
-        "Margot",
-        "Judy",
-        "Matthew",
-        "Anna",
-        "Michelle",
-        "Sarah",
-        "Pavithra",
-        "Julia S.",
-        "Zoe",
-        "Paige",
-        "Melissa"
+    let list = [
+        ["Quillan", ""],
+        ["Ariana", ""], 
+        ["Riana", ""], 
+        ["Julia C.", ""], 
+        ["Ali", ""], 
+        ["Daniel", ""], 
+        ["Ilana", ""], 
+        ["Abigail", ""], 
+        ["Maya", ""], 
+        ["Margot", ""], 
+        ["Judy", ""], 
+        ["Matthew", ""], 
+        ["Anna", ""], 
+        ["Michelle",  ""], 
+        ["Sarah", ""], 
+        ["Pavithra", ""], 
+        ["Julia S.", ""], 
+        ["Zoe", ""], 
+        ["Paige", ""], 
+        ["Melissa", ""]
     ];
 
-    var link = document.getElementById("name"),
+    let link = document.getElementById("name"),
         assignment = document.getElementById("assignment"),
         button = document.getElementById("button");
 
     button.addEventListener("click", function() {
-
         button.innerHTML = "Next";
 
-        var person;
+        let person;
 
-        if (roster.length) {
-        var int = Math.floor(Math.random() * roster.length);
-        person = roster.splice(int, 1)[0];
+        if (list.length) {
+        let int = Math.floor(Math.random() * list.length);
+        person = list.splice(int, 1)[0];
 
         }
         else {
@@ -73,7 +69,7 @@
 
         console.log(person);
 
-        link.innerHTML = person;
+        link.innerHTML = person[0];
         link.href = person[1] || "#";
 
         console.log(roster.length + " people left");
