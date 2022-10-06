@@ -45,10 +45,10 @@
       margin-bottom: 5%;
       margin-left: 22%;
       /* font-family: Georgia, 'Times New Roman', Times, serif; */
-      font-family: 'Roboto Slab', serif;
+      font-family: "Futura", sans-serif;
       font-size: 22px;
       text-align: center;
-      font-style: italic;
+      /* font-style: italic; */
       color: rgb(90, 90, 90);
     }
 
@@ -60,7 +60,6 @@
       display: flex;
       flex-direction: row;
     }
-
 
     #navbar {
       margin: 0px;
@@ -162,7 +161,8 @@
     }
 
     .mainbody {
-      padding-left: 10%;
+      /* padding-left: 20px; */
+      /* margin-right: 2%; */
     }
 
     .featured-image {
@@ -190,7 +190,7 @@
       text-align: center;
       line-height: 1.5rem;
       background-color: rgb(238, 189, 29);
-      font-family: "Helvetica", sans-serif;
+      font-family: "Staatliches", cursive;
       color: white;
     }
 
@@ -200,7 +200,7 @@
 
     .description {
       font-size: 16px;
-      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-family: "Baskerville", serif;
       line-height: 1.8rem;
 
     }
@@ -241,3 +241,11 @@
       font-weight: bold;
       padding-bottom: 1%;
   }
+
+  .end {
+    padding-top: 150px;  
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+
+}
