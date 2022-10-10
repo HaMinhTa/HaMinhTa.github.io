@@ -24,7 +24,15 @@ var randPoint = function (min, max) {
 
 d3.queue()
     .defer(d3.json, "Data/USA.json")
-    .defer(d3.csv, "Data/personData.csv")
+    .defer(d3.csv, "Data/Georgia.csv")
+    .defer(d3.csv, "Data/Mississippi.csv")
+    .defer(d3.csv, "Data/Texas.csv")
+    .defer(d3.csv, "Data/Alabama.csv")
+    .defer(d3.csv, "Data/Florida.csv")
+    .defer(d3.csv, "Data/Louisiana.csv")
+    .defer(d3.csv, "Data/Arkansas.csv")
+
+    // .defer(d3.csv, "Data/personData.csv")
     .await(drawMap);
 
 let statesWithData = new Set(["Alabama", "Texas", "Mississippi", "Virginia", "South Carolina", "Tennessee", "Georgia", "Florida", "Arkansas", "Louisiana", "North Carolina"]);
@@ -40,8 +48,9 @@ function stateName(feature) {
     return feature.properties.NAME;
 }
 
-function drawMap(error, mapData, personData) {
+function drawMap(error, mapData, georgiaData, mississippiData, texasData, alabamaData, floridaData, louisianaData, arkansasData) {
     if (error) console.log(error);
+    console.log(mississippiData)
 
     let map = svg.select("#map");
 
@@ -67,18 +76,64 @@ function drawMap(error, mapData, personData) {
         .style("opacity", "0.8");
     
   
+    // randomStateCoordinates returns function that creates random [long, lat] pairs
     let randomCoordinates = randomStateCoordinates(mapData.features);
 
-    delete personData.columns
+    delete georgiaData.columns
 
-    for (const person of personData) {
+    for (const person of georgiaData) {
+        let randomCoordinate = randomCoordinates("Georgia");
+        // randomCoordinate = [long, lat]
+        // long -> x
+        // lat -> y
+        person.x = proj(randomCoordinate)[0]
+        person.y = proj(randomCoordinate)[1]
+    }
+
+    for (const person of mississippiData) {
+        let randomCoordinate = randomCoordinates("Mississippi");
+        person.x = proj(randomCoordinate)[0]
+        person.y = proj(randomCoordinate)[1]
+    }
+
+    for (const person of texasData) {
         let randomCoordinate = randomCoordinates("Texas");
         person.x = proj(randomCoordinate)[0]
         person.y = proj(randomCoordinate)[1]
     }
 
+
+    for (const person of alabamaData) {
+        let randomCoordinate = randomCoordinates("Alabama");
+        person.x = proj(randomCoordinate)[0]
+        person.y = proj(randomCoordinate)[1]
+    }
+
+
+    for (const person of floridaData) {
+        let randomCoordinate = randomCoordinates("Florida");
+        person.x = proj(randomCoordinate)[0]
+        person.y = proj(randomCoordinate)[1]
+    }
+
+    for (const person of louisianaData) {
+        let randomCoordinate = randomCoordinates("Louisiana");
+        person.x = proj(randomCoordinate)[0]
+        person.y = proj(randomCoordinate)[1]
+    }
+
+    for (const person of arkansasData) {
+        let randomCoordinate = randomCoordinates("Arkansas");
+        person.x = proj(randomCoordinate)[0]
+        person.y = proj(randomCoordinate)[1]
+    }
+
+    const stateData = mississippiData.concat(georgiaData, texasData, alabamaData, floridaData, louisianaData, arkansasData);
+    console.log(stateData)
+
+
     var dots = svg.selectAll("circle")
-        .data(personData)
+        .data(stateData)
         .enter()
         .append("circle")
         .attr("fill", initialDotColor)
@@ -91,7 +146,7 @@ function drawMap(error, mapData, personData) {
                 .style("opacity", hoverOpacity)
                 .attr("r", hoverRadius)
                 .style("fill", hoverDotColor);
-            tooltip.html("<b>" + d.Name  + "</b>" + "<br>" + "Year of death: " + d.YearofDeath + "<br>Double click to see documents <br> related to this case")
+            tooltip.html("<b>" + d.Name  + "</b>" + "<br>" + "<b>Year of death:</b> " + d.YearofDeath + "<br>" + "<b>State:</b> " + d.State + "<br><i>Double click to see documents <br> related to this case</i>")
                 .style("left", d3.event.pageX + 10 + "px")
                 .style("top", d3.event.pageY + 10 + "px")
                 .style("padding", "10px 10px");
@@ -108,13 +163,6 @@ function drawMap(error, mapData, personData) {
         .on("dblclick", d => window.open("https://crrjarchive.org/people/" + d.ID, '_blank'));
 };
 
-function getStateBoundingBoxes(features) {
-    let boundingBoxes = {};
-    for (let feature of features) {
-        boundingBoxes[feature.properties.NAME] = d3.geoBounds(feature);
-    }
-    return boundingBoxes;
-}
 // Adapted from https://observablehq.com/@jeffreymorganio/random-coordinates-within-a-country
 function randomBoundingBoxCoordinates(boundingBox) {
     const randomLongitude = d3.randomUniform(
@@ -137,19 +185,26 @@ function randomFeatureCoordinates(feature) {
     }
 }
 
-function randomCoordinateInBoundingBox(feature, boundingBox) {
-    const randomCoordinates = randomBoundingBoxCoordinates(boundingBox);
-    let p;
-    do {
-        p = randomCoordinates()
-    } while (!d3.geoContains(feature, p));
-    return p;
+/* Returns an object containing the bounding boxes of US states.
+ * features: array of geojson features of US states.
+ * For example, boundingBox might look like:
+ * boundingBoxes = { "Alabama": [[-88,33], [-87, 32]], "Texas": [[-88,33], [-87, 32]], ... }
+ */
+function getStateBoundingBoxes(features) {
+    let boundingBoxes = {};
+    for (const feature of features) {
+        boundingBoxes[feature.properties.NAME] = d3.geoBounds(feature);
+    }
+    return boundingBoxes;
 }
 
+/* Returns a function that creates a random [long, lat] coordinates in a given state. 
+ * features: array of geojson features for US states.
+ */
 function randomStateCoordinates(features) {
     const boundingBoxes = getStateBoundingBoxes(features);
     return (state) => {
-        const stateFeature = features.find(element => element.properties.NAME == state);
+        const stateFeature = features.find(f => f.properties.NAME == state);
         const randomCoordinates = randomBoundingBoxCoordinates(boundingBoxes[state]);
         let p
         do {
@@ -159,6 +214,8 @@ function randomStateCoordinates(features) {
     }
 }
 
+
+// Experimental
 function getBoundingBoxes(features, getKey) {
     let boundingBoxes = {};
     for (let feature of features) {
@@ -167,6 +224,7 @@ function getBoundingBoxes(features, getKey) {
     return boundingBoxes;
 }
 
+// Experimental
 function randomFeatureCollectionCoorindates(features, getKey) {
     const boundingBoxes = getBoundingBoxes(features, getKey);
     return (featureKey) => {
