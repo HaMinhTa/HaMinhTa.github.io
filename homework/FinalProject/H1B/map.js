@@ -13,8 +13,8 @@ var tooltip = d3.select("body")
         .attr("class", "tooltip")
         .style("position", "absolute")
         .style("background", "black")
-        .style("border-radius", "6px");
-
+        .style("opacity", "0.4")
+        .style("text-align", "left");
 d3.queue()
   .defer(d3.csv, "H1BEmployerMain.csv")
   .defer(d3.json, "USA.json")
