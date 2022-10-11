@@ -119,9 +119,8 @@
 
    .mapText {
         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        fill: white;
+        color: rgb(255, 255, 255);
         font-size: 12px;
-
     }
 
     .axisLabel {
