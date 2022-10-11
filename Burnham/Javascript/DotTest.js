@@ -18,9 +18,9 @@ var tooltip = d3.select("body")
     .style("position", "absolute");
 
 // Generate 4000 random points in random positions
-var randPoint = function (min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
-}
+// var randPoint = function (min, max) {
+//     return Math.floor(Math.random() * (max - min)) + min;
+// }
 
 d3.queue()
     .defer(d3.json, "Data/USA.json")
