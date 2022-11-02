@@ -1,3 +1,4 @@
+
 let width = window.innerWidth;
 let height = window.innerHeight;
 let margin = 5;
@@ -12,6 +13,14 @@ let svg = d3.select("#viz")
     .attr("width", width)
     .attr("height", height);
 
+let svg2 = d3.select("#viz2")
+    .attr("width", width)
+    .attr("height", height);
+
+let svgWordBoard = d3.select("#dataViz")
+    .attr("width", width)
+    .attr("height", height);
+
 var tooltip = d3.select("body")
     .append("div")
     .attr("class", "tooltip")
@@ -22,10 +31,16 @@ var tooltip = d3.select("body")
 //     return Math.floor(Math.random() * (max - min)) + min;
 // }
 
+
 d3.queue()
     .defer(d3.json, "Data/USA.json")
     .defer(d3.csv, "Data/personData.csv")
     .await(drawMap);
+
+d3.queue()
+    .defer(d3.json, "Data/USA.json")
+    .defer(d3.csv, "Data/incidentSampleData.csv")
+    .await(drawMap2);
 
 let statesWithData = new Set(["Alabama", "Texas", "Mississippi", "Virginia", "South Carolina", "Tennessee", "Georgia", "Florida", "Arkansas", "Louisiana", "North Carolina"]);
 let southernStates = new Set(["Alabama", "Texas", "Mississippi", "Virginia", "South Carolina", "Tennessee", "Georgia", "Florida", "Arkansas", "Louisiana", "North Carolina", "District of Columbia", "Delaware", "Kentucky", "Maryland", "Oklahoma", "West Virginia"])
@@ -41,7 +56,7 @@ function stateName(feature) {
     return feature.properties.NAME;
 }
 
-function drawMap(error, mapData, personData, georgiaData, mississippiData, texasData, alabamaData, floridaData, louisianaData, arkansasData, northCarolinaData, southCarolinaData, tennesseeData, virginiaData) {
+function drawMap(error, mapData, personData) {
     if (error) console.log(error);
 
     let map = svg.select("#map");
@@ -88,7 +103,6 @@ function drawMap(error, mapData, personData, georgiaData, mississippiData, texas
 
     // delete georgiaData.columns
     for (const person of personData) {
-        console.log(person)
         if (person.State == "Georgia") {
             let randomCoordinate = randomCoordinates("Georgia");
             // randomCoordinate = [long, lat] long -> x lat -> y
@@ -151,7 +165,7 @@ function drawMap(error, mapData, personData, georgiaData, mississippiData, texas
                 .style("opacity", hoverOpacity)
                 .attr("r", hoverRadius)
                 .style("fill", hoverDotColor);
-            tooltip.html("<b>" + d.Name + "</b>" + "<br>" + "<b>Year of death:</b> " + d.YearofDeath + "<br>" + "<b>State:</b> " + d.State + "<br><i>Double click to see documents <br> related to this case</i>")
+            tooltip.html("<strong>" + d.Name + "</strong>"  + "<br>" + "<b>Year of death:</b> " + d.YearofDeath + "<br>" + "<b>State:</b> " + d.State + "<br><i>Double click to see documents <br> related to this case</i>")
                 .style("left", d3.event.pageX + 10 + "px")
                 .style("top", d3.event.pageY + 10 + "px")
                 .style("padding", "10px 10px");
@@ -164,6 +178,139 @@ function drawMap(error, mapData, personData, georgiaData, mississippiData, texas
                 .style("padding", "0");
 
 
+        })
+        .on("dblclick", d => window.open("https://crrjarchive.org/people/" + d.ID, '_blank'));
+};
+// Draw map 2
+
+function drawMap2(error, mapData, incidentData) {
+    if (error) console.log(error);
+
+    let map2 = svg2.select("#map2");
+
+    let southernStateFeatures = mapData.features.filter(d => southernStates.has(stateName(d)));
+    let southernStateFeatureCollection = { "type": "FeatureCollection", "features": southernStateFeatures };
+
+    let proj = d3.geoAlbersUsa()
+        .fitSize([width, height], southernStateFeatureCollection);
+
+    let path = d3.geoPath()
+        .projection(proj);
+
+    map2.selectAll("path")
+        .data(southernStateFeatures)
+        .enter()
+        .append("path")
+        .attr("d", path)
+        .attr("stroke", "#B6B5B5")
+        .attr("fill", getStateColor)
+        .style("opacity", "0.8");
+
+    map2.selectAll("text")
+        .data(mapData.features)
+        .enter()
+        .append("text")
+        .text(function (d) {
+            let stateName = d.properties.NAME;
+            if (abbrv[stateName]) {
+                return abbrv[stateName];
+            } else {
+                return "";
+            }
+        })
+        .attr("text-anchor", "middle")
+        .attr("class", "mapText")
+        .attr("x", d => {
+            return path.centroid(d)[0];
+        })
+        .attr("y", d => path.centroid(d)[1]);
+
+    // randomStateCoordinates returns function that creates random [long, lat] pairs
+    let randomCoordinates = randomStateCoordinates(mapData.features);
+
+    // delete georgiaData.columns
+    for (const person of incidentData) {
+        if (person.state == "Georgia") {
+            let randomCoordinate = randomCoordinates("Georgia");
+            // randomCoordinate = [long, lat] long -> x lat -> y
+            person.x = proj(randomCoordinate)[0]
+            person.y = proj(randomCoordinate)[1]
+        } else if (person.state == "Mississippi") {
+            let randomCoordinate = randomCoordinates("Mississippi");
+            person.x = proj(randomCoordinate)[0]
+            person.y = proj(randomCoordinate)[1]
+        } else if (person.state == "Texas") {
+            let randomCoordinate = randomCoordinates("Texas");
+            person.x = proj(randomCoordinate)[0]
+            person.y = proj(randomCoordinate)[1]
+        } else if (person.state == "Alabama") {
+            let randomCoordinate = randomCoordinates("Alabama");
+            person.x = proj(randomCoordinate)[0]
+            person.y = proj(randomCoordinate)[1]
+        } else if (person.state == "Florida") {
+            let randomCoordinate = randomCoordinates("Florida");
+            person.x = proj(randomCoordinate)[0]
+            person.y = proj(randomCoordinate)[1]
+        } else if (person.state == "Louisiana") {
+            let randomCoordinate = randomCoordinates("Louisiana");
+            person.x = proj(randomCoordinate)[0]
+            person.y = proj(randomCoordinate)[1]
+        } else if (person.state == "Arkansas") {
+            let randomCoordinate = randomCoordinates("Arkansas");
+            person.x = proj(randomCoordinate)[0]
+            person.y = proj(randomCoordinate)[1]
+        } else if (person.state == "North Carolina") {
+            let randomCoordinate = randomCoordinates("North Carolina");
+            person.x = proj(randomCoordinate)[0]
+            person.y = proj(randomCoordinate)[1]
+        } else if (person.state == "South Carolina") {
+            let randomCoordinate = randomCoordinates("South Carolina");
+            person.x = proj(randomCoordinate)[0]
+            person.y = proj(randomCoordinate)[1]
+        } else if (person.state == "Virginia") {
+            let randomCoordinate = randomCoordinates("Virginia");
+            person.x = proj(randomCoordinate)[0]
+            person.y = proj(randomCoordinate)[1]
+        } else {
+            let randomCoordinate = randomCoordinates("Tennessee");
+            person.x = proj(randomCoordinate)[0]
+            person.y = proj(randomCoordinate)[1]
+        };
+    }
+    let initialDotColorPolice = "blue"
+    let initialDotColorCivilian ="orange"
+    function assignDotColor (d) {
+        if (d.police == "yes") {
+            return initialDotColorPolice;
+        } else {
+            return initialDotColorCivilian;
+        }
+    }
+    var dots = svg2.selectAll("circle")
+        .data(incidentData)
+        .enter()
+        .append("circle")
+        .attr("fill", assignDotColor)
+        .style("opacity", originalOpacity)
+        .attr("cx", d => d.x)
+        .attr("cy", d => d.y)
+        .attr("r", initialRadius)
+        .on("mouseover", function (d, i) {
+            d3.select(this)
+                .style("opacity", hoverOpacity)
+                .attr("r", hoverRadius)
+                .style("fill", hoverDotColor);
+            tooltip.html("<strong>" + d.victimName + "</strong>" + "<br>" + "<b>Year of death:</b> " + d.year + "<br>" + "<b>State:</b> " + d.state + "<br><i>Double click to see documents <br> related to this case</i>")
+                .style("left", d3.event.pageX + 10 + "px")
+                .style("top", d3.event.pageY + 10 + "px")
+                .style("padding", "10px 10px");
+        })
+        .on("mouseout", function () {
+            d3.select(this).style("opacity", originalOpacity)
+                .attr("r", initialRadius)
+                .style("fill", assignDotColor)
+            tooltip.html("")
+                .style("padding", "0");
         })
         .on("dblclick", d => window.open("https://crrjarchive.org/people/" + d.ID, '_blank'));
 };
