@@ -11,206 +11,107 @@
     <script src="https://cdn.jsdelivr.net/gh/dixonandmoe/rellax@master/rellax.min.js"></script>
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css' rel='stylesheet' />
-    <!-- <link rel="stylesheet" href="CSS/style.css"/> -->
     <title>Anti-Black killings in the mid-century South Map</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&display=swap');
-
-        body {
-            /* background-color: #252525; */
-            background-color: black;
-            color: rgb(255, 255, 255);
-        }
-
-        .names {
-            font-family: 'Libre Baskerville', serif;
-            font-size: 12px;
-        }
-
-        .tooltip {
-            /* background-color: rgba(93, 93, 93, 0.3); */
-            color: rgb(255, 255, 255);
-            line-height: 1.5rem;
-            font-family: Arial, sans-serif;
-        }
-
-
-        h1 {
-            padding-top: 4%;
-            color: rgb(255, 255, 255);
-            font-size: 50px;
-            text-align: center;
-            padding-bottom: 1%;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: bold;
-            margin-right: 12%;
-            margin-left: 12%;
-
-        }
-
-        .subhead {
-            color: rgb(255, 255, 255);
-            font-family: Georgia, Times, 'Times New Roman', serif;
-            font-size: 17px;
-            text-align: center;
-            margin: 0;
-            padding-left: 20%;
-            padding-right: 20%;
-            padding-bottom: 5%;
-            font-style: italic;
-            line-height: 2rem;
-        }
-
-        .mapText {
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            font-weight: bold;
-            /* fill: rgb(117, 117, 117); */
-            fill: white;
-            font-size: 14px;
-        }
-
-        .float {
-            position: relative;
-        }
-
-        .legendText {
-            font-size: 15px;
-            fill: white;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .bodyText {
-            padding-left: 25%;
-            padding-right: 25%;
-            font-family: 'Verdana', sans-serif;
-            line-height: 1.8rem;
-            font-size: 15px;
-        }
-
-        a {
-            color: orange;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .intro {
-            animation-name: intro;
-            animation-duration: 3s;
-            font-family: serif;
-            font-size: 17px;
-            text-align: center;
-            font-style: italic;
-            line-height: 1.6rem;
-            padding-left: 20%;
-            padding-right: 20%;
-            color: rgb(100, 100, 100);
-            margin: 0;
-        }
-
-        @keyframes intro {
-            from {
-                color: rgb(0, 0, 0);
-            }
-
-            to {
-                color: rgb(100, 100, 100);
-            }
-        }
-
-        .scrollDiv {
-            height: 36px;
-            padding-top: 0.5%;
-        }
-
-        .scrollIcon {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            height: 28px;
-            opacity: 0;
-            animation-name: scroll;
-            animation-duration: 1.5s;
-            animation-delay: 5s;
-            animation-iteration-count: infinite;
-
-        }
-
-        @keyframes scroll {
-            0% {
-                opacity: 0;
-                height: 28px;
-            }
-
-            25% {
-                opacity: 0.2;
-                height: 29px;
-            }
-
-            50% {
-                opacity: 0.4;
-                height: 31px;
-            }
-
-            75% {
-                opacity: 0.6;
-                height: 32px;
-            }
-
-            100% {
-                opacity: 0.8;
-                height: 34px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="CSS/style.css"/>
 </head>
 
 <body>
-    <svg id="dataViz" class="parallax" data-rellax-speed="-5">
+    <svg id="dataViz" class="parallax" data-rellax-speed="-1">
     </svg>
-    <div class="rellax" data-rellax-speed="0">
+    <div class="rellax" data-rellax-speed="1">
         <p class="intro">
-            <!-- Above are the names of people killed in racially motivated homicides in the Jim Crow South. -->
-            Above are the names of people whose lives were lost in racially motivated killings in the mid-century South documented in The Burnham-Nobles Archive. Click on the victims' names to learn more about their case.
+            Above are the names of people whose lives were lost in racially motivated killings in the mid-century South
+            documented in The Burnham-Nobles Archive. Click on the victims' names to learn more about their case.
         </p>
         <div class="scrollDiv">
             <img src="Image/scroll.png" class="scrollIcon">
         </div>
     </div>
-    <div class="rellax" data-rellax-speed="4">
+    <div class="rellax" data-rellax-speed="5">
         <h1>Victims of anti-Black killings in the Jim Crow South</h1>
         <div class="subhead">
-            <p>This map is an ongoing project, created with data from <a href="https://crrjarchive.org/"
+            <p>This is a prototype of an ongoing project, created with data from <a href="https://crrjarchive.org/"
                     target="blank">The Burnham-Nobles Digital Archive</a>, a digital resource dedicated to identifying,
                 classifying, and providing factual information and documentation about anti-Black killings in the
                 mid-century South.
             </p>
         </div>
+        <div class="bodyText">
+            <p>On April 27, 1943, Edwin Clifford Williams, his wife, Lillian, and two young sons, on their way home from Beautiful Zion Baptist Church, were walking under the Newton Street Viaduct in Algiers when three white navy sailors, 19-year-old Walter Curry Sherwood, Paul O’Malley, and A.B. Bright poured beer over Lillian and their infant son. When Williams protested, the sailors descended from above the viaduct, smashed some beer bottles, and stabbed him with a broken bottle in front of his family.
+            </p>
+            <p>The day after her husband’s death, Lillian Alveris Williams provided a statement to Daniel Byrd, then president of the Louisiana State Conference of the NAACP. Byrd alerted Thurgood Marshall, who  closely followed the proceedings. Despite these efforts, the family never received justice in court.
+            </p>
+            <p>Only one of the assailants was ever tried, and he was acquitted of manslaughter charges after less than an hour of deliberations by a jury. Between 2020 and 2021, Erin McCrady, a law student at Northeastern University, investigated the case while taking part in the Civil Rights and Restorative Justice (CRRJ) clinic.
+            </p>
+            <p>Williams’ story was one in more than a thousand stories of unjust killing of Black lives in the Jim Crow South documented in the Burnham-Nobles Digital Archive, one of the most comprehensive digital archives of racial homicides collected to date. The Archive brings together evidence demonstrating the extensive scale and scope of killings between 1930 and 1954 in the Jim Crow South. 
+            </p>
+            <p>Multiple circumstances and allegations against the victims eventually led to their killings, among them are raping a white woman, murdering a police officer, murdering a white landlord over a debt, attacking a white man, attempting to rape a white woman, writing to a white woman, having romantic relations with a white woman, making untrue statements about a white woman, bumping into a white woman, committing burglary, driving erraticly, arguing over wages, raising fist in a sign of aggression, peeping into a neighbor's window, refusing to say "yes, sir" and "no, sir" to a police officer, refusing to obey a white man's order to tuck in his shirt, engaging in union organizing, trying to mediate an argument over bus fares between a bus driver and a 17-year-old boy, protesting son’s arrest, failing to show up to work, quitting a job, being near a traffic accident, crossing a municipal golf course, loitering, sitting on a bench, winning too much at gambling, or, in William’s case, defending his family from assault.
+            </p>
+            <p>Let's explore the archive.</p>
+        </div>
+    </div>
+        <section id='scrolly-overlay'>
+            <div class="scrolly">
+                <h1>Victims of anti-Black killings in the Jim Crow South Map</h1>
+                <svg id="viz" class="sticky">
+                    <g id="map"></g>
+                </svg>
 
-        <svg id="viz">
-            <g id="map"></g>
-        </svg>
-
+                <div class="bodyText">
+                   
+                    <p class='step' id="trigger1">Many of the cases were mishandled by local police and prosecutors or went unreported until investigated by Northeastern students in law and journalism and their faculty. Built on open-source architecture, the Archive offers users the opportunity to learn about how violence affected people’s lives, defined legal rights and shaped politics during the Jim Crow era. 
+                    </p>
+                    <p class='step'>Over the past 15 years, more than 400 students in Northeastern Law’s Civil Rights and Restorative Justice Clinic have scoured historical newspapers, archival collections, federal records and genealogical databases. Joined by scholars in history, political science, sociology and media studies, and by pro bono attorneys, these students have carefully preserved and logged 20,000 pieces of evidence for 1,000 cases of anti-Black killings in 11 former Confederate states from 1930 to 1954. Over time, they have amassed records for each case such as death certificates, press clippings, federal, state and local law enforcement files, reports from civil rights groups, state and federal courts, images and recorded personal stories.
+                    </p>
+                    <p class='step'>In many of these cases, CRRJ has worked with families and communities to find restorative justice responses, such as public community acknowledgments, markers and street re-namings in memory of victims, and museum exhibits documenting the murders. CRRJ has also brought cases to court, including a landmark settlement with Franklin County, Mississippi. CRRJ also serves as a resource for scholars, policymakers and organizers involved in various initiatives examining these crimes.
+                    </p>
+                </div>  
+            </div>
+        </section>
         <h1>
             The Burnham-Nobles Archive
         </h1>
-        <p class="subhead">The following description of The Burnham-Nobles Digital Archive was taken from its <a href="https://crrjarchive.org/" target="blank">website.</a></p>
+        <p class="subhead">The following description of The Burnham-Nobles Digital Archive was taken from its <a
+                href="https://crrjarchive.org/" target="blank">website.</a></p>
         <div class="bodyText">
-            <p>In 2007, CRRJ held a conference titled Crimes of the Civil Rights Era at Northeastern University School of Law. The conference brought veterans of the 1960s-era civil rights movement together with scholars, lawyers, and journalists. Guided by Congressman Bennie Thompson (MS), Senator Doug Jones (AL) (at the time a private lawyer), Myrlie Evers, Rita Bender, Jerry Mitchell, and Manning Marable, among others, the participants discussed the efforts of a group of prosecutors and journalists in the South to reopen cold civil rights-era cases.</p>    
-            
-            <p>It was apparent that there remained many cases of anti-Black violence from that period which had been mishandled by law enforcement officials, prosecutors, and courts. The goal of the Emmett Till Civil Rights Cold Case Act, then pending in Congress and signed into law in 2008, was to create a procedure for re-examining these cases and bringing fresh prosecutions. The conference brought together a community that would support the state and federal criminal trials that we thought might be forthcoming. We also considered the merits of alternative remedial approaches to bring public awareness to this history, such as truth commissions and official apologies.</p>
+            <p>In 2007, CRRJ held a conference titled Crimes of the Civil Rights Era at Northeastern University School
+                of Law. The conference brought veterans of the 1960s-era civil rights movement together with scholars,
+                lawyers, and journalists. Guided by Congressman Bennie Thompson (MS), Senator Doug Jones (AL) (at the
+                time a private lawyer), Myrlie Evers, Rita Bender, Jerry Mitchell, and Manning Marable, among others,
+                the participants discussed the efforts of a group of prosecutors and journalists in the South to reopen
+                cold civil rights-era cases.</p>
 
-            <p>After this gathering, Melissa Nobles, then a professor of political science at the Massachusetts Institute of Technology, and Margaret Burnham, a professor of law at Northeastern, acting independently initially, began to collect material on cases of anti-Black homicide that were outside of the scope of the Till Act. As they searched newspapers for contemporary reports on these older cold cases, it became clear that there were hundreds of incidents that had never been investigated. What started as a rather scattered effort to investigate these incidents and work with the affected families eventually became a well-defined project to collect data on racially motivated killings of Black people in the Jim Crow South, leading, ultimately, to this Archive.</p>
-            
-            </p>Since 2009, these incidents have been investigated by law students, graduate students in journalism and public history, and undergraduates. About four hundred students have worked on the project. Our purpose is to recover documents relating to African Americans’ experiences with state and federal law enforcement and criminal justice systems in the South in the mid-twentieth century. By addressing the relationship between racial violence and official silence or misinformation, this collection fills important gaps in our knowledge about this period.
+            <p>It was apparent that there remained many cases of anti-Black violence from that period which had been
+                mishandled by law enforcement officials, prosecutors, and courts. The goal of the Emmett Till Civil
+                Rights Cold Case Act, then pending in Congress and signed into law in 2008, was to create a procedure
+                for re-examining these cases and bringing fresh prosecutions. The conference brought together a
+                community that would support the state and federal criminal trials that we thought might be forthcoming.
+                We also considered the merits of alternative remedial approaches to bring public awareness to this
+                history, such as truth commissions and official apologies.</p>
+
+            <p>After this gathering, Melissa Nobles, then a professor of political science at the Massachusetts
+                Institute of Technology, and Margaret Burnham, a professor of law at Northeastern, acting independently
+                initially, began to collect material on cases of anti-Black homicide that were outside of the scope of
+                the Till Act. As they searched newspapers for contemporary reports on these older cold cases, it became
+                clear that there were hundreds of incidents that had never been investigated. What started as a rather
+                scattered effort to investigate these incidents and work with the affected families eventually became a
+                well-defined project to collect data on racially motivated killings of Black people in the Jim Crow
+                South, leading, ultimately, to this Archive.</p>
+
+            </p>Since 2009, these incidents have been investigated by law students, graduate students in journalism and
+            public history, and undergraduates. About four hundred students have worked on the project. Our purpose is
+            to recover documents relating to African Americans’ experiences with state and federal law enforcement and
+            criminal justice systems in the South in the mid-twentieth century. By addressing the relationship between
+            racial violence and official silence or misinformation, this collection fills important gaps in our
+            knowledge about this period.
             </p>
         </div>
-
-    </div>
+    
+   
     <script src="Javascript/mapAndWordCloud.js"></script>
+    <script src="Javascript/waypoint.js"></script>
+    <script src="Javascript/waypointScripts.js"></script>
+
 
 </body>
 

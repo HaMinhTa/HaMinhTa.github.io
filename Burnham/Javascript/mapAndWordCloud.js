@@ -1,11 +1,13 @@
 let rellax = new Rellax('.rellax');
 let width = window.innerWidth;
 let height = window.innerHeight;
-let wordBoardHeight = height - 110;
+let mapWidth = window.innerWidth - 80;
+let mapHeight = window.innerHeight -50;
+let wordBoardHeight = height - 90;
 let xValueofLegendCircle = width/3;
 let xValueofLegendText = xValueofLegendCircle + 20;
 let margin = 5;
-let initialRadius = 3;
+let initialRadius = 4;
 let hoverRadius = 8;
 let initialDotColor = "red";
 let hoverDotColor = "black";
@@ -17,8 +19,8 @@ let colorOfStatesWithData = "#000000"
 let colorOfStatesWithoutData = "#2d2e2d"
 
 let svg = d3.select("#viz")
-    .attr("width", width)
-    .attr("height", height);
+    .attr("width", mapWidth)
+    .attr("height", mapHeight);
 
 let svgWordBoard = d3.select("#dataViz")
     .attr("width", width)
@@ -104,7 +106,7 @@ function drawMap(error, mapData, incidentData) {
     let southernStateFeatureCollection = { "type": "FeatureCollection", "features": southernStateFeatures };
 
     let proj = d3.geoAlbersUsa()
-        .fitSize([width, height], southernStateFeatureCollection);
+        .fitSize([mapWidth, mapHeight], southernStateFeatureCollection);
 
     let path = d3.geoPath()
         .projection(proj);
