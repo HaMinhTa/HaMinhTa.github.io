@@ -250,42 +250,42 @@ function drawMap(error, mapData, incidentData) {
             return initialDotColorCivilian;
         }
     }
-    function drawInitialDots() {
-        var dots = svg.selectAll("circle")
-            .data(incidentData)
-            .enter()
-            .append("circle")
-            .attr("class", "circle")
-            .attr("fill", assignDotColor)
-            .style("opacity", originalOpacity)
-            .attr("cx", d => d.x)
-            .attr("cy", d => d.y)
-            .attr("r", initialRadius)
-            .on("mouseover", function (d, i) {
-                d3.select(this)
-                    .style("opacity", hoverOpacity)
-                    .attr("r", hoverRadius);
-                // .style("fill", hoverDotColor);
-                tooltip.html("<strong>" + d.victimName + "</strong>" + "<br>" + "<b>Year of death:</b> " + d.year + "<br>" + "<b>State:</b> " + d.state + "<br><i>Double click to see documents <br> related to this case</i>")
-                    .style("left", d3.event.pageX + 10 + "px")
-                    .style("top", d3.event.pageY + 10 + "px")
-                    .style("padding", "10px 10px")
-                    .style("border", "1px ridge #ffffff");
-            })
-            .on("mouseout", function () {
-                d3.select(this).style("opacity", originalOpacity)
-                    .attr("r", initialRadius)
-                // .style("fill", assignDotColor)
-                tooltip.html("")
-                    .style("padding", "0")
-                    .style("border", "0");
-            })
-            .on("click", function(d, i) {
-                tipDiv.html("Case Summary")
-                tipDiv.html(`${d.abstract}`)
-            })
-            .on("dblclick", d => window.open("https://crrjarchive.org/people/" + d.victimID, '_blank'));
-    };
+    // function drawInitialDots() {
+    //     var dots = svg.selectAll("circle")
+    //         .data(incidentData)
+    //         .enter()
+    //         .append("circle")
+    //         .attr("class", "circle")
+    //         .attr("fill", assignDotColor)
+    //         .style("opacity", originalOpacity)
+    //         .attr("cx", d => d.x)
+    //         .attr("cy", d => d.y)
+    //         .attr("r", initialRadius)
+    //         .on("mouseover", function (d, i) {
+    //             d3.select(this)
+    //                 .style("opacity", hoverOpacity)
+    //                 .attr("r", hoverRadius);
+    //             // .style("fill", hoverDotColor);
+    //             tooltip.html("<strong>" + d.victimName + "</strong>" + "<br>" + "<b>Year of death:</b> " + d.year + "<br>" + "<b>State:</b> " + d.state + "<br><i>Double click to see documents <br> related to this case</i>")
+    //                 .style("left", d3.event.pageX + 10 + "px")
+    //                 .style("top", d3.event.pageY + 10 + "px")
+    //                 .style("padding", "10px 10px")
+    //                 .style("border", "1px ridge #ffffff");
+    //         })
+    //         .on("mouseout", function () {
+    //             d3.select(this).style("opacity", originalOpacity)
+    //                 .attr("r", initialRadius)
+    //             // .style("fill", assignDotColor)
+    //             tooltip.html("")
+    //                 .style("padding", "0")
+    //                 .style("border", "0");
+    //         })
+    //         .on("click", function(d, i) {
+    //             tipDiv.html("Case Summary")
+    //             tipDiv.html(`${d.abstract}`)
+    //         })
+    //         .on("dblclick", d => window.open("https://crrjarchive.org/people/" + d.victimID, '_blank'));
+    // };
 
     // drawInitialDots();
 
@@ -382,6 +382,10 @@ function drawMap(error, mapData, incidentData) {
                         tooltip.html("")
                             .style("padding", "0")
                             .style("border", "0");
+                    })
+                    .on("click", function(d, i) {
+                        tipDiv.html("Case Summary")
+                        tipDiv.html(`${d.abstract}`)
                     })
                     .on("dblclick", d => window.open("https://crrjarchive.org/people/" + d.ID, '_blank'))
                 document.getElementById("civilianLegend").style.visibility = 'visible';
