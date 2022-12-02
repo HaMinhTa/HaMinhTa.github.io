@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <style>
+        body {
+            font-family: "avenir next", Arial, sans-serif;
+            font-size: 12px;
+            color: #696969;
+            margin-left: 120px;
+        }
+
+        .state {
+            fill: #c0c0c0;
+            stroke: #fff;
+            opacity: 0.2;
+            cursor: pointer;
+        }
+
+        #nav-container {
+            display: flex;
+            cursor: pointer;
+        }
+
+        #source {
+            margin-left: 20px;
+        }
+
+        #source a {
+            color: #556b2f;
+        }
+
+        .label {
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="nav-container">
+        <div id="pubDropdown"></div>
+    </div>
+    <div>
+        <p>Click on a square to select a state and see how it moves.</p>
+    </div>
+    <div id="vis"></div>
+
+    <script>
+        var margin = { top: 0, right: 0, bottom: 20, left: 0 },
+            width = 960 - margin.left - margin.right,
+            height = 440 - margin.top - margin.bottom;
+
+        // highlight colours
+        var highlight = ["#ffd700", "#9eebcf", "#96ccff", "#ff725c", "#ffa3d7"];
+        var colIndex = 0;
+
+        // calculate cellSize based on dimensions of svg
+        var cellSize = calcCellSize(width, height, 13, 8);
+
+        // generate grid data with specified number of columns and rows
+        var gridData = gridData(13, 8, cellSize);
+
+        var svg = d3.select("#vis")
+            .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom);
+
+        // draw gridlines
+        var grid = svg.append("g")
+            .attr("class", "gridlines")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        var row = grid.selectAll(".row")
+            .data(gridData)
+            .enter()
+            .append("g")
+            .attr("class", "row");
+
+        var column = row.selectAll(".cell")
+            .data(function (d) { return d; })
+            .enter()
+            .append("rect")
+            .attr("class", "cell")
+            .attr("x", function (d) { return d.x; })
+            .attr("y", function (d) { return d.y; })
+            .attr("width", function (d) { return d.width; })
+            .attr("height", function (d) { return d.height; })
+            .style("fill", "white")
+            .style("stroke", "lightgrey");
+
+        var gridMap = svg.append("g")
+            .attr("class", "gridmap")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        d3.queue()
+            .defer(d3.csv, "publication-grid.csv")
+            .defer(d3.csv, "links.csv")
+            .await(ready);
+
+        function ready(error, data, links) {
+
+            console.log(data)
+
+            // group data by publication
+            var nest = d3.nest()
+                .key(function (d) { return d.publication; })
+                .entries(data);
+            // create dropdown menu and populate with publication names
+
+            var pubMenu = d3.select("#pubDropdown");
+            pubMenu
+                .append("select")
+                .attr("id", "pubMenu")
+                .selectAll("option")
+                .data(links)
+                .enter()
+                .append("option")
+                .attr("value", function (d, i) { return i; })
+                .text(function (d) { return d.publication; });
+
+            // set example link
+            var source = d3.select("#nav-container")
+                .append("div")
+                .attr("id", "source")
+                .html("<a target='_blank' href=" + links[0].source + ">Example</a>");
+
+            // update grid map and example link when dropdown selection changes
+            pubMenu.on("change", function () {
+                // find which publication was selected from dropdown
+                var selectedPub = d3.select(this)
+                    .select("select")
+                    .property("value");
+
+                console.log(this)
+
+                source.html("<a target='_blank' href=" + links[selectedPub].source + ">Example</a>")
+                updateGridMap(links[selectedPub].publication);
+                console.log(links[selectedPub].publication)
+            })
+
+            // draw initial grid map
+            drawGridMap(links[0].publication);
+
+            // function to create initial map
+            function drawGridMap(publication) {
+                // filter data to return the object of publication of interest
+                var selectPub = nest.find(function (d) {
+                    return d.key == publication;
+                });
+
+                // use a key function to bind rects to states
+                var states = gridMap.selectAll(".state")
+                    .data(selectPub.values, function (d) { return d.code; });
+
+                // draw state rects
+                states.enter()
+                    .append("rect")
+                    .attr("class", function (d) { return "state " + d.code; })
+                    .attr("x", function (d) { return (d.col - 1) * cellSize; })
+                    .attr("y", function (d) { return (d.row - 1) * cellSize; })
+                    .attr("width", cellSize)
+                    .attr("height", cellSize)
+                    // keep track of whether square is clicked through toggling class
+                    // cycle through five colours each time square is made active
+                    .on("click", function (d) {
+                        var square = d3.select(this);
+                        square.classed("active", !square.classed("active"));
+                        if (square.classed("active")) {
+                            square.style("opacity", 1);
+                            colIndex++;
+                            switch (colIndex % 5) {
+                                case 0:
+                                    square.style("fill", highlight[0])
+                                    break;
+                                case 1:
+                                    square.style("fill", highlight[1])
+                                    break;
+                                case 2:
+                                    square.style("fill", highlight[2])
+                                    break;
+                                case 3:
+                                    square.style("fill", highlight[3])
+                                    break;
+                                case 4:
+                                    square.style("fill", highlight[4])
+                                    break;
+                            }
+                        } else {
+                            square.style("fill", "#c0c0c0").style("opacity", 0.2);
+                        }
+                    });
+
+                var labels = gridMap.selectAll(".label")
+                    .data(selectPub.values, function (d) { return d.code; });
+
+                // add state labels
+                labels.enter()
+                    .append("text")
+                    .attr("class", function (d) { return "label " + d.code; })
+                    .attr("x", function (d) {
+                        return ((d.col - 1) * cellSize) + (cellSize / 2);
+                    })
+                    .attr("y", function (d) {
+                        return ((d.row - 1) * cellSize) + (cellSize / 2 + 5);
+                    })
+                    .style("text-anchor", "middle")
+                    .text(function (d) { return d.code; });
+            }
+
+            function updateGridMap(publication) {
+                // filter data to return the object of publication of interest
+                var selectPub = nest.find(function (d) {
+                    return d.key == publication;
+                });
+
+                console.log(selectPub);
+
+                // update the data and transition
+                var states = gridMap.selectAll(".state")
+                    .data(selectPub.values, function (d) { return d.code; });
+
+                // update existing states
+                states.transition()
+                    .duration(500)
+                    .attr("x", function (d) { return (+d.col - 1) * cellSize; })
+                    .attr("y", function (d) { return (+d.row - 1) * cellSize; })
+                    .style("opacity", function (d) {
+                        if (d3.select(this).classed("active")) { return 1; } else { return 0.2; }
+                    });
+
+                // enter extra states
+                states.enter()
+                    .append("rect")
+                    .attr("class", function (d) { return "state " + d.code; })
+                    .attr("x", function (d) { return (+d.col - 1) * cellSize; })
+                    .attr("y", function (d) { return (+d.row - 1) * cellSize; })
+                    .attr("width", cellSize)
+                    .attr("height", cellSize)
+                    .on("click", function (d) {
+                        var square = d3.select(this);
+                        square.classed("active", !square.classed("active"));
+                        if (square.classed("active")) {
+                            square.style("opacity", 1);
+                            colIndex++;
+                            switch (colIndex % 5) {
+                                case 0:
+                                    square.style("fill", highlight[0])
+                                    break;
+                                case 1:
+                                    square.style("fill", highlight[1])
+                                    break;
+                                case 2:
+                                    square.style("fill", highlight[2])
+                                    break;
+                                case 3:
+                                    square.style("fill", highlight[3])
+                                    break;
+                                case 4:
+                                    square.style("fill", highlight[4])
+                                    break;
+                            }
+                        } else {
+                            square.style("fill", "#c0c0c0").style("opacity", 0.2);
+                        }
+                    });
+
+                // hide extra state by setting opacity to zero
+                states.exit()
+                    .style("opacity", 0);
+
+                // update labels
+                var labels = gridMap.selectAll(".label")
+                    .data(selectPub.values, function (d) { return d.code; });
+
+                labels.transition()
+                    .duration(500)
+                    .attr("x", function (d) {
+                        return ((d.col - 1) * cellSize) + (cellSize / 2);
+                    })
+                    .attr("y", function (d) {
+                        return ((d.row - 1) * cellSize) + (cellSize / 2 + 5);
+                    })
+                    .style("opacity", 1);
+
+                labels.enter()
+                    .append("text")
+                    .attr("class", function (d) { return "label " + d.code; })
+                    .attr("x", function (d) {
+                        return ((d.col - 1) * cellSize) + (cellSize / 2);
+                    })
+                    .attr("y", function (d) {
+                        return ((d.row - 1) * cellSize) + (cellSize / 2 + 5);
+                    })
+                    .style("text-anchor", "middle")
+                    .text(function (d) { return d.code; });
+
+                labels.exit()
+                    .style("opacity", 0);
+            }
+        };
+
+
+        // function that generates a nested array for square grid
+        function gridData(ncol, nrow, cellsize) {
+            var gridData = [];
+            var xpos = 1;  // starting xpos and ypos at 1 so the stroke will show when we make the grid below 
+            var ypos = 1;
+
+            // calculate width and height of the cell based on width and height of the canvas
+            var cellSize = cellsize;
+
+            // iterate for rows
+            for (var row = 0; row < nrow; row++) {
+                gridData.push([]);
+
+                // iterate for cells/columns inside each row
+                for (var col = 0; col < ncol; col++) {
+                    gridData[row].push({
+                        x: xpos,
+                        y: ypos,
+                        width: cellSize,
+                        height: cellSize
+                    });
+
+                    // increment x position (moving over by 50)
+                    xpos += cellSize;
+                }
+
+                // reset x position after a row is complete
+                xpos = 1;
+                // increment y position (moving down by 50)
+                ypos += cellSize;
+            }
+            return gridData;
+        }
+
+        // function to calculate grid cell size based on width and height of svg
+        function calcCellSize(w, h, ncol, nrow) {
+            // leave tiny space in margins
+            var gridWidth = w - 2;
+            var gridHeight = h - 2;
+            var cellSize;
+
+            // calculate size of cells in columns across
+            var colWidth = Math.floor(gridWidth / ncol);
+            // calculate size of cells in rows down
+            var rowWidth = Math.floor(gridHeight / nrow);
+
+            // take the smaller of the calculated cell sizes
+            if (colWidth <= rowWidth) {
+                cellSize = colWidth;
+            } else {
+                cellSize = rowWidth;
+            }
+            return cellSize;
+        }
+    </script>
+</body>

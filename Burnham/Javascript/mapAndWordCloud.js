@@ -2,25 +2,32 @@ let rellax = new Rellax('.rellax');
 let width = window.innerWidth;
 let height = window.innerHeight;
 let mapWidth = window.innerWidth - 80;
-let mapHeight = window.innerHeight -50;
-let wordBoardHeight = height - 90;
-let xValueofLegendCircle = width/3;
+let mapHeight = window.innerHeight / 1.21;
+let wordBoardHeight = height - 110;
+let xValueofLegendCircle = width / 3;
 let xValueofLegendText = xValueofLegendCircle + 20;
 let margin = 5;
 let initialRadius = 4;
+let initialYearRadius = 6;
 let hoverRadius = 8;
 let initialDotColor = "red";
 let hoverDotColor = "black";
 let originalOpacity = 0.6;
 let hoverOpacity = 1;
-let initialDotColorPolice = "#135DD8"
+let initialDotColorPolice = "#1F51FF"
 let initialDotColorCivilian = "orange"
 let colorOfStatesWithData = "#000000"
 let colorOfStatesWithoutData = "#2d2e2d"
+let tipDiv = d3.select("#tipDiv")
 
 let svg = d3.select("#viz")
-    .attr("width", mapWidth)
-    .attr("height", mapHeight);
+    .attr("viewBox", `0 0 ${width} ${height}`)
+    .attr("x", 0)
+    .attr("y", 0);
+
+// let svg = d3.select("#viz")
+//     .attr("width", mapWidth)
+//     .attr("height", mapHeight);
 
 let svgWordBoard = d3.select("#dataViz")
     .attr("width", width)
@@ -28,9 +35,9 @@ let svgWordBoard = d3.select("#dataViz")
 
 var tooltip = d3.select("body")
     .append("div")
-    .attr("class", "tooltip")
+    .attr("class", "tooltipClass")
     .style("position", "absolute");
-
+    
 // Generate 4000 random points in random positions
 // var randPoint = function (min, max) {
 //     return Math.floor(Math.random() * (max - min)) + min;
@@ -41,7 +48,6 @@ d3.csv("Data/personData.csv", function (personData) {
     for (const person of personData) {
         nameList.push({ name: person.Name, ID: person.ID })
     }
-    console.log(nameList)
 
     d3.layout.cloud().size([width, wordBoardHeight])
         .words(nameList)
@@ -75,7 +81,6 @@ d3.csv("Data/personData.csv", function (personData) {
     }
 });
 
-
 d3.queue()
     .defer(d3.json, "Data/USA.json")
     .defer(d3.csv, "Data/incidentSampleData.csv")
@@ -95,10 +100,51 @@ function stateName(feature) {
     return feature.properties.NAME;
 }
 
+
 // Draw map
 
 function drawMap(error, mapData, incidentData) {
     if (error) console.log(error);
+
+    delete incidentData.columns;
+
+    // Group data 
+
+    let nest = d3.nest()
+        .key(function (d) { return d.year; })
+        .entries(incidentData);
+
+    console.log(nest);
+
+    // Draw a dropdown list 
+    let dropdownMenuYearListSet = new Set();
+
+    for (const incident in incidentData) {
+        dropdownMenuYearListSet.add(incidentData[incident].year);
+    }
+    let dropdownMenuYearList = Array.from(dropdownMenuYearListSet).sort()
+    dropdownMenuYearList.unshift("All")
+    dropdownMenuYearList.unshift("Year")
+    console.log(dropdownMenuYearList)
+
+    let yearMenu = d3.select("#year-dropdown")
+
+    yearMenu
+        .append("select")
+        .attr("id", "yearMenu")
+        .selectAll("option")
+        .data(dropdownMenuYearList)
+        .enter()
+        .append("option")
+        .attr("value", function (d, i) { return i; })
+        .text(function (d) { return d });
+
+    yearMenu.on("change", function () {
+        var selectedYearIndex = d3.select(this)
+            .select("select")
+            .property("value");
+        updateMap(dropdownMenuYearList[selectedYearIndex]);
+    })
 
     let map = svg.select("#map");
 
@@ -106,16 +152,15 @@ function drawMap(error, mapData, incidentData) {
     let southernStateFeatureCollection = { "type": "FeatureCollection", "features": southernStateFeatures };
 
     let proj = d3.geoAlbersUsa()
-        .fitSize([mapWidth, mapHeight], southernStateFeatureCollection);
+        .fitSize([width, height], southernStateFeatureCollection);
 
     let path = d3.geoPath()
         .projection(proj);
 
-    svg.append("circle").attr("cx", xValueofLegendCircle).attr("cy", 50).attr("r", 6).style("fill", initialDotColorPolice)
-    svg.append("circle").attr("cx", xValueofLegendCircle).attr("cy", 80).attr("r", 6).style("fill", initialDotColorCivilian)
-    svg.append("text").attr("x", xValueofLegendText).attr("y", 50).text("Killed by Law Enforcemennt").attr("class", "legendText").attr("alignment-baseline", "middle")
-    svg.append("text").attr("x", xValueofLegendText).attr("y", 80).text("Killed by Civilian").attr("class", "legendText").attr("alignment-baseline", "middle")
-
+    svg.append("circle").attr("cx", xValueofLegendCircle).attr("cy", 50).attr("r", 8).style("fill", initialDotColorPolice).attr("id", "policeLegendDot").style("visibility", "hidden")
+    svg.append("circle").attr("cx", xValueofLegendCircle).attr("cy", 80).attr("r", 8).style("fill", initialDotColorCivilian).attr("id", "civilianLegendDot").style("visibility", "hidden")
+    svg.append("text").attr("x", xValueofLegendText).attr("y", 50).text("Killed by Law Enforcement").attr("class", "legendText").attr("alignment-baseline", "middle").attr("id", "policeLegend").style("visibility", "hidden")
+    svg.append("text").attr("x", xValueofLegendText).attr("y", 80).text("Killed by Civilian").attr("class", "legendText").attr("alignment-baseline", "middle").attr("id", "civilianLegend").style("visibility", "hidden")
 
     map.selectAll("path")
         .data(southernStateFeatures)
@@ -205,35 +250,161 @@ function drawMap(error, mapData, incidentData) {
             return initialDotColorCivilian;
         }
     }
-    var dots = svg.selectAll("circle")
-        .data(incidentData)
-        .enter()
-        .append("circle")
-        .attr("fill", assignDotColor)
-        .style("opacity", originalOpacity)
-        .attr("cx", d => d.x)
-        .attr("cy", d => d.y)
-        .attr("r", initialRadius)
-        .on("mouseover", function (d, i) {
+    function drawInitialDots() {
+        var dots = svg.selectAll("circle")
+            .data(incidentData)
+            .enter()
+            .append("circle")
+            .attr("class", "circle")
+            .attr("fill", assignDotColor)
+            .style("opacity", originalOpacity)
+            .attr("cx", d => d.x)
+            .attr("cy", d => d.y)
+            .attr("r", initialRadius)
+            .on("mouseover", function (d, i) {
+                d3.select(this)
+                    .style("opacity", hoverOpacity)
+                    .attr("r", hoverRadius);
+                // .style("fill", hoverDotColor);
+                tooltip.html("<strong>" + d.victimName + "</strong>" + "<br>" + "<b>Year of death:</b> " + d.year + "<br>" + "<b>State:</b> " + d.state + "<br><i>Double click to see documents <br> related to this case</i>")
+                    .style("left", d3.event.pageX + 10 + "px")
+                    .style("top", d3.event.pageY + 10 + "px")
+                    .style("padding", "10px 10px")
+                    .style("border", "1px ridge #ffffff");
+            })
+            .on("mouseout", function () {
+                d3.select(this).style("opacity", originalOpacity)
+                    .attr("r", initialRadius)
+                // .style("fill", assignDotColor)
+                tooltip.html("")
+                    .style("padding", "0")
+                    .style("border", "0");
+            })
+            .on("click", function(d, i) {
+                tipDiv.html("Case Summary")
+                tipDiv.html(`${d.abstract}`)
+            })
+            .on("dblclick", d => window.open("https://crrjarchive.org/people/" + d.victimID, '_blank'));
+    };
+
+    // drawInitialDots();
+
+    function updateMap(year) {
+        let selectYear = nest.find(function (d) {
+            if (year == "All") {
+                drawInitialDots() 
+            } else {
+            return d.key == year;
+            }
+        })
+
+        // Update the data 
+        var dots = svg.selectAll(".circle")
+            .data(selectYear.values)
+
+        // Remove old data points
+        dots.exit().remove();
+
+        // Update existing points
+        dots.transition()
+            .duration(500)
+            .attr("cx", d => d.x)
+            .attr("cy", d => d.y)
+            .attr("r", initialYearRadius)
+        dots.on("mouseover", function (d, i) {
             d3.select(this)
                 .style("opacity", hoverOpacity)
                 .attr("r", hoverRadius);
-                // .style("fill", hoverDotColor);
+            // .style("fill", hoverDotColor);
             tooltip.html("<strong>" + d.victimName + "</strong>" + "<br>" + "<b>Year of death:</b> " + d.year + "<br>" + "<b>State:</b> " + d.state + "<br><i>Double click to see documents <br> related to this case</i>")
                 .style("left", d3.event.pageX + 10 + "px")
                 .style("top", d3.event.pageY + 10 + "px")
                 .style("padding", "10px 10px")
                 .style("border", "1px ridge #ffffff");
         })
-        .on("mouseout", function () {
-            d3.select(this).style("opacity", originalOpacity)
-                .attr("r", initialRadius)
+            .on("mouseout", function () {
+                d3.select(this).style("opacity", originalOpacity)
+                    .attr("r", initialYearRadius)
                 // .style("fill", assignDotColor)
-            tooltip.html("")
-                .style("padding", "0")
-                .style("border", "0");
-        })
-        .on("dblclick", d => window.open("https://crrjarchive.org/people/" + d.ID, '_blank'));
+                tooltip.html("")
+                    .style("padding", "0")
+                    .style("border", "0");
+            })
+            .on("dblclick", d => window.open("https://crrjarchive.org/people/" + d.victimID, '_blank'));
+    }
+    function showdownArrow() {
+        arrow = document.getElementById("downArrow");
+        arrow.style.visibility = 'visible';
+    }
+
+    var WAYPOINT = new Waypoint({
+        element: document.querySelector("#trigger3"),
+        handler: function (direction) {
+            if (direction === "down") {
+                showdownArrow();
+            }
+        }
+    })
+    var WAYPOINT2 = new Waypoint({
+        element: document.querySelector("#trigger1"),
+        handler: function (direction) {
+            if (direction === "down") {
+                var dots = svg.selectAll("circle")
+                    .data(incidentData)
+                    .enter()
+                    .append("circle")
+                    .attr("fill", assignDotColor)
+                    .style("opacity", function(d) {
+                        if (d.police == "yes") {
+                            return 0;
+                        } else {
+                            return 1;
+                        }
+                    })
+                    .attr("cx", d => d.x)
+                    .attr("cy", d => d.y)
+                    .attr("r", initialRadius)
+                    .on("mouseover", function (d, i) {
+                        d3.select(this)
+                            .style("opacity", hoverOpacity)
+                            .attr("r", hoverRadius);
+                        // .style("fill", hoverDotColor);
+                        tooltip.html("<strong>" + d.victimName + "</strong>" + "<br>" + "<b>Year of death:</b> " + d.year + "<br>" + "<b>State:</b> " + d.state + "<br><i>Double click to see documents <br> related to this case</i>")
+                            .style("left", d3.event.pageX + 10 + "px")
+                            .style("top", d3.event.pageY + 10 + "px")
+                            .style("padding", "10px 10px")
+                            .style("border", "1px ridge #ffffff");
+                    })
+                    .on("mouseout", function () {
+                        d3.select(this).style("opacity", originalOpacity)
+                            .attr("r", initialRadius)
+                        // .style("fill", assignDotColor)
+                        tooltip.html("")
+                            .style("padding", "0")
+                            .style("border", "0");
+                    })
+                    .on("dblclick", d => window.open("https://crrjarchive.org/people/" + d.ID, '_blank'))
+                document.getElementById("civilianLegend").style.visibility = 'visible';
+                document.getElementById("civilianLegendDot").style.visibility = 'visible';
+
+            }
+        }
+    })
+
+
+    var WAYPOINT3 = new Waypoint({
+        element: document.querySelector("#trigger2"),
+        handler: function (direction) {
+            if (direction === "down") {
+                var dots = svg.selectAll("circle")
+                    .style("opacity", 1);
+                document.getElementById("policeLegend").style.visibility = 'visible';
+                document.getElementById("policeLegendDot").style.visibility = 'visible';
+
+            }
+
+        }
+    })
 };
 
 // Adapted from https://observablehq.com/@jeffreymorganio/random-coordinates-within-a-country

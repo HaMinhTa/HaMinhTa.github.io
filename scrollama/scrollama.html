@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/scrollama"></script>
+    <title>Scrollama Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+                Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            min-height: 1280px;
+            color: #3b3b3b;
+            font-size: 24px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        #scrolly {
+            position: relative;
+        }
+
+        article {
+            position: relative;
+            padding: 0 1rem;
+            margin: 0 auto;
+            width: 33%;
+        }
+
+        .step {
+            margin: 2rem auto 4rem auto;
+            background-color: #3b3b3b;
+            color: #fff;
+        }
+
+        .step.is-active {
+            background-color: goldenrod;
+            color: #3b3b3b;
+        }
+
+        .step p {
+            text-align: center;
+            padding: 1 rem;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Auctor urna nunc id cursus metus aliquam eleifend mi. A erat nam at lectus. Pulvinar etiam non
+        quam lacus. Risus in hendrerit gravida rutrum quisque non tellus orci ac. Id faucibus nisl tincidunt eget nullam
+        non nisi est. Cras tincidunt lobortis feugiat vivamus at augue. Convallis aenean et tortor at risus viverra.
+        Molestie ac feugiat sed lectus vestibulum mattis ullamcorper. Auctor eu augue ut lectus arcu bibendum at varius.
+    </p>
+
+    <p>Massa ultricies mi quis hendrerit dolor magna eget est lorem. Adipiscing tristique risus nec feugiat in fermentum
+        posuere urna nec. Id donec ultrices tincidunt arcu non. Tortor pretium viverra suspendisse potenti nullam ac
+        tortor vitae. Nibh sed pulvinar proin gravida. Condimentum id venenatis a condimentum vitae. Diam vulputate ut
+        pharetra sit amet aliquam id diam. Blandit volutpat maecenas volutpat blandit aliquam etiam erat velit
+        scelerisque. Justo nec ultrices dui sapien eget mi. Urna neque viverra justo nec ultrices dui sapien eget mi.
+    </p>
+
+    <p>Vitae purus faucibus ornare suspendisse sed. At consectetur lorem donec massa. Risus commodo viverra maecenas
+        accumsan. Tellus at urna condimentum mattis pellentesque. Cras sed felis eget velit aliquet sagittis id
+        consectetur. Quam vulputate dignissim suspendisse in est ante in. Dolor morbi non arcu risus quis. Ac turpis
+        egestas maecenas pharetra. Feugiat pretium nibh ipsum consequat nisl vel. Tellus at urna condimentum mattis
+        pellentesque.</p>
+
+    <p>Porta lorem mollis aliquam ut porttitor leo a diam sollicitudin. Suspendisse in est ante in nibh mauris. Donec
+        pretium vulputate sapien nec sagittis aliquam. Massa tincidunt nunc pulvinar sapien et ligula ullamcorper
+        malesuada proin. Augue mauris augue neque gravida in fermentum et sollicitudin ac.</p>
+
+    <p>Diam quam nulla porttitor massa id neque aliquam vestibulum. Aliquam etiam erat velit scelerisque in. Eget
+        aliquet nibh praesent tristique. Suspendisse sed nisi lacus sed viverra tellus in hac. Amet cursus sit amet
+        dictum. Eu nisl nunc mi ipsum faucibus vitae aliquet. Vel elit scelerisque mauris pellentesque pulvinar
+        pellentesque habitant morbi. Aliquet risus feugiat in ante metus dictum at. Ornare arcu odio ut sem.</p>
+
+    <p>Quisque sagittis purus sit amet volutpat consequat mauris nunc. Odio pellentesque diam volutpat commodo sed
+        egestas. Varius quam quisque id diam vel quam elementum. Ante in nibh mauris cursus. Faucibus scelerisque
+        eleifend donec pretium vulputate. Bibendum enim facilisis gravida neque convallis a cras. Nibh cras pulvinar
+        mattis nunc sed blandit libero. Pharetra magna ac placerat vestibulum lectus mauris.</p>
+
+    Massa sapien faucibus et molestie ac. Aliquet nec ullamcorper sit amet. Senectus et netus et malesuada. Lectus urna
+    duis convallis convallis tellus id interdum velit laoreet. Et tortor at risus viverra adipiscing at. At urna
+    condimentum mattis pellentesque id nibh tortor id aliquet. In nisl nisi scelerisque eu ultrices vitae auctor. Platea
+    dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras. Interdum velit laoreet id donec
+    ultrices tincidunt arcu non sodales. Massa eget egestas purus viverra accumsan in nisl. Ultricies mi eget mauris
+    pharetra et ultrices neque ornare aenean. Turpis nunc eget lorem dolor sed viverra ipsum nunc.
+
+    <section id="scrolly">
+        <article>
+            <div class="step" data-step="1">
+                <p>STEP 1</p>
+            </div>
+            <div class="step" data-step="2">
+                <p>STEP 2</p>
+            </div>
+            <div class="step" data-step="3">
+                <p>STEP 3</p>
+            </div>
+            <div class="step" data-step="4">
+                <p>STEP 4</p>
+            </div>
+        </article>
+    </section>
+    <script>
+        var scrolly = document.querySelector("#scrolly");
+		var article = scrolly.querySelector("article");
+		var step = article.querySelectorAll(".step");
+
+		// initialize the scrollama
+		var scroller = scrollama();
+
+		// scrollama event handlers
+		function handleStepEnter(response) {
+			// response = { element, direction, index }
+			console.log(response);
+			// add to color to current step
+			response.element.classList.add("is-active");
+		}
+
+		function handleStepExit(response) {
+			// response = { element, direction, index }
+			console.log(response);
+			// remove color from current step
+			response.element.classList.remove("is-active");
+		}
+
+		function init() {
+			// set random padding for different step heights (not required)
+			step.forEach(function (step) {
+				var v = 100 + Math.floor((Math.random() * window.innerHeight) / 4);
+				step.style.padding = v + "px 0px";
+			});
+
+			// 1. setup the scroller with the bare-bones options
+			// 		this will also initialize trigger observations
+			// 2. bind scrollama event handlers (this can be chained like below)
+			scroller
+				.setup({
+					step: "#scrolly article .step",
+					debug: false,
+					offset: 0.5
+				})
+				.onStepEnter(handleStepEnter)
+				.onStepExit(handleStepExit);
+
+		}
+
+		// kick things off
+		init();
+    </script>
+</body>
+
+</html>

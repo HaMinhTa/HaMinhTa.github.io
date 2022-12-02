@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://d3js.org/d3.v4.min.js"></script>
+    <link rel="stylesheet" href="sliderCSS.css">
+    </link>
+    <style>
+        body {
+            padding-left: 5%;
+            padding-right: 5%;
+        }
+
+        .slidecontainer {
+            width: 100%;
+        }
+
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 25px;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+
+        .slider:hover {
+            opacity: 1;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            background: #04AA6D;
+            cursor: pointer;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            background: #04AA6D;
+            cursor: pointer;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="range" name="mySlider" id=mySlider min="10" max="100" value="50">
+    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+
+    <h2>Slider with min, max and step values</h2>
+    <div id="slider7"></div>
+    <script src="d3.slider.js"></script>
+
+    <h2>Slider with slide event: <span id="slider4text">0</span></h2>
+
+    <div id="slider4"></div>
+
+    <script>
+
+        d3.select('#slider1').call(d3.slider());
+
+        d3.select('#slider2').call(d3.slider().value([10, 25]));
+
+        d3.select('#slider3').call(d3.slider().axis(true).value([10, 25]).on("slide", function (evt, value) {
+            d3.select('#slider3textmin').text(value[0]);
+            d3.select('#slider3textmax').text(value[1]);
+        }));
+
+        d3.select('#slider4').call(d3.slider().on("slide", function (evt, value) {
+            d3.select('#slider4text').text(value);
+        }));
+
+        d3.select('#slider4').call(d3.slider().axis(true));
+
+
+        d3.select('#slider5').call(d3.slider().axis(true));
+
+        d3.select('#slider6').call(d3.slider().axis(axis));
+
+        const numTicks = 1954 - 1930 + 1
+        var axis = d3.svg.axis().orient("bottom").ticks(numTicks);
+
+        d3.select('#slider7').call(d3.slider().axis(axis).min(1930).max(1954).step(1));
+
+        d3.select('#slider8').call(d3.slider().value(50).orientation("vertical"));
+
+        d3.select('#slider9').call(d3.slider().value([10, 30]).orientation("vertical"));
+
+        d3.select('#slider10').call(d3.slider().scale(d3.time.scale().domain([new Date(1984, 1, 1), new Date(2014, 1, 1)])).axis(d3.svg.axis()));
+
+        d3.select('#slider11').call(d3.slider().scale(d3.time.scale().domain([new Date(1984, 1, 1), new Date(2014, 1, 1)])).axis(d3.svg.axis()).snap(true).value(new Date(2000, 1, 1)));
+
+        essai = d3.slider().scale(d3.scale.ordinal().domain(["Gecko", "Webkit", "Blink", "Trident"]).rangePoints([0, 1], 0.5)).axis(d3.svg.axis()).snap(true).value("Gecko");
+        d3.select('#slider12').call(essai);
+
+    </script>
+</body>
+
+</html>
