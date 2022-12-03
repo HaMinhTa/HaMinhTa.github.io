@@ -3,8 +3,8 @@ let width = window.innerWidth;
 let height = window.innerHeight;
 let mapWidth = window.innerWidth - 80;
 let mapHeight = window.innerHeight / 1.21;
-let wordBoardHeight = height - 110;
-let xValueofLegendCircle = width / 3;
+let wordBoardHeight = height - 115;
+let xValueofLegendCircle = width / 2.5;
 let xValueofLegendText = xValueofLegendCircle + 20;
 let margin = 5;
 let initialRadius = 4;
@@ -12,7 +12,8 @@ let initialYearRadius = 6;
 let hoverRadius = 8;
 let initialDotColor = "red";
 let hoverDotColor = "black";
-let originalOpacity = 0.6;
+let originalOpacity = 0.8;
+let transparent = 0;
 let hoverOpacity = 1;
 let initialDotColorPolice = "#1F51FF"
 let initialDotColorCivilian = "orange"
@@ -24,10 +25,6 @@ let svg = d3.select("#viz")
     .attr("viewBox", `0 0 ${width} ${height}`)
     .attr("x", 0)
     .attr("y", 0);
-
-// let svg = d3.select("#viz")
-//     .attr("width", mapWidth)
-//     .attr("height", mapHeight);
 
 let svgWordBoard = d3.select("#dataViz")
     .attr("width", width)
@@ -250,46 +247,119 @@ function drawMap(error, mapData, incidentData) {
             return initialDotColorCivilian;
         }
     }
-    // function drawInitialDots() {
-    //     var dots = svg.selectAll("circle")
-    //         .data(incidentData)
-    //         .enter()
-    //         .append("circle")
-    //         .attr("class", "circle")
-    //         .attr("fill", assignDotColor)
-    //         .style("opacity", originalOpacity)
-    //         .attr("cx", d => d.x)
-    //         .attr("cy", d => d.y)
-    //         .attr("r", initialRadius)
-    //         .on("mouseover", function (d, i) {
-    //             d3.select(this)
-    //                 .style("opacity", hoverOpacity)
-    //                 .attr("r", hoverRadius);
-    //             // .style("fill", hoverDotColor);
-    //             tooltip.html("<strong>" + d.victimName + "</strong>" + "<br>" + "<b>Year of death:</b> " + d.year + "<br>" + "<b>State:</b> " + d.state + "<br><i>Double click to see documents <br> related to this case</i>")
-    //                 .style("left", d3.event.pageX + 10 + "px")
-    //                 .style("top", d3.event.pageY + 10 + "px")
-    //                 .style("padding", "10px 10px")
-    //                 .style("border", "1px ridge #ffffff");
-    //         })
-    //         .on("mouseout", function () {
-    //             d3.select(this).style("opacity", originalOpacity)
-    //                 .attr("r", initialRadius)
-    //             // .style("fill", assignDotColor)
-    //             tooltip.html("")
-    //                 .style("padding", "0")
-    //                 .style("border", "0");
-    //         })
-    //         .on("click", function(d, i) {
-    //             tipDiv.html("Case Summary")
-    //             tipDiv.html(`${d.abstract}`)
-    //         })
-    //         .on("dblclick", d => window.open("https://crrjarchive.org/people/" + d.victimID, '_blank'));
-    // };
+    function drawInitialDots() {
+        var dots = svg.selectAll("circle")
+            .data(incidentData)
+            .enter()
+            .append("circle")
+            .attr("class", "circle")
+            .attr("fill", assignDotColor)
+            .style("opacity", originalOpacity)
+            .attr("cx", d => d.x)
+            .attr("cy", d => d.y)
+            .attr("r", initialRadius)
+            .on("mouseover", function (d, i) {
+                d3.select(this)
+                    .style("opacity", hoverOpacity)
+                    .attr("r", hoverRadius);
+                // .style("fill", hoverDotColor);
+                tooltip.html("<strong>" + d.victimName + "</strong>" + "<br>" + "<b>Year of death:</b> " + d.year + "<br>" + "<b>State:</b> " + d.state + "<br><i>Double click to see documents <br> related to this case</i>")
+                    .style("left", d3.event.pageX + 10 + "px")
+                    .style("top", d3.event.pageY + 10 + "px")
+                    .style("padding", "10px 10px")
+                    .style("border", "1px ridge #ffffff");
+            })
+            .on("mouseout", function () {
+                d3.select(this).style("opacity", originalOpacity)
+                    .attr("r", initialRadius)
+                tooltip.html("")
+                    .style("padding", "0")
+                    .style("border", "0");
+            })
+            .on("click", function(d, i) {
+                tipDiv.html("Case Summary")
+                tipDiv.html(`${d.abstract}`)
+            })
+            .on("dblclick", d => window.open("https://crrjarchive.org/incidents/" + d.incidentID, '_blank'));
+    };
 
-    // drawInitialDots();
+    function showdownArrow() {
+        arrow = document.getElementById("downArrow");
+        arrow.style.visibility = 'visible';
+    }
+
+    var WAYPOINT = new Waypoint({
+        element: document.querySelector("#trigger3"),
+        handler: function (direction) {
+            if (direction === "down") {
+                showdownArrow();
+            }
+        }
+    })
+    var WAYPOINT2 = new Waypoint({
+        element: document.querySelector("#trigger1"),
+        handler: function (direction) {
+            if (direction === "down") {
+                var dots = svg.selectAll("circle")
+                    .data(incidentData)
+                    .enter()
+                    .append("circle")
+                    .attr("class", "circle")
+                    .attr("fill", assignDotColor)
+                    .style("opacity", function(d) {
+                        if (d.police == "yes") {
+                            return transparent;
+                        } else {
+                            return originalOpacity;
+                        }
+                    })
+                    .attr("cx", d => d.x)
+                    .attr("cy", d => d.y)
+                    .attr("r", initialRadius)
+                    .on("mouseover", function (d, i) {
+                        d3.select(this)
+                            .attr("r", hoverRadius);
+                        tooltip.html("<strong>" + d.victimName + "</strong>" + "<br>" + "<b>Year of death:</b> " + d.year + "<br>" + "<b>State:</b> " + d.state + "<br><i>Double click to see documents <br> related to this case</i>")
+                            .style("left", d3.event.pageX + 10 + "px")
+                            .style("top", d3.event.pageY + 10 + "px")
+                            .style("padding", "10px 10px")
+                            .style("border", "1px ridge #ffffff");
+                    })
+                    .on("mouseout", function () {
+                        d3.select(this)
+                            .attr("r", initialRadius)
+                        tooltip.html("")
+                            .style("padding", "0")
+                            .style("border", "0");
+                    })
+                    .on("click", function(d, i) {
+                        tipDiv.html("Case Summary")
+                        tipDiv.html(`${d.abstract}`)
+                    })
+                    .on("dblclick", d => window.open("https://crrjarchive.org/incidents/" + d.incidentID, '_blank'))
+                document.getElementById("civilianLegend").style.visibility = 'visible';
+                document.getElementById("civilianLegendDot").style.visibility = 'visible';
+
+            }
+        }
+    })
+
+    var WAYPOINT3 = new Waypoint({
+        element: document.querySelector("#trigger2"),
+        handler: function (direction) {
+            if (direction === "down") {
+                var dots = svg.selectAll("circle")
+                    .style("opacity", originalOpacity);
+                document.getElementById("policeLegend").style.visibility = 'visible';
+                document.getElementById("policeLegendDot").style.visibility = 'visible';
+
+            }
+
+        }
+    })
 
     function updateMap(year) {
+        console.log("update")
         let selectYear = nest.find(function (d) {
             if (year == "All") {
                 drawInitialDots() 
@@ -313,9 +383,7 @@ function drawMap(error, mapData, incidentData) {
             .attr("r", initialYearRadius)
         dots.on("mouseover", function (d, i) {
             d3.select(this)
-                .style("opacity", hoverOpacity)
                 .attr("r", hoverRadius);
-            // .style("fill", hoverDotColor);
             tooltip.html("<strong>" + d.victimName + "</strong>" + "<br>" + "<b>Year of death:</b> " + d.year + "<br>" + "<b>State:</b> " + d.state + "<br><i>Double click to see documents <br> related to this case</i>")
                 .style("left", d3.event.pageX + 10 + "px")
                 .style("top", d3.event.pageY + 10 + "px")
@@ -323,92 +391,14 @@ function drawMap(error, mapData, incidentData) {
                 .style("border", "1px ridge #ffffff");
         })
             .on("mouseout", function () {
-                d3.select(this).style("opacity", originalOpacity)
+                d3.select(this)
                     .attr("r", initialYearRadius)
-                // .style("fill", assignDotColor)
                 tooltip.html("")
                     .style("padding", "0")
                     .style("border", "0");
             })
             .on("dblclick", d => window.open("https://crrjarchive.org/people/" + d.victimID, '_blank'));
     }
-    function showdownArrow() {
-        arrow = document.getElementById("downArrow");
-        arrow.style.visibility = 'visible';
-    }
-
-    var WAYPOINT = new Waypoint({
-        element: document.querySelector("#trigger3"),
-        handler: function (direction) {
-            if (direction === "down") {
-                showdownArrow();
-            }
-        }
-    })
-    var WAYPOINT2 = new Waypoint({
-        element: document.querySelector("#trigger1"),
-        handler: function (direction) {
-            if (direction === "down") {
-                var dots = svg.selectAll("circle")
-                    .data(incidentData)
-                    .enter()
-                    .append("circle")
-                    .attr("fill", assignDotColor)
-                    .style("opacity", function(d) {
-                        if (d.police == "yes") {
-                            return 0;
-                        } else {
-                            return 1;
-                        }
-                    })
-                    .attr("cx", d => d.x)
-                    .attr("cy", d => d.y)
-                    .attr("r", initialRadius)
-                    .on("mouseover", function (d, i) {
-                        d3.select(this)
-                            .style("opacity", hoverOpacity)
-                            .attr("r", hoverRadius);
-                        // .style("fill", hoverDotColor);
-                        tooltip.html("<strong>" + d.victimName + "</strong>" + "<br>" + "<b>Year of death:</b> " + d.year + "<br>" + "<b>State:</b> " + d.state + "<br><i>Double click to see documents <br> related to this case</i>")
-                            .style("left", d3.event.pageX + 10 + "px")
-                            .style("top", d3.event.pageY + 10 + "px")
-                            .style("padding", "10px 10px")
-                            .style("border", "1px ridge #ffffff");
-                    })
-                    .on("mouseout", function () {
-                        d3.select(this).style("opacity", originalOpacity)
-                            .attr("r", initialRadius)
-                        // .style("fill", assignDotColor)
-                        tooltip.html("")
-                            .style("padding", "0")
-                            .style("border", "0");
-                    })
-                    .on("click", function(d, i) {
-                        tipDiv.html("Case Summary")
-                        tipDiv.html(`${d.abstract}`)
-                    })
-                    .on("dblclick", d => window.open("https://crrjarchive.org/people/" + d.ID, '_blank'))
-                document.getElementById("civilianLegend").style.visibility = 'visible';
-                document.getElementById("civilianLegendDot").style.visibility = 'visible';
-
-            }
-        }
-    })
-
-
-    var WAYPOINT3 = new Waypoint({
-        element: document.querySelector("#trigger2"),
-        handler: function (direction) {
-            if (direction === "down") {
-                var dots = svg.selectAll("circle")
-                    .style("opacity", 1);
-                document.getElementById("policeLegend").style.visibility = 'visible';
-                document.getElementById("policeLegendDot").style.visibility = 'visible';
-
-            }
-
-        }
-    })
 };
 
 // Adapted from https://observablehq.com/@jeffreymorganio/random-coordinates-within-a-country
