@@ -92,7 +92,7 @@ h3 {
 }
 
 .legendText {
-    font-size: 18px;
+    font-size: 19px;
     fill: white;
     font-family: 'Montserrat', sans-serif;
 }
@@ -147,6 +147,7 @@ p.intro {
     padding-top: 0;
     padding-bottom: 0;
 }
+
 
 @keyframes intro {
     from {
@@ -257,7 +258,6 @@ p.intro {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    margin-bottom: 4%;
 }
 
 
@@ -363,4 +363,9 @@ p.intro {
 
 .firstGraf {
     margin-top: 100vh;
+}
+
+.attribution {
+    padding: 0;
+    font-size: 10px;
 }

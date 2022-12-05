@@ -154,8 +154,8 @@ function drawMap(error, mapData, incidentData) {
     let path = d3.geoPath()
         .projection(proj);
 
-    svg.append("circle").attr("cx", xValueofLegendCircle).attr("cy", 50).attr("r", 8).style("fill", initialDotColorPolice).attr("id", "policeLegendDot").style("visibility", "hidden")
-    svg.append("circle").attr("cx", xValueofLegendCircle).attr("cy", 80).attr("r", 8).style("fill", initialDotColorCivilian).attr("id", "civilianLegendDot").style("visibility", "hidden")
+    svg.append("circle").attr("cx", xValueofLegendCircle).attr("cy", 50).attr("r", 9).style("fill", initialDotColorPolice).attr("id", "policeLegendDot").style("visibility", "hidden")
+    svg.append("circle").attr("cx", xValueofLegendCircle).attr("cy", 80).attr("r", 9).style("fill", initialDotColorCivilian).attr("id", "civilianLegendDot").style("visibility", "hidden")
     svg.append("text").attr("x", xValueofLegendText).attr("y", 50).text("Killed by Law Enforcement").attr("class", "legendText").attr("alignment-baseline", "middle").attr("id", "policeLegend").style("visibility", "hidden")
     svg.append("text").attr("x", xValueofLegendText).attr("y", 80).text("Killed by Civilian").attr("class", "legendText").attr("alignment-baseline", "middle").attr("id", "civilianLegend").style("visibility", "hidden")
 
