@@ -18,19 +18,17 @@ let tipDiv = d3.select("#tipDiv");
 
 let mapWidth = document.querySelector("#mapContainer").clientWidth,
     mapHeight = document.querySelector("#mapContainer").clientHeight;
-// southernStateFeatureCollection,
-// path;
 
 let xValueofLegendCircle = mapWidth / 2.5,
     xValueofLegendText = xValueofLegendCircle + 20,
     margin = 5,
-    initialRadius = 4,
+    initialRadius = 3,
     initialYearRadius = 6,
     hoverRadius = 8,
-    legendCircleRadius = smallScreen ? 5 : 7,
+    legendCircleRadius = smallScreen ? 4 : 6,
     initialDotColor = "red",
     hoverDotColor = "black",
-    originalOpacity = 0.6,
+    originalOpacity = 1,
     transparent = 0,
     hoverOpacity = 1,
     initialDotColorPolice = "#1F51FF",
@@ -39,11 +37,11 @@ let xValueofLegendCircle = mapWidth / 2.5,
     colorOfStatesWithoutData = "#2d2e2d";
 
 let svg = d3.select("#mapContainer")
-// svg.attr("preserveAspectRatio", "xMinYMin meet")
-//     .attr("viewBox", `0 0 ${mapWidth} ${mapHeight}`)
-//     .attr("x", 0)
-//     .attr("y", 0)
-    svg.attr("width", mapWidth)
+svg.attr("preserveAspectRatio", "xMinYMin meet")
+    .attr("viewBox", `0 0 ${mapWidth} ${mapHeight}`)
+    .attr("x", 0)
+    .attr("y", 0)
+    .attr("width", mapWidth)
     .attr("height", mapHeight)
 
 let svgWordBoard = d3.select("#boardContainer")
@@ -250,26 +248,6 @@ function drawMap(error, mapData, incidentData) {
         };
     }
 
-    function resize() {
-        mapWidth = document.querySelector("#mapContainer").clientWidth;
-        mapHeight = document.querySelector("#mapContainer").clientHeight;
-        svg.attr('width', mapWidth).attr('height', mapHeight);
-            // .attr("preserveAspectRatio", "xMinYMin meet")
-            // .attr("viewBox", `0 0 ${mapWidth} ${mapHeight}`)
-        
-        proj.fitSize([mapWidth, mapHeight], southernStateFeatureCollection);
-        
-        svg.selectAll('path').attr('d', path);
-    }
-
-    // resize event
-    d3.select(window).on("resize", function() {
-        resize()
-        randomBoundingBoxCoordinates(boundingBox)
-        randomStateCoordinates(mapData.features)
-        drawInitialDots();
-    });
-
     function assignDotColor(d) {
         if (d.police == "yes") {
             return initialDotColorPolice;
@@ -311,72 +289,9 @@ function drawMap(error, mapData, incidentData) {
                 tipDiv.html("Case Summary")
                 tipDiv.html(`${d.abstract}`)
             })
-            .on("dblclick", d => window.open("https://crrjarchive.org/incidents/" + d.incidentID, '_blank'));        
+            .on("dblclick", d => window.open("https://crrjarchive.org/incidents/" + d.incidentID, '_blank'));     
+  
     };
-
-    // // Make map responsive
-    // var optimizedResize = (function() {
-
-    //     var callbacks = [],
-    //         running = false;
-
-    //     // fired on resize event
-    //     function resize() {
-
-    //         if (!running) {
-    //             running = true;
-
-    //             if (window.requestAnimationFrame) {
-    //                 window.requestAnimationFrame(runCallbacks);
-    //             } else {
-    //                 setTimeout(runCallbacks, 66);
-    //             }
-    //         }
-
-    //     }
-
-    //     // run the actual callbacks
-    //     function runCallbacks() {
-
-    //         callbacks.forEach(function(callback) {
-    //             callback();
-    //         });
-
-    //         running = false;
-    //     }
-
-    //     // adds callback to loop
-    //     function addCallback(callback) {
-    //         if (callback) {
-    //             callbacks.push(callback);
-    //         }
-    //     }
-
-    //     return {
-    //         // public method to add additional callback
-    //         add: function(callback) {
-    //             if (!callbacks.length) {
-    //                 window.addEventListener('resize', resize);
-    //             }
-    //             addCallback(callback);
-    //         }
-    //     };
-    // }());
-
-    // // start process
-    // optimizedResize.add(function() {
-    //     mapWidth = document.querySelector("#mapContainer").clientWidth;
-    //     mapHeight = document.querySelector("#mapContainer").clientHeight;
-
-    //     svg.attr('width', mapWidth).attr('height', mapHeight);
-
-    //     path.projection(d3.geoAlbersUsa()
-    //         .fitSize([mapWidth, mapHeight], southernStateFeatureCollection));
-
-    //     d3.select('path').attr('d', path);
-    // });
-
-    // End of responsive
 
     function showdownArrow() {
         arrow = document.getElementById("downArrow");

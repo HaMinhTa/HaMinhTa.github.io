@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <svg id="mapContainer">
+        <g id="map"></g>
+    </svg>
+    <script>
+
+        var mapWidth = document.documentElement.clientWidth;
+        var mapHeight = mapWidth / 2;
+
+        var svg = d3.select("#mapContainer")
+            .attr("width", mapWidth)
+            .attr("height", mapHeight);
+
+        d3.json("Data/USA.json", function drawMap(error, data) {
+            if (error) console.log(error);
+            let mapData = data;
+
+            svg = d3.select("#mapContainer")
+                .attr("width", mapWidth)
+                .attr("height", mapHeight);
+
+            let map = svg.select("#map");
+
+            let proj = d3.geoAlbersUsa()
+                .fitSize([mapWidth, mapHeight], mapData);
+
+            let path = d3.geoPath()
+                .projection(proj);
+
+            map.selectAll("path")
+                .data(mapData.features)
+                .enter()
+                .append("path")
+                .attr("d", path)
+                .attr("stroke", "#B6B5B5")
+                .attr("fill", "blue")
+                .style("opacity", "1");
+
+            function resize() {
+                // adjust things when the window size changes
+                mapWidth = document.documentElement.clientWidth;
+                //console.log(parseInt(d3.select('#mapContainer').style('width')));
+                mapHeight = mapWidth / 2;
+                svg.attr('width', mapWidth).attr('height', mapHeight);
+                // update projection
+                proj.fitSize([mapWidth, mapHeight], mapData);
+
+                // resize the map
+                svg.selectAll('path').attr('d', path);
+            }
+
+            // resize event
+            d3.select(window).on("resize", resize);
+        });
+
+        //     var optimizedResize = (function() {
+
+        //     var callbacks = [],
+        //     running = false;
+
+        //     // fired on resize event
+        //     function resize() {
+
+        //     if (!running) {
+        //     running = true;
+
+        //     if (window.requestAnimationFrame) {
+        //         window.requestAnimationFrame(runCallbacks);
+        //     } else {
+        //         setTimeout(runCallbacks, 66);
+        //     }
+        //     }
+
+        //     }
+
+        //     // run the actual callbacks
+        //     function runCallbacks() {
+
+        //     callbacks.forEach(function(callback) {
+        //     callback();
+        //     });
+
+        //     running = false;
+        //     }
+
+        //     // adds callback to loop
+        //     function addCallback(callback) {
+
+        //     if (callback) {
+        //     callbacks.push(callback);
+        //     }
+
+        //     }
+
+        //     return {
+        //     // public method to add additional callback
+        //     add: function(callback) {
+        //     if (!callbacks.length) {
+        //         window.addEventListener('resize', resize);
+        //     }
+        //     addCallback(callback);
+        //     }
+        //     };
+        //     }());
+
+        // optimizedResize.add(function () {
+        //     mapWidth = document.documentElement.clientWidth;
+        //     mapHeight = mapWidth;
+        //     svg.attr('width', mapWidth).attr('height', mapHeight);
+
+        //     path.projection(d3.geoAlbersUsa()
+        //         .fitSize([mapWidth, mapHeight], mapData));
+
+        //     d3.select('path').attr('d', path);
+        // });
+
+    </script>
+</body>
+
+</html>
