@@ -298,16 +298,12 @@ function drawMap(error, mapData, incidentData) {
         arrow.style.visibility = 'visible';
     }
 
-    var WAYPOINT = new Waypoint({
-        element: document.querySelector("#trigger3"),
-        handler: function (direction) {
-            if (direction === "down") {
-                showdownArrow();
-            }
-        }
-    });
+    function hidedownArrow() {
+        arrow = document.getElementById("downArrow");
+        arrow.style.visibility = 'hidden';
+    }
 
-    var WAYPOINT2 = new Waypoint({
+    var WAYPOINT = new Waypoint({
         element: document.querySelector("#trigger1"),
         handler: function (direction) {
             if (direction === "down") {
@@ -350,12 +346,11 @@ function drawMap(error, mapData, incidentData) {
                     .on("dblclick", d => window.open("https://crrjarchive.org/incidents/" + d.incidentID, '_blank'))
                 document.getElementById("civilianLegend").style.visibility = 'visible';
                 document.getElementById("civilianLegendDot").style.visibility = 'visible';
-
             }
         }
     });
 
-    var WAYPOINT3 = new Waypoint({
+    var WAYPOINT2 = new Waypoint({
         element: document.querySelector("#trigger2"),
         handler: function (direction) {
             if (direction === "down") {
@@ -363,9 +358,30 @@ function drawMap(error, mapData, incidentData) {
                     .style("opacity", originalOpacity);
                 document.getElementById("policeLegend").style.visibility = 'visible';
                 document.getElementById("policeLegendDot").style.visibility = 'visible';
-
             }
 
+            if (direction === "up") {
+                d3.selectAll(".circle").remove();
+                document.getElementById("civilianLegend").style.visibility = 'hidden';
+                document.getElementById("civilianLegendDot").style.visibility = 'hidden';
+
+                document.getElementById("policeLegend").style.visibility = 'hidden';
+                document.getElementById("policeLegendDot").style.visibility = 'hidden';
+            }
+
+        }
+    });
+
+    var WAYPOINT3 = new Waypoint({
+        element: document.querySelector("#trigger3"),
+        handler: function (direction) {
+            if (direction === "down") {
+                showdownArrow();
+            }
+
+            if (direction === "up") {
+                hidedownArrow();
+            }
         }
     });
 
